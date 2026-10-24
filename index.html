@@ -1,0 +1,1478 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BAS Feature Flows</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap">
+<style>
+/* Layout concept: one feature per tab, read top to bottom.
+   Real UI, then the live site wired to the flowchart, then the flowchart, explanation and breaks.
+   Deliberately light-only, matching the Figma file the user specified. */
+:root {
+  color-scheme: light;
+  --bg: #F5F7FA;
+  --card: #FFFFFF;
+  --ink: #1B2430;
+  --ink-2: #2E3A48;
+  --muted: #4A5565;
+  --soft: #5B6675;
+  --line: #DDE3EA;
+  --line-2: #C9D2DD;
+  --chip: #EEF1F5;
+  --tint: #EEF4FF;
+  --panel: #F7F9FB;
+  --me: #1D4ED8;
+  --beef: #C0362C;
+  --mark: #E5372B;
+  --ok: #166534; --ok-bg: #DCFCE7;
+  --glow: #F59E0B; --glow-bg: #FFF7E0;
+  --k-event-bg: #E0F2F1; --k-event: #0F766E;
+  --k-fn-bg: #E2F3E9; --k-fn: #23774A;
+  --k-dec-bg: #F3E8FF; --k-dec: #7A3FB0;
+  --k-data-bg: #FEF3C7; --k-data: #A16207;
+  --k-screen-bg: #1B2430; --k-screen: #1B2430;
+  --k-end-bg: #EEF1F5; --k-end: #8A94A3;
+  --t-syntax-bg: #FDE2E0; --t-syntax: #B42318;
+  --t-selector-bg: #FEF0C7; --t-selector: #93370D;
+  --t-logic-bg: #DBE7FF; --t-logic: #1D4ED8;
+  --t-none-bg: #DCFCE7; --t-none: #166534;
+  --font: "Poppins", "Noto Sans Thai", system-ui, sans-serif;
+  --thai: "Noto Sans Thai", "Poppins", system-ui, sans-serif;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 17px; line-height: 1.6; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--card); }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--me); outline-offset: 2px; }
+.p { font-family: var(--thai); }
+code.cc { font-family: var(--font); font-size: 0.92em; font-weight: 500; background: var(--chip); color: var(--ink); border-radius: 5px; padding: 1px 6px; overflow-wrap: anywhere; }
+.ln { display: inline-block; font-size: 0.86em; font-weight: 600; color: var(--k-fn); background: var(--k-fn-bg); border-radius: 5px; padding: 0 6px; white-space: nowrap; line-height: 1.6; }
+.uic { display: inline-block; font-size: 0.9em; font-weight: 600; border: 1px solid var(--line-2); background: var(--card); border-radius: 999px; padding: 0 10px; white-space: nowrap; }
+.tested { display: inline-flex; align-items: center; gap: 5px; font-size: 15px; font-weight: 600; color: var(--ok); background: var(--ok-bg); border-radius: 999px; padding: 1px 10px; white-space: nowrap; }
+.tested::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--ok); }
+
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--card); border-bottom: 1px solid var(--line); }
+.top-in { max-width: 1920px; margin: 0 auto; padding-block: 12px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; }
+.brand { font-weight: 700; font-size: 20px; white-space: nowrap; }
+.tabs { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: thin; flex: 1 1 auto; min-width: 0; padding-bottom: 2px; align-items: center; }
+.tab { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); cursor: pointer; font-size: 16px; font-weight: 500; white-space: nowrap; }
+.tab .dot { width: 8px; height: 8px; border-radius: 50%; }
+.tab[aria-selected="true"] { background: var(--ink); color: #FFFFFF; border-color: var(--ink); }
+.tab:hover:not([aria-selected="true"]) { border-color: var(--soft); }
+.tabsep { flex: 0 0 1px; height: 22px; background: var(--line-2); margin: 0 4px; }
+.top-links { display: flex; gap: 16px; font-size: 16px; white-space: nowrap; order: 2; margin-left: auto; }
+.brand { order: 1; }
+.tabs { order: 3; }
+@media (max-width: 1280px) { .tabs { flex-basis: 100%; } }
+.top-links a { color: var(--me); text-decoration: none; font-weight: 500; }
+.top-links a:hover { text-decoration: underline; }
+
+main { max-width: 1920px; margin: 0 auto; padding-block: 28px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.feature { display: flex; flex-direction: column; gap: 22px; }
+
+.head { padding: 4px 4px 8px; display: flex; flex-direction: column; gap: 10px; }
+.eyebrow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; font-size: 16px; color: var(--muted); }
+.owner { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; color: var(--ink); }
+.owner i { width: 10px; height: 10px; border-radius: 50%; }
+.head h1 { margin: 0; font-size: clamp(26px, 3.2vw, 42px); line-height: 1.25; text-wrap: balance; }
+.files { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 16px; color: var(--muted); }
+.files span { display: inline-flex; gap: 6px; align-items: baseline; }
+.files b { font-weight: 600; color: var(--ink-2); }
+
+.sec { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 24px 28px 28px; display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+.sec > h2 { margin: 0; font-size: clamp(20px, 2vw, 25px); line-height: 1.3; text-wrap: balance; }
+.hint { color: var(--soft); font-size: 16px; margin: -10px 0 0; }
+
+/* Real UI */
+.uirow { display: flex; align-items: center; gap: 14px; }
+.shotcol { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.shot { position: relative; border-radius: 10px; border: 1px solid var(--line-2); background: var(--panel); cursor: zoom-in; padding: 0; display: block; width: 100%; }
+.shot img { display: block; width: 100%; height: auto; border-radius: 9px; }
+.mk { position: absolute; transform: translate(-50%, -50%); width: 32px; height: 32px; border-radius: 50%; background: var(--mark); color: #FFFFFF; border: 3px solid #FFFFFF; box-shadow: 0 2px 6px rgba(0,0,0,.3); display: grid; place-items: center; font-weight: 700; font-size: 16px; line-height: 1; pointer-events: none; }
+.cap { font-size: 16px; color: var(--muted); margin: 0; line-height: 1.55; }
+.cap .tested { margin-left: 6px; }
+.inset-cap { font-size: 16px; font-weight: 500; color: var(--muted); margin: 0; }
+.action { flex: 0 0 150px; display: flex; flex-direction: column; gap: 10px; }
+.act { display: flex; gap: 8px; align-items: flex-start; font-size: 16px; font-weight: 500; line-height: 1.4; }
+.act .b { flex: 0 0 26px; height: 26px; border-radius: 50%; background: var(--mark); color: #FFFFFF; display: grid; place-items: center; font-weight: 700; font-size: 16px; }
+.arrow { height: 14px; position: relative; }
+.arrow::before { content: ""; position: absolute; left: 0; right: 10px; top: 6px; height: 3px; background: var(--mark); border-radius: 2px; }
+.arrow::after { content: ""; position: absolute; right: 0; top: 0; border: 7px solid transparent; border-left: 12px solid var(--mark); border-right: 0; }
+
+/* Live site + flowchart */
+.pbar { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; }
+.pbar .push { margin-left: auto; }
+.tbtn { padding: 5px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--card); cursor: pointer; font-size: 16px; }
+.tbtn:hover { border-color: var(--soft); }
+.tbtn[aria-pressed="true"] { background: var(--ink); color: #FFFFFF; border-color: var(--ink); }
+.tbtn.primary { background: var(--ink); color: #FFFFFF; border-color: var(--ink); font-weight: 600; }
+.combo { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+@media (min-width: 1100px) { .combo { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); } }
+.pane { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.stage { position: relative; height: 600px; border: 1px solid var(--line-2); border-radius: 10px; background: var(--panel); overflow: hidden; }
+.stage-sizer { position: relative; height: 100%; margin: 0 auto; }
+.stage iframe { position: absolute; left: 0; top: 0; border: 0; transform-origin: 0 0; background: #FFFFFF; }
+.stage-empty { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; color: var(--muted); font-size: 16px; padding: 20px; }
+.stage-empty p { margin: 0; }
+.flowtools { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 15px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.sw { width: 24px; height: 16px; border-radius: 5px; border: 2px solid; }
+.sw.dec { border-style: dashed; border-radius: 9px; }
+.flowview { position: relative; height: 600px; overflow: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--card); overscroll-behavior: contain; }
+.flowsizer { position: relative; }
+.canvas { position: absolute; left: 0; top: 0; width: 1728px; transform-origin: 0 0; padding: 0; }
+.canvas svg { position: absolute; left: 0; top: 0; overflow: visible; }
+.canvas path.e { transition: stroke .25s, stroke-width .25s; }
+.canvas path.e.on { stroke: var(--glow); stroke-width: 4; }
+.node { position: absolute; border: 2px solid; border-radius: 10px; padding: 10px 13px; display: flex; flex-direction: column; gap: 4px; transition: box-shadow .25s, transform .25s; }
+.node .t { font-weight: 600; font-size: 17px; line-height: 1.4; overflow-wrap: anywhere; }
+.node .t .ln { margin-left: 6px; }
+.node .s { font-size: 16px; line-height: 1.45; color: var(--muted); overflow-wrap: anywhere; }
+.node.dec { border-style: dashed; border-radius: 22px; }
+.node.screen .t { color: #FFFFFF; }
+.node.screen .s { color: #D5DCE6; }
+.node.screen code.cc { background: #2E3A48; color: #FFFFFF; }
+.node.screen .ln { background: #2E3A48; color: #BFE8CC; }
+.node.lit { box-shadow: 0 0 0 4px var(--glow), 0 6px 18px rgba(245,158,11,.35); }
+.node.now { transform: scale(1.04); }
+.lbl { position: absolute; background: var(--card); font-size: 16px; font-weight: 500; line-height: 1.3; padding: 0 5px; border-radius: 6px; white-space: nowrap; }
+.box { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; background: var(--panel); }
+.box h3 { margin: 0 0 8px; font-size: 16px; font-weight: 600; color: var(--soft); }
+.tasks { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; font-size: 16px; }
+.tasks li { display: flex; gap: 10px; align-items: baseline; line-height: 1.45; }
+.tasks .tb { flex: 0 0 24px; height: 24px; border-radius: 50%; background: var(--mark); color: #FFFFFF; display: grid; place-items: center; font-weight: 700; font-size: 13px; position: relative; top: 3px; }
+.tasks li.done { color: var(--soft); }
+.tasks li.done span:last-child { text-decoration: line-through; text-decoration-color: var(--line-2); }
+.tasks li.done .tb { background: var(--ok); }
+.steps { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px 8px; font-size: 15px; counter-reset: s; }
+.steps li { display: inline-flex; gap: 6px; align-items: baseline; opacity: .4; transition: opacity .2s; line-height: 1.4; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 2px 8px 2px 4px; }
+.steps li::before { counter-increment: s; content: counter(s); flex: 0 0 20px; height: 20px; border-radius: 50%; background: var(--chip); display: grid; place-items: center; font-size: 12px; font-weight: 700; position: relative; top: 4px; }
+.steps li.on { opacity: 1; border-color: var(--glow); }
+.steps li.on::before { background: var(--glow); color: #FFFFFF; }
+.empty-note { font-size: 16px; color: var(--soft); margin: 0; }
+.varstrip { display: flex; flex-wrap: wrap; gap: 8px; }
+.vi { display: inline-flex; align-items: baseline; gap: 8px; border: 1px solid var(--line); border-radius: 8px; padding: 4px 10px; background: var(--panel); font-size: 16px; transition: background-color .4s; max-width: 100%; }
+.vi b { font-weight: 600; overflow-wrap: anywhere; }
+.vi.changed { background: var(--glow-bg); border-color: var(--glow); }
+.cons-vi { flex: 1 1 280px; }
+.lab2 { font-size: 15px; color: var(--soft); white-space: nowrap; }
+.cons1 { font-size: 15px; overflow-wrap: anywhere; }
+.combo-sec.full { position: fixed; inset: 0; z-index: 40; border-radius: 0; overflow: auto; padding-block: 16px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-top: calc(16px + env(safe-area-inset-top, 0px)); }
+.combo-sec.full .stage, .combo-sec.full .flowview { height: calc(100vh - 380px); min-height: 340px; }
+.combo-sec.full > h2, .combo-sec.full > .hint { display: none; }
+body.noscroll { overflow: hidden; }
+@media (max-width: 1099px) { .stage { height: 520px; } .flowview { height: 460px; } }
+
+
+.node { border: 0 !important; padding: 0 !important; background: none !important; }
+.node .sym { position: absolute; overflow: visible; pointer-events: none; }
+.node .sym > * { fill: var(--f); stroke: var(--s); stroke-width: 2; transition: stroke .25s, stroke-width .25s; }
+.node .sym line { fill: none; }
+.node .nc { position: relative; display: flex; flex-direction: column; gap: 4px; padding: 10px 14px; }
+.node.event .nc, .node.end .nc { padding: 10px 24px; }
+.node.fn .nc { padding: 10px 20px; }
+.node.screen .nc { padding: 10px 26px 10px 24px; }
+.node.dec .nc { padding: 8px 12px; background: var(--f); border-radius: 8px; }
+.node.lit { box-shadow: none !important; }
+.node.lit .sym > * { stroke: var(--glow); stroke-width: 4; }
+.node.lit .sym { filter: drop-shadow(0 4px 10px rgba(245,158,11,.45)); }
+.lgi { flex: 0 0 auto; overflow: visible; }
+.lgi > * { fill: var(--f); stroke: var(--s); stroke-width: 2; }
+.lgi line { fill: none; }
+.legend b { font-weight: 600; color: var(--ink-2); }
+
+
+/* wiring */
+.wiring { border: 1px solid var(--line); border-radius: 12px; background: var(--card); margin-top: 4px; }
+.wiring summary { cursor: pointer; display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; padding: 12px 18px; font-size: 17px; }
+.wiring summary .wt { font-weight: 600; color: var(--ink); margin-right: 4px; }
+.lang { display: inline-block; font-size: 15px; font-weight: 600; border-radius: 5px; padding: 0 7px; line-height: 1.6; }
+.lang.HTML { background: #FDE8DF; color: #B4410F; }
+.lang.CSS { background: #DBE7FF; color: #1D4ED8; }
+.lang.JS { background: #FEF3C7; color: #8A5A00; }
+.wtab { width: 100%; border-collapse: collapse; font-size: 16px; }
+.wtab th { text-align: left; font-weight: 600; color: var(--soft); font-size: 15px; padding: 8px 12px; border-top: 1px solid var(--line); background: var(--panel); }
+.wtab td { padding: 9px 12px; border-top: 1px solid var(--line); vertical-align: top; line-height: 1.55; }
+.wtab .c-f { white-space: nowrap; }
+.wtab .c-f .lang { margin-right: 8px; min-width: 42px; text-align: center; }
+.wtab .c-f b { font-weight: 600; color: var(--ink-2); }
+.wtab code.cc { display: inline-block; margin: 1px 0; }
+.wtab code.sel { background: #FFF4EC; color: #8A2F0B; }
+.wtab tr.r-CSS code.sel { background: #EEF3FF; color: #1E40AF; }
+.wtab tr.r-JS code.sel { background: #FFF8E1; color: #6B4700; }
+.wtab .c-x code.cc { background: var(--k-fn-bg); color: #1B5E3A; }
+@media (max-width: 860px) {
+  .wtab thead { display: none; }
+  .wtab, .wtab tbody, .wtab tr, .wtab td { display: block; width: 100%; }
+  .wtab tr { border-top: 1px solid var(--line); padding: 10px 14px; }
+  .wtab td { border: 0; padding: 3px 0; }
+  .wtab .c-f { white-space: normal; }
+  .wtab td:empty { display: none; }
+}
+/* breaks v2 */
+.breaks { grid-template-columns: 1fr !important; }
+.bk-cols { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 18px 26px; }
+@media (max-width: 900px) { .bk-cols { grid-template-columns: 1fr; } }
+.bk-txt { display: flex; flex-direction: column; gap: 6px; }
+.bk-code { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.bk-code .lab { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px; }
+.key { display: inline-flex; gap: 6px; align-items: center; font-weight: 500; }
+.key i { width: 14px; height: 14px; border-radius: 3px; display: inline-block; margin-left: 6px; }
+.key .kd { background: #FDE2E0; border: 1px solid #E5372B; }
+.key .ka { background: #DCFCE7; border: 1px solid #16A34A; }
+.codev { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: #FBFCFD; }
+.codev .cf { font-size: 15px; font-weight: 600; color: var(--soft); padding: 6px 12px; background: var(--panel); border-bottom: 1px solid var(--line); }
+.codev .cf:not(:first-child) { border-top: 1px solid var(--line); }
+.codev .cl { overflow-x: auto; padding: 4px 0; }
+.codev .row { display: flex; gap: 12px; font-size: 16px; line-height: 1.7; min-width: max-content; padding-right: 12px; }
+.codev .n { flex: 0 0 52px; text-align: right; color: var(--soft); font-size: 15px; padding-right: 4px; }
+.codev .t { white-space: pre; color: var(--ink-2); }
+.codev .row.del { background: #FDE2E0; }
+.codev .row.del .t { text-decoration: line-through; text-decoration-color: #E5372B; text-decoration-thickness: 2px; color: #8F1D14; }
+.codev .row.del .n { color: #B42318; font-weight: 600; }
+.codev .row.add { background: #DCFCE7; }
+.codev .row.add .t { color: #14532D; font-weight: 500; }
+.codev .row.add .n { color: #166534; font-weight: 700; }
+.pv-btn { align-self: flex-start; font: inherit; font-size: 16px; font-weight: 600; color: #fff; background: var(--ink); border: 0; border-radius: 8px; padding: 9px 18px; cursor: pointer; }
+.pv-btn[aria-expanded="true"] { background: var(--card); color: var(--ink); box-shadow: inset 0 0 0 1px var(--line-2); }
+.pv-btn:focus-visible { outline: 3px solid var(--glow); outline-offset: 2px; }
+.pv { border-top: 1px dashed var(--line-2); margin-top: 6px; padding-top: 14px; display: flex; flex-direction: column; gap: 12px; }
+.pv-act { margin: 0; font-size: 17px; }
+.pv-act b { font-weight: 600; margin-right: 6px; }
+.pv-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+@media (max-width: 760px) { .pv-pair { grid-template-columns: 1fr; } }
+.cap { margin: 0; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.cap figcaption { font-size: 16px; font-weight: 600; }
+.cap.ok figcaption { color: var(--ok); }
+.cap.bad figcaption { color: #B42318; }
+.cap img { display: block; width: 100%; height: auto; max-height: 560px; object-fit: contain; object-position: top left; border-radius: 8px; border: 2px solid var(--line); background: #fff; }
+.cap.ok img { border-color: #86EFAC; }
+.cap.bad img { border-color: #FCA5A5; }
+.pv-meta { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: flex-start; }
+.pv-same { margin: 0; width: 100%; font-size: 17px; font-weight: 600; color: #93370D; background: #FEF0C7; border-radius: 8px; padding: 8px 12px; }
+.facts { border-collapse: collapse; font-size: 16px; }
+.facts th { text-align: left; font-weight: 600; color: var(--soft); font-size: 15px; padding: 4px 14px 4px 0; }
+.facts td { padding: 4px 14px 4px 0; border-top: 1px solid var(--line); }
+.facts td.bad { color: #B42318; font-weight: 600; }
+.pv-cons { min-width: 240px; }
+.cline { font-size: 16px; padding: 4px 10px; border-left: 3px solid var(--line-2); background: var(--panel); margin-top: 4px; }
+.cline.err { border-color: #E5372B; background: #FDE2E0; color: #8F1D14; }
+.pv-quiet { margin: 0; font-size: 16px; color: var(--soft); }
+
+/* Explanations */
+.two { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; align-items: start; }
+@media (min-width: 1000px) { .two { grid-template-columns: minmax(0, 520px) minmax(0, 1fr); } }
+.easy { background: var(--tint); border-radius: 12px; padding: 20px 24px; }
+.easy h3, .deep h3 { margin: 0 0 8px; font-size: 20px; }
+.easy p { margin: 0; font-size: 18px; line-height: 1.75; max-width: 62ch; }
+.deep { display: flex; flex-direction: column; gap: 18px; padding: 4px 4px; }
+.qa h4 { margin: 0 0 4px; font-size: 18px; font-weight: 600; line-height: 1.5; }
+.qa p { margin: 0; font-size: 18px; color: var(--ink-2); line-height: 1.7; max-width: 92ch; }
+.qa .tested { margin-top: 6px; }
+
+/* Breaks */
+.breaks { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 18px; }
+.bk { border: 1px solid var(--line); border-radius: 12px; padding: 18px 22px 20px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.bk-h { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; }
+.bk-h strong { font-size: 18px; }
+.bk .lab { font-size: 15px; font-weight: 600; color: var(--soft); margin-top: 4px; }
+.bk p { margin: 0; font-size: 18px; line-height: 1.6; overflow-wrap: anywhere; }
+.tpill { display: inline-block; padding: 1px 12px; border-radius: 999px; font-size: 15px; font-weight: 600; }
+
+dialog.lb { border: 0; padding: 0; background: transparent; max-width: min(96vw, 1400px); max-height: 94vh; }
+dialog.lb::backdrop { background: rgba(15, 20, 28, .82); }
+.lb-in { position: relative; background: var(--card); border-radius: 12px; padding: 12px; }
+.lb-in .shot { cursor: default; }
+.lb-close { position: absolute; right: 12px; top: -46px; padding: 6px 14px; border-radius: 8px; border: 0; background: var(--card); cursor: pointer; font-weight: 600; }
+.lb-scroll { max-height: calc(94vh - 24px); overflow: auto; }
+
+@media (max-width: 860px) {
+  .uirow { flex-direction: column; align-items: stretch; }
+  .shotcol { flex: none !important; width: 100%; max-width: 560px; align-self: center; }
+  .shotcol.narrow { max-width: 300px; }
+  .action { flex: none; flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px 16px; }
+  .arrow { width: 14px; height: 36px; flex: 0 0 auto; }
+  .arrow::before { left: 5px; right: auto; top: 0; bottom: 10px; width: 3px; height: auto; }
+  .arrow::after { left: 0; right: auto; top: auto; bottom: 0; border: 7px solid transparent; border-top: 12px solid var(--mark); border-bottom: 0; }
+  .sec { padding: 20px 16px 22px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<header class="top">
+  <div class="top-in">
+    <div class="brand">BAS Feature Flows</div>
+    <nav class="tabs" role="tablist" aria-label="ฟีเจอร์" id="tabs"></nav>
+    <div class="top-links"><a href="https://www.figma.com/design/FOsB5d9eMExm7ckBXYxYwv" target="_blank" rel="noopener">ไฟล์ Figma</a></div>
+  </div>
+</header>
+<main id="main"></main>
+
+<dialog class="lb" id="lb" aria-label="ภาพหน้าจอขนาดใหญ่">
+  <div class="lb-in">
+    <button type="button" class="lb-close" id="lb-close">ปิด</button>
+    <div class="lb-scroll" id="lb-body"></div>
+  </div>
+</dialog>
+
+<script>
+// Content for the study page. Conventions inside strings:
+//   `code`  → code chip        [[Label]] → UI button chip        L123–456 → line chip (auto)
+// Node: [id, column, y, kind, title, lineChip, sub]   Edge: "A>B:label" (horizontal), "A|B:label" (vertical), optional "@bend"
+const DATA = {
+F1: {
+  num: 1, short: 'Semantic HTML', owner: 'me', score: 4,
+  title: 'Semantic HTML และ Accessibility',
+  exam: 'ข้อสอบจะให้อธิบาย ทำนายผล และแก้โค้ด',
+  files: [['index.html', 'L13–71', 'header และ nav'], ['index.html', 'L74–492', 'main และ section'], ['index.html', 'L408–485', 'ฟอร์มกับ label'], ['index.html', 'L495–532', 'footer'], ['index.html', 'L535–551', 'dialog']],
+  ui: {
+    items: [
+      { key: 'f1_1', w: 573, h: 272, marks: [{ n: 1, x: 115, y: 26 }], cap: 'ก่อนคลิก ยังไม่มีช่องไหนได้โฟกัส label ของช่องนี้ผูกกับช่องด้วย `for="contact-name"`' },
+      { key: 'f1_2', w: 573, h: 272, marks: [], cap: 'คลิกที่ข้อความ label แล้วเคอร์เซอร์เข้าไปอยู่ในช่องชื่อเอง มีกรอบโฟกัสสีเขียว โดยไม่ต้องเขียน JS', tested: true }
+    ],
+    arrows: [[[1, 'คลิกที่ข้อความ label ไม่ได้คลิกที่ช่อง']]]
+  },
+  flow: {
+    h: 1030, cols: [[0, 230], [380, 420], [950, 320], [1420, 308]],
+    nodes: [
+      ['E0', 0, 70, 'event', 'คลิกข้อความ label', '', '[[Contact Name / Company]]'],
+      ['H0', 1, 70, 'fn', 'เบราว์เซอร์หาช่องตาม for', 'L411', '`<label for="contact-name">` คู่กับ `<input id="contact-name">` ที่ L416'],
+      ['Q0', 2, 70, 'dec', 'for ตรงกับ id ทุกตัวอักษรไหม', '', ''],
+      ['S0', 3, 70, 'screen', 'เคอร์เซอร์เข้าช่องชื่อ', '', 'โปรแกรมอ่านหน้าจออ่านชื่อช่องได้'],
+      ['N0', 2, 215, 'end', 'ไม่เกิดอะไร', '', 'หน้าตาเหมือนเดิม แต่ช่องไม่มีชื่อ'],
+      ['E1', 0, 360, 'event', 'ผู้ใช้โปรแกรมอ่านหน้าจอกดข้ามส่วน', '', ''],
+      ['H1', 1, 360, 'fn', 'landmark ในหน้า', '', '`<header>` L13, `<nav aria-label>` L20, `<main>` L74, `<section aria-labelledby>` L77, `<footer>` L495'],
+      ['S1', 3, 360, 'screen', 'กระโดดไปส่วนที่ต้องการ', '', 'ได้ยินชื่อส่วนจาก aria-label หรือหัวข้อ'],
+      ['E2', 0, 510, 'event', 'ส่งฟอร์มที่กรอกผิด', '', 'ต่อจาก F4'],
+      ['H2', 1, 510, 'fn', 'showError() ใส่ข้อความ', 'L769', 'ลงใน `<span aria-live="polite">` ของ index.html L423'],
+      ['S2', 3, 510, 'screen', 'ข้อความแดงใต้ช่อง', '', 'โปรแกรมอ่านหน้าจออ่านให้ฟังเองเมื่อว่าง'],
+      ['E3', 0, 660, 'event', 'คลิกปุ่มแฮมเบอร์เกอร์', '', 'จอกว้างไม่เกิน 1023px'],
+      ['H3', 1, 660, 'fn', 'setupMobileNav()', 'L883–887', 'อ่าน aria-expanded แล้วกลับค่า'],
+      ['D3', 2, 660, 'data', 'aria-expanded เป็น "true"', 'L885', 'และใส่ class `is-open` ที่ L886'],
+      ['S3', 3, 660, 'screen', 'เมนูเปิด', '', 'โปรแกรมอ่านหน้าจอรู้ว่าเปิดอยู่'],
+      ['E4', 0, 810, 'event', 'คลิกปุ่มสลับภาษา', '', '`#lang-toggle-btn`'],
+      ['H4', 1, 810, 'fn', 'applyLanguage(lang)', 'L1025', 'เปลี่ยนข้อความทุกตัวที่มี data-i18n'],
+      ['D4', 2, 810, 'data', '`<html lang>` เปลี่ยนตาม', 'L1027', 'ค่าเริ่มต้น `lang="en"` อยู่ที่ index.html L2'],
+      ['S4', 3, 810, 'screen', 'ออกเสียงถูกภาษา', '', 'ข้อความทั้งหน้าเปลี่ยน'],
+      ['E5', 0, 960, 'event', 'รูปโหลดไม่ขึ้น หรือผู้ใช้มองไม่เห็น', '', ''],
+      ['H5', 1, 960, 'fn', '`<img alt="…">`', 'L16, L131', 'การ์ดที่ JS สร้างใช้ `alt="${displayTitle}"` ที่ app.js L482'],
+      ['S5', 3, 960, 'screen', 'แสดงหรืออ่านคำบรรยายรูปแทน', '', '']
+    ],
+    edges: ['E0>H0:click', 'H0>Q0:จับคู่', 'Q0>S0:ใช่', 'Q0|N0:ไม่ใช่', 'E1>H1:กดปุ่มนำทาง', 'H1>S1:อ่านโครงหน้า', 'E2>H2:submit', 'H2>S2:textContent', 'E3>H3:click', 'H3>D3:setAttribute', 'D3>S3:CSS แสดง', 'E4>H4:click', 'H4>D4:เปลี่ยนค่า', 'D4>S4:อ่านค่าใหม่', 'E5>H5:เบราว์เซอร์ใช้', 'H5>S5:alt']
+  },
+  easy: 'HTML ที่มีความหมายเหมือนป้ายบอกทางในอาคาร มีป้ายทางเข้า เมนู ห้องหลัก และทางออก คนที่มองไม่เห็นใช้โปรแกรมอ่านหน้าจอกระโดดไปตามป้ายได้ทันที label เหมือนป้ายชื่อที่ผูกกับช่องกรอก คลิกป้ายแล้วไปที่ช่องนั้นเลย ส่วน alt คือคำบรรยายรูปสำหรับคนที่มองไม่เห็นรูป',
+  points: [
+    { q: 'ทำไมใช้ `<header>` `<nav>` `<main>` `<section>` `<footer>` แทน `<div>`', a: 'เพราะ landmark บอกหน้าที่ของแต่ละส่วน โปรแกรมอ่านหน้าจอกระโดดไปได้ทันที เครื่องมือค้นหาเข้าใจโครงหน้า และ JS ของเราก็ใช้มันด้วย scrollspy ที่ app.js บรรทัด 987 เลือก `main section[id]`' },
+    { q: 'ทำไม for ของ label ต้องตรงกับ id ของช่อง', a: 'เพราะการผูกนี้ทำให้คลิกข้อความแล้วเคอร์เซอร์เข้าช่อง และโปรแกรมอ่านหน้าจออ่านชื่อช่องให้ฟัง บรรทัด 411 ต้องตรงกับบรรทัด 416 ถ้าสะกดไม่ตรง หน้าตาเหมือนเดิมทุกอย่าง แต่สองอย่างนี้หายไป' },
+    { q: 'ทำไม label ของช่องค้นหาใช้ class visually-hidden ไม่ใช้ display: none', a: 'ดีไซน์ไม่อยากเห็นข้อความเหนือช่อง แต่กฎต้องมี label class นี้ใน style.css บรรทัด 169 ถึง 179 ย่อกล่องเหลือ 1px แล้วตัดทิ้ง จอไม่เห็นแต่โปรแกรมอ่านหน้าจอยังอ่านได้ ส่วน display: none ทำให้อ่านไม่ได้ด้วย' },
+    { q: 'ทำไมใส่ aria-live="polite" ที่ span ของข้อความผิดพลาดและที่กล่องการ์ด', a: 'เพราะข้อความที่ JS ใส่ทีหลังไม่มีใครรู้ว่าเปลี่ยน aria-live ทำให้โปรแกรมอ่านหน้าจออ่านให้ฟังเองเมื่อว่าง ใช้ที่ index.html บรรทัด 423 และ 244' },
+    { q: 'ทำไมปุ่มแฮมเบอร์เกอร์ต้องมี aria-label aria-controls และ aria-expanded', a: 'เพราะปุ่มไม่มีข้อความ ต้องบอกว่าปุ่มทำอะไร คุมเมนูไหน และตอนนี้เปิดหรือปิดอยู่ JS เปลี่ยนค่า aria-expanded ให้ที่ app.js บรรทัด 885 ส่วนดอกจันในฟอร์มใช้ aria-hidden="true" เพื่อไม่ให้อ่านคำว่า star' },
+    { q: 'ทำไม alt ต้องบรรยายรูป ไม่ใช่ชื่อไฟล์', a: 'เพราะใช้แทนรูปตอนโหลดไม่ขึ้นและอ่านให้คนที่มองไม่เห็นฟัง ไอคอนตกแต่งจึงใส่ aria-hidden แทน และ `<html lang>` ที่ JS เปลี่ยนตอนสลับภาษา ทำให้โปรแกรมอ่านหน้าจอออกเสียงถูกภาษา' }
+  ],
+  breaks: [
+    { at: 'index.html L411', change: 'เปลี่ยน `for="contact-name"` เป็น `for="name"`', type: 'selector', see: 'หน้าตาเหมือนเดิม แต่คลิกข้อความ label แล้วเคอร์เซอร์ไม่เข้าช่อง โฟกัสยังอยู่ที่ body และโปรแกรมอ่านหน้าจอไม่รู้ชื่อช่อง', why: 'for ต้องตรงกับ id ของ input ถ้าไม่ตรงก็ไม่ผูกกัน และไม่มี error เพราะ HTML ไม่บังคับ', tested: true },
+    { at: 'index.html L74 และ L492', change: 'เปลี่ยน `<main>` กับ `</main>` เป็น `<div>` กับ `</div>`', type: 'selector', see: 'หน้าตาเหมือนเดิม การ์ดยังครบ 16 ใบ แต่เลื่อนจอแล้วเมนูยังไฮไลต์ Home ค้างตลอด', why: 'scrollspy ใช้ `querySelectorAll("main section[id]")` ที่ app.js บรรทัด 987 ได้ 0 ตัว แล้วบรรทัด 989 return เงียบๆ และหน้าก็เสีย landmark หลักไปด้วย', tested: true },
+    { at: 'style.css L169–179', change: 'ลบกฎ `.visually-hidden` ทิ้ง', type: 'logic', see: 'คำว่า Search Services โผล่ขึ้นมาข้างช่องค้นหา ไม่มี error', why: 'label ยังอยู่ใน HTML เหมือนเดิม แค่ไม่มี CSS ที่ซ่อนมันจากสายตาแล้ว', tested: true }
+  ]
+},
+F2: {
+  num: 2, short: 'Responsive', owner: 'me', score: 7,
+  title: 'Responsive Layout ด้วย Flexbox Grid และ Media Query',
+  exam: 'ข้อสอบจะให้อธิบาย ทำนายผล และแก้โค้ด',
+  files: [['style.css', 'L121–126', 'box-sizing'], ['style.css', 'L928–932', 'grid ของการ์ด'], ['style.css', 'L1738–1829', 'จอไม่เกิน 1023px'], ['style.css', 'L1831–1905', 'จอไม่เกิน 480px'], ['style.css', 'L1907–1935', 'จอ 1024px ขึ้นไป'], ['app.js', 'L552–565', 'ตัดเหลือ 4 การ์ด']],
+  ui: {
+    items: [
+      { key: 'f2_1', w: 1208, h: 668, marks: [], cap: 'จอ 1280px การ์ด 3 คอลัมน์ เมนูเรียงแนวนอน' },
+      { key: 'f2_2', w: 992, h: 688, marks: [], cap: 'จอ 1024px เหลือ 2 คอลัมน์ เพราะ 3 คอลัมน์ต้องใช้ 1016px แต่มีที่แค่ 968px' },
+      { key: 'f2_3', w: 400, h: 820, hh: 470, marks: [{ n: 4, x: 364, y: 31.5 }], cap: 'จอ 400px การ์ด 1 คอลัมน์ วงกลม 4 คือปุ่มแฮมเบอร์เกอร์ที่โผล่ขึ้นมา' },
+      { key: 'f2_4', w: 400, h: 820, hh: 470, marks: [{ n: 5, x: 200, y: 755 }], cap: 'แสดงแค่ 4 การ์ด วงกลม 5 คือปุ่ม [[Show All Services (16 items)]]' }
+    ],
+    arrows: [[[1, 'ย่อหน้าต่างเหลือ 1024px']], [[2, 'ย่อเหลือ 400px แบบมือถือ']], [[3, 'เลื่อนลงไปท้ายรายการ']]]
+  },
+  flow: {
+    h: 1090, cols: [[0, 200], [282, 300], [664, 320], [1082, 330], [1494, 250]],
+    nodes: [
+      ['E0', 0, 70, 'event', 'เปลี่ยนความกว้างจอ', '', 'หมุนจอหรือย่อหน้าต่าง'],
+      ['H0', 1, 70, 'fn', 'เบราว์เซอร์ตรวจ media query ใหม่', '', 'ส่วนนี้ไม่ต้องใช้ JS'],
+      ['QA', 2, 70, 'dec', 'กว้าง 1024px ขึ้นไปไหม', 'L1908', ''],
+      ['DA', 3, 70, 'data', 'ใช้กฎเดสก์ท็อป', 'L1908–1935', 'เมนูแนวนอน ซ่อนปุ่มแฮมเบอร์เกอร์'],
+      ['SA', 4, 70, 'screen', 'การ์ด 3 คอลัมน์ที่ 1280px', '', '2 คอลัมน์ที่ 1024px จาก `minmax(320px, 1fr)` L930'],
+      ['QB', 2, 240, 'dec', 'กว้างไม่เกิน 480px ไหม', 'L1832', ''],
+      ['DB', 3, 240, 'data', 'ใช้กฎจอไม่เกิน 1023px', 'L1739–1829', 'ปุ่มแฮมเบอร์เกอร์เป็น flex เมนูกลายเป็นกล่อง fixed ที่ซ่อนด้วย `translateY(-150%)` และ hero about contact เหลือ 1 คอลัมน์'],
+      ['SB', 4, 240, 'screen', 'แท็บเล็ต 800px', '', 'การ์ด 2 คอลัมน์และมีปุ่มเมนู'],
+      ['DC', 2, 420, 'data', 'กฎ 1023px และกฎ 480px ทับกัน', 'L1832–1905', 'padding เหลือ 1rem การ์ด `1fr` แถบควบคุมเรียงลงล่าง'],
+      ['SC', 4, 420, 'screen', 'มือถือ การ์ด 1 คอลัมน์', '', 'ไม่มีแถบเลื่อนแนวนอน'],
+      ['E1', 0, 580, 'event', 'resize ฝั่ง JS', '', ''],
+      ['H1', 1, 580, 'fn', 'resize listener', 'L1267–1269', ''],
+      ['P1', 2, 580, 'fn', 'updateServicesDisplay()', 'L549–566', ''],
+      ['Q1', 3, 580, 'dec', 'จอไม่เกิน 768px เลือก All ไม่มีคำค้น เกิน 4 ใบ และยังไม่ขยายไหม', 'L552–557', ''],
+      ['S1', 4, 580, 'screen', '4 การ์ดกับปุ่ม Show All', '', '`renderServices(filtered.slice(0, 4))` L558'],
+      ['N1', 3, 750, 'fn', 'renderServices(filtered)', 'L565', 'ซ่อนปุ่มขยายที่ L562'],
+      ['S1b', 4, 750, 'screen', 'การ์ดครบตามผลกรอง', '', ''],
+      ['E2', 0, 895, 'event', 'คลิกปุ่ม Show All Services', '', '`#expand-services-btn`'],
+      ['H2', 1, 895, 'fn', 'setupMobileServicesExpand()', 'L966–981', ''],
+      ['D2', 2, 895, 'data', 'isServicesExpanded สลับค่า', 'L972', 'aria-expanded และข้อความปุ่มเปลี่ยนตาม L973–978'],
+      ['P2', 3, 895, 'fn', 'updateServicesDisplay()', 'L979', ''],
+      ['S2', 4, 895, 'screen', 'ครบ 16 ใบ หรือย่อกลับเหลือ 4 ใบ', '', ''],
+      ['E3', 0, 1040, 'event', 'คลิกปุ่มแฮมเบอร์เกอร์', '', ''],
+      ['H3', 1, 1040, 'fn', 'setupMobileNav()', 'L883–887', ''],
+      ['D3', 2, 1040, 'data', 'class is-open และ aria-expanded', 'L885–886', ''],
+      ['S3', 4, 1040, 'screen', 'เมนูเลื่อนลงมา', '', '`.main-nav.is-open` ใน style.css L1766–1770']
+    ],
+    edges: ['E0>H0:resize', 'H0>QA:ตรวจ', 'QA>DA:ใช่', 'QA|QB:ไม่ใช่', 'DA>SA:แสดง', 'QB>DB:ไม่ใช่', 'QB|DC:ใช่', 'DB>SB:แสดง', 'DC>SC:แสดง', 'E1>H1:resize', 'H1>P1:เรียก', 'P1>Q1:ตรวจ', 'Q1>S1:ใช่', 'Q1|N1:ไม่ใช่', 'N1>S1b:วาด', 'E2>H2:click', 'H2>D2:สลับค่า', 'D2>P2:เรียก', 'P2>S2:วาดใหม่', 'E3>H3:click', 'H3>D3:เปลี่ยน', 'D3>S3:CSS แสดง']
+  },
+  easy: 'เหมือนเฟอร์นิเจอร์ที่จัดตัวเองตามขนาดห้อง ห้องกว้างแบบเดสก์ท็อปวางโต๊ะ 3 ตัวเรียงกัน ห้องแคบลงเหลือ 2 ตัว ห้องเล็กสุดแบบมือถือเรียงทีละตัวเป็นแถวยาว และเก็บเมนูไว้ในลิ้นชักคือปุ่มแฮมเบอร์เกอร์',
+  points: [
+    { q: 'ทำไมต้องมี box-sizing: border-box ที่ตัวเลือก *', a: 'เพื่อให้ width รวม padding และ border แล้ว ถ้าไม่มี กล่อง width 100% ที่มี padding จะกว้างเกินจอ ทดลองลบแล้วบนจอ 400px กล่อง .container กว้างถึง 432px', tested: true },
+    { q: 'ทำไมการ์ดใช้ repeat(auto-fill, minmax(320px, 1fr))', a: 'ใส่คอลัมน์ได้มากที่สุดเท่าที่แต่ละคอลัมน์ยังกว้างอย่างน้อย 320px แล้วยืดให้เต็ม ไม่ต้องเขียน media query เพิ่ม จอ 1280px มีที่ 1184px ใส่ได้ 3 คอลัมน์ เพราะใช้ 3 × 320 + 2 × 28 = 1016 จอ 1024px มีที่ 968px จึงใส่ได้ 2 ส่วนจอไม่เกิน 480px media query บังคับเป็น 1fr', tested: true },
+    { q: 'ทำไมบางส่วนใช้ Flexbox บางส่วนใช้ Grid', a: 'Flexbox จัดของเป็นแถวเดียว เช่น header แถบควบคุม และปุ่มในการ์ด ส่วน Grid จัดสองมิติ เช่น hero ที่แบ่ง 1.2fr กับ 0.8fr การ์ดบริการ และ footer' },
+    { q: 'ทำไมซ่อนเมนูมือถือด้วย translateY(-150%) opacity 0 และ pointer-events: none ไม่ใช้ display: none', a: 'เพราะ transform ทำ animation เลื่อนลงได้นุ่ม แต่ display: none ทำ animation ไม่ได้ และ pointer-events: none กันไม่ให้คลิกโดนตอนซ่อน อยู่ที่ style.css บรรทัด 1759 ถึง 1761' },
+    { q: 'ทำไม media query ของจอ 480px ต้องอยู่หลังชุด 1023px ในไฟล์', a: 'จอ 400px เข้าทั้งสองชุด ถ้า specificity เท่ากัน กฎที่อยู่ล่างกว่าชนะ ชุด 480px จึงทับได้ เช่นเปลี่ยน --container-padding เป็น 1rem ที่บรรทัด 1834' },
+    { q: 'ทำไม JS ต้องฟัง resize ด้วย', a: 'เพราะการตัดเหลือ 4 การ์ดเป็นเงื่อนไขใน JS คือ `window.innerWidth <= 768` ที่ app.js บรรทัด 552 CSS ทำแทนไม่ได้ จึงต้องวาดใหม่ทุกครั้งที่ขนาดจอเปลี่ยน' }
+  ],
+  breaks: [
+    { at: 'style.css L123', change: 'ลบ `box-sizing: border-box;`', type: 'logic', see: 'บนจอ 400px กล่อง .container กว้าง 432px เนื้อหาล้นออกทางขวา ไม่มี error', why: 'width 100% ไม่รวม padding แล้ว กล่องจึงกว้าง 100% บวก padding อีกสองข้าง', tested: true },
+    { at: 'style.css L1740–1742', change: 'ลบกฎ `.menu-toggle-btn { display: flex; }` ในชุดจอไม่เกิน 1023px', type: 'logic', see: 'บนมือถือไม่มีปุ่มเมนูให้กด เมนูถูกซ่อนตลอดเพราะ opacity เป็น 0 ไปส่วนอื่นผ่านเมนูไม่ได้', why: 'ปุ่มกลับไปใช้ display: none จากบรรทัด 495 ส่วนเมนูยังถูกซ่อนด้วย translateY(-150%) ใน media query เดียวกัน', tested: true },
+    { at: 'style.css L930', change: 'เปลี่ยน `minmax(320px, 1fr)` เป็น `minmax(400px, 1fr)`', type: 'logic', see: 'จอ 1280px เหลือ 2 คอลัมน์ จอ 1024px ยัง 2 คอลัมน์ จอ 800px เหลือ 1 คอลัมน์', why: 'จอ 1280px มีที่ 1184px แต่ 3 คอลัมน์ต้องใช้ 3 × 400 + 2 × 28 = 1256 จึงไม่พอ', tested: true }
+  ]
+},
+F3: {
+  num: 3, short: 'Array และ render', owner: 'beef', score: 6,
+  title: 'Data Array และ renderServices()',
+  exam: 'ข้อสอบจะให้บอกว่าลบบรรทัดแล้วพังยังไง และให้เขียนต่อยอด',
+  files: [['app.js', 'L195–420', 'servicesData 16 รายการ'], ['app.js', 'L433–497', 'renderServices'], ['app.js', 'L558, L565', 'จุดที่เรียก render']],
+  ui: {
+    items: [
+      { key: 'f3_1', w: 886, h: 651, marks: [], cap: 'ก่อน render กล่อง `#services-grid-container` ว่าง เพราะ index.html บรรทัด 244 ถึง 246 ไม่มีการ์ดเลย ภาพนี้จำลองโดยล้างการ์ดออก' },
+      { key: 'f3_2', w: 886, h: 651, marks: [], cap: 'หลัง render มี 16 การ์ดจาก servicesData เรียง A ถึง Z เป็นภาษาอังกฤษ เพราะ currentLang เป็น "en"', inset: { key: 'f3_2i', w: 371, h: 56, s: 0.85, marks: [{ n: 2, x: 155, y: 28 }], cap: 'ปุ่มสลับภาษาบนแถบเมนู' } },
+      { key: 'f3_3', w: 897, h: 627, marks: [], cap: 'render ใหม่จาก array เดิม ชื่อ คำอธิบาย ป้าย และปุ่มเป็นภาษาไทย ลำดับเปลี่ยนเพราะเรียงตามชื่อไทย' }
+    ],
+    arrows: [[[1, 'เปิดหน้าเว็บ DOMContentLoaded ที่บรรทัด 1223']], [[2, 'คลิกปุ่มสลับภาษา']]]
+  },
+  flow: {
+    h: 1000, cols: [[0, 190], [290, 280], [670, 290], [1060, 330], [1490, 238]],
+    nodes: [
+      ['E0', 0, 70, 'event', 'เปิดหน้าเว็บ', '', 'DOMContentLoaded'],
+      ['H0', 1, 70, 'fn', 'ส่วนเริ่มต้น', 'L1223–1272', 'render 2 ครั้ง ครั้งแรกผ่าน applyLanguage ที่ L1080 ครั้งที่สองที่ L1240'],
+      ['E1', 0, 220, 'event', 'คลิกปุ่มสลับภาษา', '', '`#lang-toggle-btn`'],
+      ['H1', 1, 220, 'fn', 'applyLanguage(lang)', 'L1025–1082', '`currentLang = lang` ที่ L1026'],
+      ['E2', 0, 375, 'event', 'กรอง ค้น ลบ หรือส่งฟอร์ม', '', 'ดู F4 และ F5'],
+      ['H2', 1, 375, 'data', 'state หรือ servicesData เปลี่ยน', '', 'filter ที่ L580, unshift ที่ L853 หรือ isSelected'],
+      ['P0', 2, 220, 'fn', 'updateServicesDisplay()', 'L549–566', '`items = getFilteredAndSortedServices()` ที่ L550'],
+      ['R0', 3, 220, 'fn', 'renderServices(items)', 'L433–497', 'หา container และ emptyMessage ที่ L434–435'],
+      ['Q1', 3, 385, 'dec', 'หา container เจอไหม', 'L436', ''],
+      ['N1', 4, 385, 'end', 'return เงียบๆ', '', 'ไม่มี error สีแดงและไม่มีการ์ด'],
+      ['C1', 3, 530, 'data', '`container.innerHTML = ""`', 'L439', 'ล้างการ์ดเก่าทิ้งก่อนเสมอ'],
+      ['Q2', 3, 680, 'dec', 'items ว่างไหม', 'L442', ''],
+      ['S2', 4, 680, 'screen', 'ข้อความไม่พบบริการ', '', '`emptyMessage.hidden = false` ที่ L443'],
+      ['L1', 3, 870, 'fn', 'items.forEach(service)', 'L449–496', 'สร้าง article ที่ L451 เลือกข้อความตาม currentLang ที่ L456–464 ใส่ปุ่มลบถ้า isCustom ไม่งั้นใส่ปุ่มสนใจที่ L469–478 แล้วใส่ HTML ที่ L480–493'],
+      ['S3', 4, 870, 'screen', 'การ์ดครบตาม items', '', '`container.appendChild(card)` ที่ L495']
+    ],
+    edges: ['E0>H0:load', 'H0>P0:เรียก 2 ครั้ง@20', 'E1>H1:click', 'H1>P0:เรียก', 'E2>H2:event', 'H2>P0:เรียก@20', 'P0>R0:ส่ง items', 'R0|Q1:ตรวจ', 'Q1>N1:ไม่ใช่', 'Q1|C1:ใช่', 'C1|Q2:ต่อ', 'Q2>S2:ใช่', 'Q2|L1:ไม่ใช่', 'L1>S3:ต่อท้าย']
+  },
+  easy: 'servicesData เหมือนสต็อกในโกดัง ส่วน renderServices เหมือนพนักงานจัดหน้าร้าน ทุกครั้งที่มีอะไรเปลี่ยน เขาจะยกของบนชั้นออกให้หมดก่อน แล้ววางใหม่ทีละชิ้นตามใบรายการที่ได้รับ ไม่เคยไปแก้ของบนชั้นทีละจุด',
+  points: [
+    { q: 'ทำไมเก็บข้อมูลเป็น array ของ object และประกาศด้วย let', a: 'เพราะแต่ละบริการมีหลาย property เช่น id title category image isSelected isCustom จัดเป็น object ทำให้วนลูปสร้างการ์ดได้ และใช้ let เพราะตอนลบที่บรรทัด 580 เอา array ใหม่จาก filter มาแทนทั้งตัว' },
+    { q: 'ทำไม renderServices รับ items เป็นพารามิเตอร์ ไม่อ่าน servicesData ตรงๆ', a: 'เพราะสิ่งที่ต้องวาดคือรายการที่กรอง ค้น และเรียงแล้ว บนมือถืออาจตัดเหลือ 4 ใบด้วย updateServicesDisplay เตรียมให้แล้วส่งมา render จึงมีหน้าที่วาดอย่างเดียว' },
+    { q: 'ทำไมต้องล้าง innerHTML ก่อนที่บรรทัด 439', a: 'เพราะด้านล่างใช้ appendChild ที่บรรทัด 495 ซึ่งต่อท้ายของเดิมเสมอ ถ้าไม่ล้าง การ์ดชุดใหม่จะไปต่อท้ายชุดเก่า ทดลองลบแล้วเปิดหน้ามาเห็น 32 การ์ด เพราะตอนเปิดหน้า render ทำงาน 2 ครั้ง', tested: true },
+    { q: 'ทำไมมี if (!container) return ที่บรรทัด 436', a: 'เพื่อกันกรณีหา id ไม่เจอ ไม่ให้ TypeError หยุด JS ทั้งหน้า ผลข้างเคียงคือสะกด id ผิดแล้วจะเงียบ ไม่มีตัวแดง' },
+    { q: 'ทำไมปุ่มลบกับปุ่มสนใจขึ้นกับ isCustom ที่บรรทัด 470', a: 'บริการจริงของบริษัทไม่ควรถูกลบ ลูกค้ากดได้แค่สนใจ ส่วนการ์ดที่เพิ่มจากฟอร์มลบได้ และชื่อ data-delete-id data-toggle-id data-service-id ต้องตรงกับ selector ใน delegation ที่บรรทัด 577 588 และ 601 ทุกตัวอักษร' },
+    { q: 'ถ้าโจทย์ให้แสดงจำนวน N items เหนือรายการ', a: 'ใส่ `<p id="item-count"></p>` ก่อน index.html บรรทัด 244 แล้วใน updateServicesDisplay ต่อจากบรรทัด 550 เขียน `const countEl = document.getElementById("item-count"); if (countEl) countEl.textContent = filtered.length + " items";` เพราะการเพิ่ม ลบ กรอง และค้นเรียกฟังก์ชันนี้หมด ทดลองแล้วเพิ่มได้ 17 items ลบแล้วกลับเป็น 16', tested: true }
+  ],
+  breaks: [
+    { at: 'app.js L439', change: 'ลบ `container.innerHTML = "";`', type: 'logic', see: 'เปิดหน้ามาเห็น 32 การ์ดแทน 16 กด Industrial Plants กลายเป็น 36 ค้นคำที่ไม่มีจะเห็นข้อความไม่พบพร้อมการ์ดเก่าค้างทั้งหมด', why: 'appendChild ต่อท้ายของเดิมเสมอ ถ้าไม่ล้างการ์ดจึงสะสม ไม่มี error เพราะไวยากรณ์ถูกทุกบรรทัด', tested: true },
+    { at: 'app.js L495', change: 'ลบ `container.appendChild(card);`', type: 'logic', see: 'กล่องการ์ดว่างเปล่า ข้อความไม่พบก็ไม่ขึ้น console ไม่มีตัวแดง', why: 'การ์ดถูกสร้างในหน่วยความจำแต่ไม่เคยถูกใส่ลงหน้า ส่วนข้อความไม่พบถูกซ่อนเพราะ items ไม่ว่าง', tested: true },
+    { at: 'app.js L434', change: 'สะกด `"services-grid-container"` เป็น `"service-grid-container"`', type: 'selector', see: 'ไม่มีการ์ดสักใบ และไม่มี error สีแดง', why: 'getElementById คืน null แล้วบรรทัด 436 return เงียบๆ ถ้าไม่มี guard นี้จะได้ TypeError: Cannot set properties of null', tested: true }
+  ]
+},
+F4: {
+  num: 4, short: 'Form', owner: 'beef', score: 6,
+  title: 'Form Validation ตรวจฟอร์มแล้วเพิ่มรายการ',
+  exam: 'ข้อสอบจะให้บอกว่าลบบรรทัดแล้วพังยังไง และให้เขียนต่อยอด',
+  files: [['app.js', 'L754–872', 'setupFormValidation'], ['index.html', 'L408–485', 'ฟอร์ม novalidate กับ span แสดงข้อความผิดพลาด']],
+  ui: {
+    items: [
+      { key: 'f4_1', w: 651, h: 842, marks: [{ n: 1, x: 325, y: 761 }], cap: 'ฟอร์มยังว่าง' },
+      { key: 'f4_2', w: 651, h: 848, marks: [{ n: 2, x: 325, y: 221 }, { n: 3, x: 325, y: 357 }, { n: 4, x: 325, y: 493 }, { n: 5, x: 325, y: 768 }], cap: 'ส่งฟอร์มว่าง ข้อความแดงขึ้นใต้ 3 ช่องพร้อมกรอบแดงจาก class is-invalid และหน้าไม่โหลดใหม่' },
+      { key: 'f4_3', w: 808, h: 538, marks: [], cap: 'ส่งผ่าน ได้การ์ด CCTV Surveillance System (Oatk Co) ที่มีปุ่ม [[Delete Item]] และอยู่ลำดับที่ 4 ตามชื่อ ไม่ได้ขึ้นบนสุด', tested: true }
+    ],
+    arrows: [[[1, 'คลิก Submit ตอนฟอร์มว่าง']], [[2, 'พิมพ์ Oatk Co'], [3, 'พิมพ์ 0812345678'], [4, 'เลือก CCTV'], [5, 'คลิก Submit']]]
+  },
+  flow: {
+    h: 1280, cols: [[0, 200], [296, 290], [682, 300], [1078, 320], [1490, 238]],
+    nodes: [
+      ['E0', 0, 70, 'event', 'คลิก Submit หรือกด Enter', '', '`#consultation-form`'],
+      ['H0', 1, 70, 'fn', 'submit listener', 'L783', '`e.preventDefault()` ที่ L785 กันหน้าโหลดใหม่'],
+      ['H1', 1, 240, 'fn', 'อ่านค่าและล้างข้อความเก่า', 'L787–796', 'isValid เริ่มเป็น true ใช้ `.trim()` แล้ว clearError 3 ช่อง'],
+      ['Q1', 2, 240, 'dec', 'ชื่อว่าง หรือสั้นกว่า 3 ตัวไหม', 'L799–805', ''],
+      ['A1', 3, 240, 'fn', 'showError ช่องชื่อ', 'L800, L803', 'isValid เป็น false'],
+      ['Q2', 2, 405, 'dec', 'เบอร์ว่าง หรือไม่ผ่าน regex ไหม', 'L808–815', '`/^0[0-9]{8,9}$/`'],
+      ['A2', 3, 405, 'fn', 'showError ช่องเบอร์', 'L810, L813', 'isValid เป็น false'],
+      ['S1', 4, 405, 'screen', 'ข้อความแดงใต้ช่องที่ผิด', '', 'textContent และ class is-invalid ที่ L768–771'],
+      ['Q3', 2, 570, 'dec', 'ยังไม่เลือกระบบไหม', 'L818–821', ''],
+      ['A3', 3, 570, 'fn', 'showError ช่องระบบ', 'L819', 'isValid เป็น false'],
+      ['Q4', 2, 730, 'dec', 'isValid เป็น false ไหม', 'L823', ''],
+      ['N4', 3, 730, 'end', 'return หยุดตรงนี้', '', 'ไม่เพิ่มข้อมูล'],
+      ['D5', 2, 905, 'data', 'สร้าง object ใหม่', 'L826–850', '`serviceMetaMap[serviceVal]` และ `newId = Math.max(...ids) + 1` ที่ L837 พร้อม isCustom: true'],
+      ['D6', 3, 905, 'data', '`servicesData.unshift(newItem)`', 'L853', ''],
+      ['P7', 3, 1065, 'fn', 'updateServicesDisplay()', 'L856', 'แล้ว scrollIntoView ที่ L861 form.reset() ที่ L864 และแถบสำเร็จ 7 วินาทีที่ L865–870'],
+      ['S7', 4, 1065, 'screen', 'การ์ดใหม่และแถบสำเร็จ', '', 'อยู่ตามลำดับชื่อ เพราะ sort ทำงานเสมอ'],
+      ['E8', 0, 1215, 'event', 'พิมพ์แก้ในช่อง', '', 'input หรือ change'],
+      ['H8', 1, 1215, 'fn', 'listener ของแต่ละช่อง', 'L779–781', ''],
+      ['A8', 2, 1215, 'fn', 'clearError()', 'L773–776', ''],
+      ['S8', 4, 1215, 'screen', 'ข้อความแดงของช่องนั้นหาย', '', '']
+    ],
+    edges: ['E0>H0:submit', 'H0|H1:แล้ว', 'H1>Q1:ตรวจกฎ', 'Q1>A1:ใช่', 'Q1|Q2:ตรวจข้อถัดไปเสมอ', 'Q2>A2:ใช่', 'Q2|Q3:ตรวจข้อถัดไปเสมอ', 'Q3>A3:ใช่', 'Q3|Q4:ตรวจข้อถัดไปเสมอ', 'A1>S1:แสดง', 'A2>S1:แสดง', 'A3>S1:แสดง', 'Q4>N4:ใช่', 'Q4|D5:ไม่ใช่ ผ่านทุกกฎ', 'D5>D6:เพิ่ม', 'D6|P7:เรียก', 'P7>S7:วาดใหม่', 'E8>H8:input', 'H8>A8:เรียก', 'A8>S8:ล้าง']
+  },
+  easy: 'เหมือนพนักงานตรวจเอกสารที่เคาน์เตอร์ ก่อนรับเรื่องจะดูทีละช่องว่ากรอกครบและถูกแบบไหม ช่องไหนผิดก็เขียนหมึกแดงไว้ใต้ช่องนั้นทุกช่องในรอบเดียว ถ้าผิดแม้แต่จุดเดียวก็คืนเอกสาร ถ้าผ่านหมดจึงเพิ่มเป็นรายการใหม่บนบอร์ด',
+  points: [
+    { q: 'ทำไมต้องมี e.preventDefault() ที่บรรทัด 785', a: 'เพราะปกติฟอร์มจะส่งข้อมูลแล้วโหลดหน้าใหม่ ข้อมูลทั้งหมดอยู่ใน array ในหน่วยความจำ โหลดใหม่ก็หายหมด ทดลองลบแล้ว URL มี ?contactName= ต่อท้ายและการ์ดใหม่หาย', tested: true },
+    { q: 'ทำไมใช้ตัวแปร isValid แล้วค่อย return ที่บรรทัด 823 แทนการ return ทันที', a: 'เพื่อตรวจครบทุกช่องและขึ้นข้อความแดงพร้อมกันทุกช่องที่ผิด ผู้ใช้แก้ได้ในรอบเดียว' },
+    { q: 'ทำไมต้องใช้ .trim() ที่บรรทัด 788 และ 789', a: 'เพื่อตัดช่องว่างหัวท้าย ไม่งั้นชื่อที่เป็นช่องว่าง 3 ตัวจะผ่านทั้งเช็กค่าว่างและเช็กความยาว', tested: true },
+    { q: 'ทำไมฟอร์มมี novalidate ที่ index.html บรรทัด 408', a: 'เพื่อปิดการตรวจของเบราว์เซอร์ ไม่งั้นช่อง required จะเด้งกล่อง Please fill out this field แล้ว event submit ไม่เกิด ข้อความแดงของเราไม่ขึ้น', tested: true },
+    { q: 'ทำไม newId ใช้ Math.max(...ids) + 1 ที่บรรทัด 837 ไม่ใช้ length + 1', a: 'เพราะหลังลบ length ลดลง id ใหม่จะชนกับตัวที่ยังอยู่ แล้ว filter ด้วย id จะลบทีเดียวหายสองใบ', tested: true },
+    { q: 'ทำไมใช้ unshift ที่บรรทัด 853 แล้วการ์ดใหม่ยังไม่ขึ้นบนสุด', a: 'เพราะ getFilteredAndSortedServices เรียงตามชื่อทุกครั้ง ลำดับใน array จึงไม่มีผลต่อจอ ทดลองแล้วการ์ด Oatk Co ไปอยู่ลำดับที่ 4', tested: true }
+  ],
+  breaks: [
+    { at: 'app.js L785', change: 'ลบ `e.preventDefault();`', type: 'logic', see: 'กดส่งแล้วหน้าโหลดใหม่ URL มี ?contactName=…&contactPhone=… ต่อท้าย การ์ดใหม่หายและกลับเป็น 16 ใบ', why: 'ฟอร์มส่งแบบปกติด้วย GET ไปที่หน้าเดิม ข้อมูลทั้งหมดอยู่ใน array ในหน่วยความจำ โหลดใหม่จึงหายหมด', tested: true },
+    { at: 'app.js L823', change: 'ลบ `if (!isValid) return;`', type: 'logic', see: 'ส่งฟอร์มว่าง ข้อความแดงขึ้นครบสามช่อง แต่ได้การ์ด Integrated Building Automation () เพิ่มมาด้วย', why: 'ไม่มีจุดหยุด โค้ดไหลไปสร้าง object ต่อ `serviceMetaMap[""]` เป็น undefined จึงใช้ other แทน และชื่อว่างจึงได้วงเล็บเปล่า', tested: true },
+    { at: 'app.js L756', change: 'สะกด `"contact-name"` ผิด', type: 'selector', see: 'กดส่งแล้วหน้าโหลดใหม่ ไม่มีการตรวจอะไรเลย', why: 'nameInput เป็น null บรรทัด 766 จึง return ก่อนผูก submit ฟอร์มเลยส่งแบบปกติ', tested: true }
+  ]
+},
+F5: {
+  num: 5, short: 'Dynamic list', owner: 'me', score: 6,
+  title: 'Dynamic List ลบ สลับสถานะ กรอง ค้นหา และเรียง',
+  exam: 'ข้อสอบจะให้อธิบาย ทำนายผล และแก้โค้ด',
+  files: [['app.js', 'L422–425', 'ตัวแปรสถานะ'], ['app.js', 'L502–566', 'กรอง ค้น เรียง'], ['app.js', 'L571–608', 'event delegation'], ['app.js', 'L720–749', 'ผูกปุ่มควบคุม']],
+  ui: {
+    items: [
+      { key: 'f5_1', w: 886, h: 651, marks: [{ n: 1, x: 396, y: 38 }, { n: 2, x: 686, y: 38 }], cap: 'ตอนเปิดหน้า เลือก All มี 16 การ์ดเรียง A ถึง Z เพราะ currentSort เป็น "name-asc"' },
+      { key: 'f5_2', w: 886, h: 651, marks: [{ n: 3, x: 287, y: 589 }], cap: 'กรอง factory แล้วค้น chiller เหลือ 2 ใบ PICV ติดมาด้วยเพราะคำอธิบายมีคำว่า chiller', tested: true },
+      { key: 'f5_3', w: 886, h: 651, marks: [], cap: 'isSelected เป็น true ปุ่มกลายเป็น [[✔ Selected]] และการ์ดมีกรอบเขียว เพราะ render อ่านค่าใหม่' }
+    ],
+    arrows: [[[1, 'คลิก Industrial Plants'], [2, 'พิมพ์ chiller ในช่องค้นหา']], [[3, 'คลิก + Interested']]]
+  },
+  flow: {
+    h: 1200, cols: [[0, 210], [304, 300], [698, 300], [1092, 320], [1506, 222]],
+    nodes: [
+      ['E0', 0, 70, 'event', 'คลิกปุ่มกรอง', '', 'All, Office หรือ Industrial'],
+      ['H0', 1, 70, 'fn', 'click listener', 'L724–729', 'ผูกทีละปุ่มด้วย forEach และย้าย class active ที่ L725–726'],
+      ['D0', 2, 70, 'data', 'currentCategory', 'L727', '`= btn.dataset.category || "all"`'],
+      ['E1', 0, 220, 'event', 'พิมพ์ในช่องค้นหา', '', '`#service-search-input`'],
+      ['H1', 1, 220, 'fn', 'input listener', 'L735–738', 'ทำงานทุกครั้งที่ค่าเปลี่ยน ไม่ต้องกด Enter'],
+      ['D1', 2, 220, 'data', 'searchKeyword', 'L736', '`= value.trim().toLowerCase()`'],
+      ['E2', 0, 370, 'event', 'เลือก Sort', '', '`#service-sort-select`'],
+      ['H2', 1, 370, 'fn', 'change listener', 'L744–747', ''],
+      ['D2', 2, 370, 'data', 'currentSort', 'L745', '`= e.target.value` เป็น name-asc หรือ name-desc'],
+      ['E3', 0, 540, 'event', 'คลิกปุ่มในการ์ด', '', 'ลบ, + Interested หรือ View Details'],
+      ['H3', 1, 540, 'fn', 'setupServicesEventDelegation()', 'L571–608', 'listener ตัวเดียวที่กล่องพ่อ L575 รับคลิกที่ bubble ขึ้นมา'],
+      ['H4', 1, 710, 'dec', 'closest("[data-delete-id]") เจอไหม', 'L577', ''],
+      ['D4', 2, 710, 'data', 'ลบออกจาก array', 'L579–583', '`Number(id)` แล้ว `servicesData.filter(s => s.id !== id)` และเรียก updateSelectedServicesUI()'],
+      ['H5', 1, 860, 'dec', 'closest("[data-toggle-id]") เจอไหม', 'L588', ''],
+      ['D5', 2, 860, 'data', 'สลับสถานะ', 'L590–595', '`find(...)` แล้ว `isSelected = !isSelected`'],
+      ['H6', 1, 1000, 'dec', 'closest("[data-service-id]") เจอไหม', 'L601', ''],
+      ['D6', 2, 1000, 'fn', 'openServiceModal(id)', 'L603–604', 'ส่ง Number(id) ไปเปิด dialog ดู F6'],
+      ['S6', 4, 1000, 'screen', 'dialog รายละเอียดเปิด', '', ''],
+      ['H7', 1, 1140, 'end', 'ไม่ทำอะไร', '', 'เช่นคลิกรูปหรือพื้นที่ว่าง'],
+      ['P0', 3, 295, 'fn', 'updateServicesDisplay()', 'L549–566', 'ตัวกลางที่ทุกปุ่มเรียก'],
+      ['P1', 3, 520, 'fn', 'getFilteredAndSortedServices()', 'L502–547', 'copy array แล้วกรองหมวด ค้น 6 ช่อง และเรียงด้วย localeCompare'],
+      ['P2', 3, 790, 'fn', 'renderServices(items)', 'L433–497', 'ล้าง innerHTML แล้วสร้างการ์ดใหม่ทุกใบ จอไม่เกิน 768px ที่เลือก All และไม่มีคำค้นส่งแค่ `slice(0, 4)` ที่ L555–558'],
+      ['S2', 4, 790, 'screen', 'การ์ดถูกวาดใหม่', '', 'ตามหมวด คำค้น และการเรียง']
+    ],
+    edges: ['E0>H0:click', 'H0>D0:เปลี่ยนค่า', 'D0>P0:เรียก', 'E1>H1:input', 'H1>D1:เปลี่ยนค่า', 'D1>P0:เรียก', 'E2>H2:change', 'H2>D2:เปลี่ยนค่า', 'D2>P0:เรียก', 'E3>H3:click', 'H3|H4:ตรวจทีละเงื่อนไข', 'H4>D4:ใช่', 'H4|H5:ไม่ใช่', 'H5>D5:ใช่', 'H5|H6:ไม่ใช่', 'H6>D6:ใช่', 'H6|H7:ไม่ใช่', 'D4>P0:เรียก', 'D5>P0:เรียก', 'D6>S6:showModal()', 'P0|P1:เรียก', 'P1|P2:ส่ง array ที่ได้', 'P2>S2:วาดใหม่']
+  },
+  easy: 'เหมือนมีพนักงานต้อนรับคนเดียวยืนที่ประตูห้อง แทนการจ้างคนเฝ้าทุกโต๊ะ ใครกดปุ่มไหนในห้อง เขาดูว่าเป็นปุ่มลบ ปุ่มสนใจ หรือปุ่มดูรายละเอียด แล้วทำงานให้ ส่วนปุ่มกรอง ช่องค้นหา และ Sort แค่จดเงื่อนไขใหม่ลงสมุด แล้วให้คนจัดร้านจัดของบนชั้นใหม่ทั้งชั้นตามสมุดเล่มนั้น',
+  points: [
+    { q: 'ทำไม listener อยู่ที่กล่องพ่อ #services-grid-container ไม่ใช่ที่ปุ่ม', a: 'เพราะ renderServices ล้าง innerHTML ที่บรรทัด 439 แล้วสร้างการ์ดใหม่ทุกครั้ง ถ้าผูกที่ปุ่ม listener จะหายไปพร้อมปุ่มเก่า และการ์ดใหม่จะไม่มี listener แต่กล่องพ่อไม่เคยถูกลบ คลิกที่ปุ่มจะ bubble ขึ้นมาถึงพ่อเสมอ และใช้ listener ตัวเดียวแทนหลายสิบตัว' },
+    { q: 'ทำไมใช้ e.target.closest() ไม่ใช้ e.target ตรงๆ', a: 'เพราะผู้ใช้อาจคลิกโดนข้อความหรือ element ลูกข้างในปุ่ม closest ไล่จากตัวที่ถูกคลิกขึ้นไปหาตัวแรกที่มี data attribute นั้น รวมตัวมันเองด้วย ถ้าไม่เจอจะได้ null จึงเช็กด้วย if ได้' },
+    { q: 'ทำไมต้องครอบด้วย Number() ที่บรรทัด 579 และ 590', a: 'เพราะค่าจาก dataset เป็น string เสมอ แต่ id ใน servicesData เป็น number และ === กับ !== ไม่แปลงชนิด ถ้าไม่แปลง 17 !== "17" เป็น true ทุกตัว filter จึงเก็บไว้หมด การ์ดไม่หาย', tested: true },
+    { q: 'ทำไมต้อง copy ด้วย [...servicesData] ก่อน sort ที่บรรทัด 503', a: 'เพราะ sort() เปลี่ยน array ตัวเดิม ถ้าไม่ copy และไม่มีการกรอง result คือ servicesData ตัวจริง ลำดับข้อมูลจริงจะถูกสลับ ทดลองแล้วตัวแรกกลายเป็น id 7 แม้จอจะดูเหมือนเดิม', tested: true },
+    { q: 'ทำไมเก็บเงื่อนไขไว้ใน 3 ตัวแปรที่บรรทัด 423 ถึง 425 แล้วเรียก updateServicesDisplay() ทุกครั้ง', a: 'เพราะทุกครั้งที่วาดใหม่ต้องใช้หมวด คำค้น และการเรียงพร้อมกัน ผลจึงซ้อนกันได้ และหน้าจอถูกสร้างจากข้อมูลเสมอ ไม่มีโค้ดไหนไปแก้การ์ดบนจอตรงๆ' },
+    { q: 'ทำไมมี return หลังแต่ละเงื่อนไขที่บรรทัด 584 597 และ 605', a: 'เพื่อจบงานของคลิกนั้นทันทีเมื่อเจอปุ่มที่ใช่ ไม่ไปตรวจเงื่อนไขถัดไป ทดลองลบ return บรรทัด 584 แล้วยังทำงานเหมือนเดิม เพราะปุ่มลบไม่มี attribute ของอีกสองเงื่อนไข แต่ return ทำให้อ่านง่ายและกันปัญหาในอนาคต', tested: true }
+  ],
+  breaks: [
+    { at: 'app.js L579', change: 'ลบ Number() เหลือ `const idToDelete = deleteBtn.dataset.deleteId;`', type: 'logic', see: 'กดลบแล้วการ์ดไม่หาย แต่ console ยังพิมพ์ Item ID 17 deleted via Event Delegation. และไม่มี error สีแดง', why: 'filter เทียบ id ตัวเลขกับ string ด้วย !== ได้ true ทุกตัว จึงเก็บไว้หมด โค้ดรันได้แต่ผลผิด', tested: true },
+    { at: 'app.js L588', change: 'สะกด selector เป็น `closest("[data-toggleid]")`', type: 'selector', see: 'กดปุ่ม + Interested แล้วไม่มีอะไรเกิดขึ้น ปุ่มลบและ View Details ยังใช้ได้', why: 'selector ไม่ตรงกับ attribute data-toggle-id บนปุ่ม closest จึงได้ null และปุ่มนี้ไม่มี data-service-id จึงไม่เข้าเงื่อนไขไหนเลย', tested: true },
+    { at: 'app.js L607', change: 'เปลี่ยน `});` เป็น `}`', type: 'syntax', see: 'ไม่มีการ์ดเลย JS ทั้งไฟล์ไม่ทำงาน console แดงว่า missing ) after argument list', why: 'วงเล็บปิดของ addEventListener ไม่ครบ เบราว์เซอร์อ่านไฟล์ app.js ไม่ออกทั้งไฟล์', tested: true }
+  ]
+},
+F6: {
+  num: 6, short: 'Modal', owner: 'beef', score: 3,
+  title: 'Native Modal ด้วย dialog showModal() และ close()',
+  exam: 'ข้อสอบจะให้บอกว่าลบบรรทัดแล้วพังยังไง และให้เขียนต่อยอด',
+  files: [['app.js', 'L613–655', 'openServiceModal'], ['app.js', 'L657–694', 'setupModalListeners'], ['index.html', 'L535–551', 'dialog id="service-modal"']],
+  ui: {
+    items: [
+      { key: 'f6_1', w: 404, h: 538, marks: [{ n: 1, x: 117, y: 476 }], cap: 'การ์ด Access Control System ก่อนเปิดรายละเอียด' },
+      { key: 'f6_2', w: 730, h: 680, marks: [{ n: 2, x: 598, y: 67 }, { n: 3, x: 513, y: 608 }, { n: 4, x: 40, y: 340 }], cap: 'dialog เปิดด้วย showModal() ลอยอยู่ชั้นบนสุด ฉากหลังมืดจาก ::backdrop เนื้อหามาจาก object ที่ find ได้' },
+      { key: 'f6_3', w: 404, h: 538, marks: [], cap: 'ปิดแล้วกลับมาที่การ์ดเดิม ทดลองกด Esc แล้ว modal.open เป็น false', tested: true }
+    ],
+    arrows: [[[1, 'คลิก View Details']], [[2, 'คลิกกากบาท'], [3, 'คลิก Close Window (Esc)'], [4, 'คลิกฉากหลัง หรือกด Esc']]]
+  },
+  flow: {
+    h: 1190, cols: [[0, 200], [296, 290], [682, 300], [1078, 320], [1490, 238]],
+    nodes: [
+      ['E0', 0, 70, 'event', 'คลิก View Details', '', 'ปุ่มที่มี data-service-id'],
+      ['H0', 1, 70, 'fn', 'delegation ของ F5', 'L601–605', '`closest("[data-service-id]")` แล้ว Number(id) ที่ L603'],
+      ['F0', 2, 70, 'fn', 'openServiceModal(id)', 'L613–655', 'หา modal title และ body ที่ L614–616'],
+      ['Q0', 2, 225, 'dec', 'หา modal เจอไหม', 'L617', ''],
+      ['N0', 3, 225, 'end', 'return เงียบๆ', '', 'ไม่มี error สีแดง'],
+      ['Q1', 2, 375, 'dec', 'find เจอบริการไหม', 'L619–620', '`servicesData.find(s => s.id === id)`'],
+      ['D2', 3, 375, 'data', 'ใส่ชื่อและเนื้อหา', 'L622–650', 'ชื่อใช้ textContent ที่ L627 เนื้อหาใช้ innerHTML ที่ L636'],
+      ['A2', 3, 535, 'fn', '`modal.showModal()`', 'L654', ''],
+      ['S2', 4, 535, 'screen', 'dialog เปิด', '', 'ฉากหลังมืด หน้าข้างหลังคลิกไม่ได้'],
+      ['N1', 2, 535, 'end', 'return เงียบๆ', '', 'ไม่เจอบริการ'],
+      ['E4', 0, 690, 'event', 'คลิกกากบาทหรือปุ่ม Close', '', '`#dialog-close-btn` และ `#dialog-confirm-btn`'],
+      ['H4', 1, 690, 'fn', 'click listener', 'L665–672', 'ผูกครั้งเดียวใน setupModalListeners() ที่ L657'],
+      ['A4', 3, 690, 'fn', '`modal.close()`', 'L666, L671', ''],
+      ['E5', 0, 845, 'event', 'คลิกฉากหลัง', '', 'target คือตัว dialog เอง'],
+      ['H5', 1, 845, 'fn', 'click listener บน dialog', 'L675–686', 'getBoundingClientRect() ที่ L676'],
+      ['Q5', 2, 845, 'dec', 'คลิกอยู่นอกกรอบกล่องไหม', 'L677–683', 'เทียบ clientX และ clientY กับขอบกล่อง'],
+      ['A5', 3, 845, 'fn', '`modal.close()`', 'L684', ''],
+      ['S5', 4, 845, 'screen', 'dialog ปิด', '', 'modal.open เป็น false'],
+      ['N5', 2, 995, 'end', 'ไม่ปิด', '', 'คลิกอยู่ในกล่อง'],
+      ['E7', 0, 1130, 'event', 'กด Escape', '', 'ดู F7 ประกอบ'],
+      ['H7', 1, 1130, 'fn', 'keydown listener', 'L689–693', 'เช็ก Escape และ modal.open'],
+      ['A7', 3, 1130, 'fn', '`modal.close()`', 'L691', 'showModal ปิดด้วย Esc เองได้อยู่แล้ว']
+    ],
+    edges: ['E0>H0:click', 'H0>F0:เรียก', 'F0|Q0:ตรวจ', 'Q0>N0:ไม่ใช่', 'Q0|Q1:ใช่', 'Q1>D2:ใช่', 'Q1|N1:ไม่ใช่', 'D2|A2:แล้ว', 'A2>S2:แสดง', 'E4>H4:click', 'H4>A4:เรียก', 'A4>S5:ปิด', 'E5>H5:click', 'H5>Q5:ตรวจ', 'Q5>A5:ใช่', 'Q5|N5:ไม่ใช่', 'A5>S5:ปิด', 'E7>H7:keydown', 'H7>A7:เรียก', 'A7>S5:ปิด']
+  },
+  easy: 'dialog เหมือนป้ายประกาศที่พนักงานยกมาวางทับหน้าร้าน พร้อมดึงม่านมืดด้านหลัง ระหว่างนั้นลูกค้ากดอะไรข้างหลังไม่ได้ ปิดได้ 4 ทาง คือปุ่มกากบาท ปุ่ม Close กด Esc หรือคลิกม่านด้านนอก',
+  points: [
+    { q: 'ทำไมใช้ dialog กับ showModal() ที่บรรทัด 654', a: 'เพราะได้ชั้นบนสุด ได้ฉากหลัง ::backdrop หน้าข้างหลังคลิกไม่ได้ และปิดด้วย Esc ได้เองโดยไม่ต้องเขียนโค้ด ส่วน show() ไม่มีสิ่งเหล่านี้' },
+    { q: 'ทำไมส่ง id มาแล้วค่อย find ที่บรรทัด 619 ไม่ส่ง object มาเลย', a: 'เพราะปุ่มเก็บได้แค่ข้อความใน data-service-id จึงส่ง id แล้วหา object จาก servicesData และต้องแปลงด้วย Number() ที่บรรทัด 603 เพราะ find ใช้ === ทดลองลบ Number แล้ว modal ไม่เปิด', tested: true },
+    { q: 'ทำไมใส่ชื่อด้วย textContent ที่บรรทัด 627 แต่ใส่เนื้อหาด้วย innerHTML ที่บรรทัด 636', a: 'ชื่อเป็นข้อความล้วน textContent ปลอดภัยกว่าเพราะไม่แปลงเป็นแท็ก ส่วนเนื้อหาต้องสร้างรูป ป้าย และย่อหน้า จึงใช้ template literal กับ innerHTML' },
+    { q: 'ทำไมตรวจคลิกฉากหลังด้วย getBoundingClientRect() ที่บรรทัด 676 ถึง 683', a: 'เพราะคลิกบนฉากหลังมี target เป็นตัว dialog เอง แยกจาก target ไม่ได้ จึงเทียบพิกัด clientX และ clientY กับขอบกล่อง ถ้าอยู่นอกกรอบแปลว่าคลิกฉากหลัง จึงปิด' },
+    { q: 'ทำไมผูกปุ่มปิดครั้งเดียวใน setupModalListeners() ไม่ผูกทุกครั้งที่เปิด', a: 'เพราะปุ่มกากบาทและปุ่ม Close อยู่ใน HTML ตลอดที่ index.html บรรทัด 539 และ 548 ไม่ถูกสร้างใหม่ ผูกครั้งเดียวพอ ถ้าผูกทุกครั้งที่เปิด listener จะซ้อนกันหลายตัว' },
+    { q: 'ทำไมมี if (!modal) return และ if (!service) return ที่บรรทัด 617 และ 620', a: 'เพื่อกันค่า null และ undefined ไม่ให้เกิด error ผลข้างเคียงคือถ้าสะกด id ผิดหรือ id ไม่ตรง กดแล้วจะเงียบไม่มีตัวแดง' }
+  ],
+  breaks: [
+    { at: 'app.js L654', change: 'เปลี่ยน `showModal()` เป็น `show()`', type: 'logic', see: 'เปิดได้ แต่ไม่มีฉากหลังมืด ไม่ลอยขึ้นชั้นบนสุด หน้าข้างหลังยังคลิกได้ กด Esc ยังปิดได้', why: 'show() เปิดแบบไม่ใช่ modal ไม่มี backdrop และไม่ปิดด้วย Esc เอง แต่ listener ที่บรรทัด 689 ยังช่วยปิดให้', tested: true },
+    { at: 'app.js L614', change: 'สะกด `"service-modal"` ผิด', type: 'selector', see: 'กด View Details แล้วไม่มีอะไรเกิดขึ้น ไม่มี error', why: 'modal เป็น null แล้วบรรทัด 617 return เงียบๆ', tested: true },
+    { at: 'app.js L603', change: 'ลบ Number() เหลือ `detailBtn.dataset.serviceId`', type: 'logic', see: 'กด View Details แล้วไม่เปิด ไม่มี error', why: 'find ที่บรรทัด 619 เทียบ 1 === "1" ได้ false ทุกตัว service เป็น undefined แล้วบรรทัด 620 return', tested: true }
+  ]
+},
+F7: {
+  num: 7, short: 'Keyboard', owner: 'me', score: 3,
+  title: 'Keyboard Interaction ปุ่ม / Escape และ Enter',
+  exam: 'ข้อสอบจะให้อธิบาย ทำนายผล และแก้โค้ด',
+  files: [['app.js', 'L699–715', 'คีย์ลัด /'], ['app.js', 'L689–693', 'Escape ปิด modal'], ['index.html', 'L477', 'ปุ่ม type="submit" ให้ Enter ส่งฟอร์ม']],
+  ui: {
+    items: [
+      { key: 'f7_1', w: 886, h: 651, marks: [{ n: 1, x: 686, y: 38 }], cap: 'ยังไม่มีช่องไหนได้โฟกัส activeElement คือ body และช่องค้นหายังว่าง' },
+      { key: 'f7_2', w: 886, h: 651, marks: [{ n: 2, x: 686, y: 38 }], cap: 'หลังกด / เคอร์เซอร์ย้ายเข้าช่องค้นหาและมีกรอบโฟกัส แต่ไม่มีตัว / ในช่อง เพราะ preventDefault' },
+      { key: 'f7_3', w: 886, h: 626, marks: [], cap: 'พิมพ์ cctv เหลือ 2 ใบ คือ CCTV Surveillance System กับ Smart Pole ที่คำอธิบายมีคำว่า CCTV', tested: true }
+    ],
+    arrows: [[[1, 'กดปุ่ม / บนคีย์บอร์ด']], [[2, 'พิมพ์ cctv']]]
+  },
+  flow: {
+    h: 1060, cols: [[0, 210], [312, 290], [704, 300], [1106, 300], [1508, 220]],
+    nodes: [
+      ['E0', 0, 70, 'event', 'กดปุ่ม /', '', 'keydown เกิดก่อนตัวอักษรถูกพิมพ์'],
+      ['H0', 1, 70, 'fn', 'setupKeyboardShortcuts()', 'L699–715', 'keydown listener ที่ window L702'],
+      ['Q0', 2, 70, 'dec', 'เป็นปุ่ม / และยังไม่อยู่ในช่องค้นหาไหม', 'L704', ''],
+      ['N0', 3, 70, 'end', 'ไม่ทำอะไร', '', 'ปุ่มอื่นทำงานตามปกติ'],
+      ['Q1', 2, 235, 'dec', 'activeTag ไม่ใช่ input textarea หรือ select ใช่ไหม', 'L705–706', '`tagName.toLowerCase()`'],
+      ['A1', 3, 235, 'fn', '`e.preventDefault()`', 'L707', 'แล้ว `searchInput.focus()` กับ `select()` ที่ L709–710'],
+      ['S1', 4, 235, 'screen', 'เคอร์เซอร์อยู่ในช่องค้นหา', '', 'ไม่มีตัว / ในช่อง'],
+      ['N1', 2, 385, 'end', 'ไม่ทำอะไร', '', 'ปล่อยให้พิมพ์ / ลงช่องเดิมได้'],
+      ['E2', 0, 530, 'event', 'พิมพ์ cctv', '', 'ในช่องค้นหา'],
+      ['H2', 1, 530, 'fn', 'input listener ของ F5', 'L735–738', ''],
+      ['D2', 2, 530, 'data', 'searchKeyword เป็น "cctv"', 'L736', ''],
+      ['P2', 3, 530, 'fn', 'updateServicesDisplay()', 'L549–566', 'แล้วกรองและ render ใหม่'],
+      ['S2', 4, 530, 'screen', 'เหลือ 2 การ์ด', '', 'CCTV และ Smart Pole'],
+      ['E3', 0, 680, 'event', 'กด Escape', '', 'ตอน modal เปิดอยู่'],
+      ['H3', 1, 680, 'fn', 'keydown listener', 'L689–693', 'อยู่ใน setupModalListeners() L657'],
+      ['Q3', 2, 680, 'dec', 'เป็น Escape และ modal เปิดอยู่ไหม', 'L690', ''],
+      ['A3', 3, 680, 'fn', '`modal.close()`', 'L691', 'เป็นชั้นที่สอง เพราะ showModal ปิดด้วย Esc เองอยู่แล้ว'],
+      ['S3', 4, 680, 'screen', 'modal ปิด', '', ''],
+      ['N3', 2, 830, 'end', 'ไม่ทำอะไร', '', 'modal ไม่ได้เปิดอยู่'],
+      ['E4', 0, 975, 'event', 'กด Enter', '', 'ในช่อง input ของฟอร์ม'],
+      ['H4', 1, 975, 'fn', 'เบราว์เซอร์ส่งฟอร์มให้เอง', '', 'เพราะมีปุ่ม type="submit" ที่ index.html L477'],
+      ['A4', 2, 975, 'fn', 'submit handler ของ F4', 'L783–871', 'preventDefault แล้วตรวจฟอร์ม'],
+      ['S4', 4, 975, 'screen', 'ข้อความแดง หรือการ์ดใหม่', '', 'ดู F4']
+    ],
+    edges: ['E0>H0:keydown', 'H0>Q0:ตรวจ', 'Q0>N0:ไม่ใช่', 'Q0|Q1:ใช่', 'Q1>A1:ใช่', 'Q1|N1:ไม่ใช่', 'A1>S1:focus()', 'E2>H2:input', 'H2>D2:เปลี่ยนค่า', 'D2>P2:เรียก', 'P2>S2:วาดใหม่', 'E3>H3:keydown', 'H3>Q3:ตรวจ', 'Q3>A3:ใช่', 'Q3|N3:ไม่ใช่', 'A3>S3:close()', 'E4>H4:Enter', 'H4>A4:submit', 'A4>S4:แสดงผล']
+  },
+  easy: 'เหมือนปุ่มลัดในลิฟต์ กด / เมื่อไหร่ก็พาไปช่องค้นหาทันทีจากทุกที่ในหน้า แต่ถ้ากำลังเขียนอะไรอยู่ในช่องอื่น ระบบจะไม่แย่งปากกาไป ส่วน Esc คือปุ่มปิดหน้าต่าง และ Enter คือปุ่มส่งฟอร์มที่เบราว์เซอร์ทำให้เอง',
+  points: [
+    { q: 'ทำไมผูก keydown ไว้ที่ window ที่บรรทัด 702', a: 'เพราะอยากให้คีย์ลัดใช้ได้ไม่ว่าโฟกัสจะอยู่ส่วนไหนของหน้า keydown จาก element ไหนก็ bubble ขึ้นมาถึง window' },
+    { q: 'ทำไมใช้ keydown ไม่ใช้ keyup', a: 'เพราะ keydown เกิดก่อนที่ตัวอักษรจะถูกพิมพ์ลงช่อง จึงยังยกเลิกด้วย e.preventDefault() ได้ทัน' },
+    { q: 'ทำไมต้องมีบรรทัด 705 และ 706 ที่เช็ก input textarea และ select', a: 'เพราะถ้าผู้ใช้กำลังพิมพ์ในช่องอื่น เช่นหมายเหตุที่มีตัว / ต้องปล่อยให้พิมพ์ได้ ไม่ดึงเคอร์เซอร์หนีไป และต้องใช้ toLowerCase() เพราะ tagName คืนค่าตัวใหญ่ เช่น INPUT ทดลองแล้วพิมพ์ a/b ในช่องชื่อได้ a/b ตามปกติ', tested: true },
+    { q: 'ทำไมต้องมี e.preventDefault() ที่บรรทัด 707', a: 'เพราะเราย้ายโฟกัสในจังหวะเดียวกัน ถ้าไม่ยกเลิก ตัว / จะถูกพิมพ์ลงช่องค้นหาแล้วไปกรองรายการด้วยคำว่า / และใน Firefox ปุ่ม / ยังเปิดแถบค้นหาของเบราว์เซอร์ด้วย' },
+    { q: 'ทำไมเช็ก modal.open ก่อน close() ที่บรรทัด 690', a: 'เพื่อไม่เรียก close ตอนที่ dialog ไม่ได้เปิด บล็อกนี้เป็นชั้นที่สองที่เขียนไว้ให้เห็นชัด เพราะ dialog ที่เปิดด้วย showModal() ปิดด้วย Esc เองอยู่แล้ว' },
+    { q: 'ทำไมกด Enter แล้วฟอร์มส่งได้โดยไม่ต้องเขียน JS', a: 'เพราะในฟอร์มมีปุ่ม type="submit" ที่ index.html บรรทัด 477 เบราว์เซอร์จึงยิง event submit ไปที่ handler บรรทัด 783 ให้เอง ถ้าเปลี่ยนเป็น type="button" กด Enter จะไม่ส่ง และใน textarea กด Enter คือการขึ้นบรรทัดใหม่' }
+  ],
+  breaks: [
+    { at: 'app.js L707', change: 'ลบ `e.preventDefault();`', type: 'logic', see: 'กด / แล้วโฟกัสไปช่องค้นหา แต่ตัว / ไปอยู่ในช่องด้วย รายการเหลือ 2 ใบ คือ Public Address System / IP Phone กับ Retail Management System', why: 'keydown ไม่ถูกยกเลิก ตัวอักษรจึงถูกพิมพ์ลงช่องที่เพิ่งได้โฟกัส Retail ถูกเจอเพราะคำอธิบายมีคำว่า client/server', tested: true },
+    { at: 'app.js L706', change: 'เปลี่ยนเป็น `if (true) {`', type: 'logic', see: 'พิมพ์ a/b ในช่องชื่อ ได้ชื่อแค่ a เคอร์เซอร์กระโดดไปช่องค้นหา แล้ว b ไปอยู่ในช่องค้นหา', why: 'ไม่เช็กแล้วว่ากำลังพิมพ์อยู่ในช่องอื่น คีย์ลัดจึงแย่งโฟกัสทุกครั้งที่กด /', tested: true },
+    { at: 'app.js L689–693', change: 'ลบ listener ของ Escape ทั้งบล็อก', type: 'ไม่มีบั๊กที่เห็น', see: 'กด Escape ยังปิด modal ได้ตามปกติ', why: 'dialog ที่เปิดด้วย showModal() ปิดด้วย Escape เองอยู่แล้ว แต่ถ้าเปลี่ยนเป็น show() บล็อกนี้จะเป็นตัวเดียวที่ทำให้ Esc ยังปิดได้', tested: true }
+  ]
+},
+THEME: {
+  num: '+', short: 'เปลี่ยนธีม', owner: 'me', score: null,
+  title: 'ฟีเจอร์เสริม สลับธีมมืดและสว่าง',
+  exam: 'ไม่มีคะแนนแยก แต่ใช้ประกอบคำตอบเรื่อง CSS variables และ event ได้',
+  files: [['style.css', 'L44–92', 'ตัวแปรสีชุดมืด'], ['style.css', 'L95–119', 'ตัวแปรสีชุดสว่าง'], ['app.js', 'L1152', 'currentTheme'], ['app.js', 'L1154–1182', 'setupThemeToggle'], ['index.html', 'L2, L33', 'data-theme เริ่มต้นและปุ่ม']],
+  ui: {
+    items: [
+      { key: 't_1', w: 1280, h: 620, marks: [{ n: 1, x: 926, y: 35 }], cap: 'เปิดหน้ามาเป็นธีมมืด เพราะ index.html บรรทัด 2 ตั้ง data-theme="dark"' },
+      { key: 't_2', w: 1280, h: 620, marks: [], cap: 'กดแล้วสีทั้งเว็บเปลี่ยน ปุ่มเลื่อนไปทางขวา ไอคอนเป็นดวงอาทิตย์ และป้ายเปลี่ยนเป็น Light', tested: true }
+    ],
+    arrows: [[[1, 'คลิกปุ่มสลับธีม']]]
+  },
+  flow: {
+    h: 900, cols: [[0, 200], [296, 290], [682, 300], [1078, 320], [1514, 238]],
+    nodes: [
+      ['E0', 0, 70, 'event', 'คลิกปุ่มสลับธีม', '', '`#theme-toggle-btn`'],
+      ['H0', 1, 70, 'fn', 'click listener', 'L1178–1181', 'ผูกไว้ใน setupThemeToggle() ตอนเปิดหน้า'],
+      ['D0', 2, 70, 'data', 'nextTheme', 'L1179', '`currentTheme === "dark" ? "light" : "dark"`'],
+      ['F1', 3, 70, 'fn', 'applyTheme(theme)', 'L1159–1176', ''],
+      ['D1', 3, 220, 'data', '`currentTheme = theme`', 'L1160', 'จำไว้ในหน่วยความจำ ไม่ใช้ localStorage'],
+      ['D2', 3, 370, 'data', 'data-theme ที่ html', 'L1161', '`document.documentElement.setAttribute("data-theme", theme)`'],
+      ['S2', 4, 370, 'screen', 'สีทั้งเว็บเปลี่ยน', '', 'ตัวแปรสีชุด `[data-theme="light"]` ใน style.css L95–119'],
+      ['D3', 3, 525, 'data', 'สถานะปุ่ม', 'L1162–1163', 'aria-checked และ class is-light'],
+      ['S3', 4, 525, 'screen', 'ปุ่มเลื่อน ไอคอนเปลี่ยนเป็นดวงอาทิตย์', '', 'style.css L419–434'],
+      ['D4', 3, 675, 'data', 'ป้ายและ aria-label ของปุ่ม', 'L1165–1175', 'เลือกคำตาม currentLang เช่น Light หรือ สว่าง'],
+      ['S4', 4, 675, 'screen', 'ป้าย Dark เปลี่ยนเป็น Light', '', ''],
+      ['E5', 0, 830, 'event', 'เปิดหน้าเว็บ', '', ''],
+      ['H5', 1, 830, 'data', 'ค่าเริ่มต้น', 'L1152', '`data-theme="dark"` ที่ index.html L2 และ `currentTheme = "dark"`'],
+      ['S5', 4, 830, 'screen', 'เว็บเปิดมาเป็นธีมมืด', '', 'รีเฟรชแล้วกลับเป็นมืดเสมอ']
+    ],
+    edges: ['E0>H0:click', 'H0>D0:คำนวณ', 'D0>F1:เรียก', 'F1|D1:ทีละขั้น', 'D1|D2:แล้ว', 'D2>S2:CSS ทำงาน', 'D2|D3:แล้ว', 'D3>S3:แสดง', 'D3|D4:แล้ว', 'D4>S4:แสดง', 'E5>H5:load', 'H5>S5:แสดง']
+  },
+  easy: 'เหมือนสวิตช์ไฟในห้อง กดครั้งเดียวทุกดวงเปลี่ยนพร้อมกัน เพราะทุกดวงต่ออยู่กับสวิตช์ตัวเดียว คือ data-theme ที่แท็ก html ไม่ต้องเดินไปเปลี่ยนทีละดวง',
+  points: [
+    { q: 'ทำไมเก็บสีไว้ในตัวแปร CSS', a: 'เพราะเกือบทุก element ใช้สีผ่าน var(--color-...) พอเปลี่ยนค่าตัวแปรชุดเดียว สีทั้งเว็บก็เปลี่ยนตาม ไม่ต้องไล่แก้ทีละ element ชุดมืดอยู่ที่ style.css บรรทัด 44 ถึง 92 ชุดสว่างอยู่ที่บรรทัด 95 ถึง 119' },
+    { q: 'ทำไมตั้ง data-theme ที่ document.documentElement ในบรรทัด 1161', a: 'เพราะ html เป็น element บนสุด ตัวแปรที่ตั้งตรงนั้นสืบทอดลงไปถึงทุก element ในหน้า' },
+    { q: 'ทำไมเก็บ currentTheme เป็นตัวแปร JS ที่บรรทัด 1152 ไม่ใช้ localStorage', a: 'เพราะกฎวิชาห้ามใช้ web storage จึงจำได้แค่ในหน่วยความจำ ผลคือรีเฟรชแล้วกลับเป็นธีมมืดทุกครั้ง' },
+    { q: 'ทำไมปุ่มมี role="switch" และ aria-checked', a: 'เพื่อให้โปรแกรมอ่านหน้าจออ่านว่าเป็นสวิตช์เปิดปิดพร้อมสถานะปัจจุบัน JS เปลี่ยนค่า aria-checked ที่บรรทัด 1162' },
+    { q: 'ทำไมหน้าตาปุ่มใช้ class is-light แยกจาก data-theme', a: 'เพราะ CSS ของปุ่มที่ style.css บรรทัด 419 ถึง 434 ดูจาก class is-light ทดลองลบบรรทัด 1163 แล้วสีทั้งเว็บยังเปลี่ยน แต่ปุ่มไม่เลื่อนและไอคอนยังเป็นพระจันทร์', tested: true }
+  ],
+  breaks: [
+    { at: 'app.js L1161', change: 'ลบ `document.documentElement.setAttribute("data-theme", theme);`', type: 'logic', see: 'ป้ายเปลี่ยนเป็น Light ปุ่มเลื่อนไปทางขวา แต่สีทั้งเว็บยังมืดเหมือนเดิม', why: 'ไม่มีใครเปลี่ยน data-theme ที่ html กฎ CSS ชุดสว่างจึงไม่ถูกใช้', tested: true },
+    { at: 'style.css L95', change: 'สะกด `[data-theme="light"]` เป็น `[data-theme="ligth"]`', type: 'selector', see: 'html มี data-theme="light" แล้ว ป้ายและปุ่มเปลี่ยน แต่สีเว็บยังมืด ไม่มี error', why: 'selector ไม่ตรงกับค่าจริง ตัวแปรสีชุดสว่างจึงไม่ถูกใช้', tested: true },
+    { at: 'app.js L1163', change: 'ลบ `themeToggleBtn.classList.toggle("is-light", theme === "light");`', type: 'logic', see: 'สีทั้งเว็บเปลี่ยนเป็นสว่างได้ แต่ปุ่มไม่เลื่อนและไอคอนยังเป็นพระจันทร์', why: 'CSS ของปุ่มดูจาก class is-light ไม่ได้ดูจาก data-theme', tested: true }
+  ]
+},
+LANG: {
+  num: '+', short: 'เปลี่ยนภาษา', owner: 'me', score: null,
+  title: 'ฟีเจอร์เสริม สลับภาษาไทยและอังกฤษ',
+  exam: 'ไม่มีคะแนนแยก แต่ใช้ประกอบคำตอบเรื่อง data attribute textContent และ render ได้',
+  files: [['app.js', 'L14', 'currentLang เริ่มเป็น "en"'], ['app.js', 'L16–189', 'พจนานุกรม translations'], ['app.js', 'L1018–1091', 'setupLanguageSwitcher และ applyLanguage'], ['index.html', 'ทั้งไฟล์', 'data-i18n บนข้อความ']],
+  ui: {
+    items: [
+      { key: 'l_1', w: 1280, h: 620, marks: [{ n: 1, x: 1024, y: 35 }], cap: 'เปิดหน้ามาเป็นภาษาอังกฤษ เพราะ currentLang เริ่มเป็น "en" ที่บรรทัด 14' },
+      { key: 'l_2', w: 1280, h: 620, marks: [], cap: 'กดแล้วเมนู หัวข้อ ปุ่ม และป้ายธีมเป็นภาษาไทยทั้งหมด ตัว TH เป็นสีเขียว', tested: true }
+    ],
+    arrows: [[[1, 'คลิกปุ่มสลับภาษา']]]
+  },
+  flow: {
+    h: 1030, cols: [[0, 200], [296, 290], [682, 300], [1078, 320], [1490, 238]],
+    nodes: [
+      ['E0', 0, 70, 'event', 'คลิกปุ่มสลับภาษา', '', '`#lang-toggle-btn`'],
+      ['H0', 1, 70, 'fn', 'click listener', 'L1087–1090', ''],
+      ['D0', 2, 70, 'data', 'nextLang', 'L1088', '`currentLang === "th" ? "en" : "th"`'],
+      ['F1', 3, 70, 'fn', 'applyLanguage(lang)', 'L1025–1082', ''],
+      ['D1', 3, 215, 'data', 'currentLang และ html lang', 'L1026–1027', ''],
+      ['L2', 3, 365, 'fn', 'วนทุก element ที่มี data-i18n', 'L1030–1035', '`el.textContent = translations[lang][key]` ถ้าไม่มีคำแปลของ key จะข้ามไปที่ L1032'],
+      ['S2', 4, 365, 'screen', 'เมนู หัวข้อ และปุ่มเปลี่ยนภาษา', '', ''],
+      ['D3', 3, 530, 'fn', 'placeholder ของช่องกรอก', 'L1038–1043', ''],
+      ['S3', 4, 530, 'screen', 'ข้อความจางในช่องเปลี่ยน', '', ''],
+      ['D4', 3, 670, 'fn', 'ปุ่มภาษา ป้ายธีม และปุ่มขยาย', 'L1046–1077', ''],
+      ['S4', 4, 670, 'screen', 'ตัวที่เลือกเป็นสีเขียว', '', 'ป้ายธีมเป็น มืด หรือ สว่าง'],
+      ['P5', 3, 820, 'fn', 'updateServicesDisplay() และ updateSelectedServicesUI()', 'L1080–1081', ''],
+      ['S5', 4, 820, 'screen', 'การ์ดวาดใหม่เป็นภาษาใหม่', '', 'เรียงใหม่ตามชื่อภาษานั้น'],
+      ['E6', 0, 965, 'event', 'เปิดหน้าเว็บ', '', ''],
+      ['H6', 1, 965, 'fn', 'setupLanguageSwitcher()', 'L1018, L1085', 'เรียก applyLanguage(currentLang) ทันที'],
+      ['S6', 4, 965, 'screen', 'เว็บเปิดมาเป็นภาษาอังกฤษ', '', '']
+    ],
+    edges: ['E0>H0:click', 'H0>D0:คำนวณ', 'D0>F1:เรียก', 'F1|D1:ทีละขั้น', 'D1|L2:แล้ว', 'L2>S2:แสดง', 'L2|D3:แล้ว', 'D3>S3:แสดง', 'D3|D4:แล้ว', 'D4>S4:แสดง', 'D4|P5:แล้ว', 'P5>S5:วาดใหม่', 'E6>H6:load', 'H6>S6:แสดง']
+  },
+  easy: 'เหมือนป้ายในร้านที่ทุกแผ่นมีรหัสติดไว้ พอกดเปลี่ยนภาษา พนักงานเปิดสมุดคำแปล หาคำของรหัสนั้นในภาษาใหม่ แล้วเปลี่ยนป้ายทีละแผ่น ส่วนสินค้าบนชั้นต้องให้คนจัดร้านจัดใหม่อีกรอบ',
+  points: [
+    { q: 'ทำไมเก็บคำแปลทั้งหมดไว้ใน object translations ตัวเดียว', a: 'เพราะ key เดียวกันมีทั้งภาษาไทยและอังกฤษ แล้วใช้ data-i18n ใน HTML เป็นตัวเชื่อม แก้คำหรือเพิ่มภาษาได้ที่เดียว และไม่ต้องใช้ library' },
+    { q: 'ทำไมเช็กว่ามีคำแปลก่อนที่บรรทัด 1032', a: 'เพื่อไม่ให้ข้อความถูกทับด้วย undefined ถ้า key ไม่มีในพจนานุกรม ข้อความเดิมใน HTML จะค้างอยู่แทน ทดลองสะกด key ผิดแล้วเมนูแรกค้างเป็นคำว่า หน้าแรก', tested: true },
+    { q: 'ทำไมใช้ textContent ที่บรรทัด 1033', a: 'เพราะใส่ข้อความล้วนปลอดภัยกว่า innerHTML ไม่มีแท็กแปลกปลอมถูกสร้างขึ้น ข้อแลกเปลี่ยนคือแท็กที่เคยอยู่ข้างใน เช่นตัวหนาในย่อหน้า จะหายไปหลังแปล' },
+    { q: 'ทำไมต้องเรียก updateServicesDisplay() ท้ายฟังก์ชันที่บรรทัด 1080', a: 'เพราะการ์ดสร้างด้วย JS ไม่มี data-i18n ต้องให้ renderServices อ่าน currentLang ใหม่แล้วเลือก titleEn หรือ title และ sort ด้วย localeCompare ตามภาษา ลำดับจึงเปลี่ยน ทดลองแล้วใบแรกเป็น เครื่อง X-Ray Scanner', tested: true },
+    { q: 'ทำไมต้องเปลี่ยน lang ของ html ที่บรรทัด 1027', a: 'เพื่อให้โปรแกรมอ่านหน้าจอออกเสียงถูกภาษา และเบราว์เซอร์ตัดคำได้ถูก' },
+    { q: 'ทำไม applyLanguage อยู่ข้างใน setupLanguageSwitcher', a: 'เพราะใช้ตัวแปร thCode enCode และ themeToggleBtn ที่หาไว้ครั้งเดียวข้างนอกได้เลย และเรียกตอนเปิดหน้าทันทีที่บรรทัด 1085 ข้อเสียคือเรียกจากที่อื่นนอกฟังก์ชันไม่ได้' }
+  ],
+  breaks: [
+    { at: 'app.js L1080', change: 'ลบ `updateServicesDisplay();`', type: 'logic', see: 'เมนูและหัวข้อเปลี่ยนเป็นไทย แต่การ์ดยังเป็นอังกฤษ ใบแรกยังเป็น Access Control System จนกว่าจะกดกรองหรือค้น', why: 'การ์ดไม่มี data-i18n ถ้าไม่สั่ง render ใหม่ การ์ดชุดเก่าจะค้างอยู่', tested: true },
+    { at: 'index.html L22', change: 'สะกด `data-i18n="nav.home"` เป็น `data-i18n="nav.hom"`', type: 'selector', see: 'เปิดหน้ามาเมนูแรกเป็นคำว่า หน้าแรก ทั้งที่เมนูอื่นเป็นอังกฤษ', why: 'ไม่มี key นี้ใน translations เงื่อนไขที่บรรทัด 1032 จึงข้าม ข้อความเดิมใน HTML ค้างอยู่', tested: true },
+    { at: 'app.js L1088', change: 'เปลี่ยนเป็น `currentLang === "th" ? "th" : "en"`', type: 'logic', see: 'กดปุ่มแล้วไม่มีอะไรเปลี่ยน เว็บเป็นภาษาอังกฤษตลอด', why: 'เริ่มที่ en ผลของเงื่อนไขจึงเป็น en ทุกครั้ง', tested: true }
+  ]
+}
+};
+
+/* wiring rows: [ชนิด, ไฟล์, บรรทัด, element หรือ selector, ฟังก์ชันหรือคำสั่ง, ทำอะไร] */
+const W = {
+F1: [
+  ['HTML', 'index.html', 'L2', '<html lang="en">', '', 'บอกเบราว์เซอร์และโปรแกรมอ่านหน้าจอว่าหน้าเริ่มเป็นภาษาอังกฤษ'],
+  ['HTML', 'index.html', 'L13', '<header class="site-header">', '', 'landmark ส่วนหัว ผู้ใช้โปรแกรมอ่านหน้าจอกระโดดมาที่นี่ได้'],
+  ['HTML', 'index.html', 'L20', '<nav id="main-nav" aria-label>', '', 'landmark เมนู มีชื่อเรียกจาก aria-label'],
+  ['HTML', 'index.html', 'L74–492', '<main>', '', 'ครอบเนื้อหาหลักทั้งหมดไว้ในกล่องเดียว'],
+  ['HTML', 'index.html', 'L77', '<section id="hero" aria-labelledby="hero-heading">', '', 'section ได้ชื่อจาก `<h1 id="hero-heading">` ที่ L81'],
+  ['HTML', 'index.html', 'L411, L416', '<label for="contact-name"> กับ <input id="contact-name">', '', 'ค่า for ตรงกับ id คลิกข้อความแล้วเคอร์เซอร์เข้าช่องกรอก'],
+  ['HTML', 'index.html', 'L423', '<span id="error-contact-name" aria-live="polite">', '', 'ข้อความในนี้เปลี่ยนเมื่อไร โปรแกรมอ่านหน้าจออ่านให้ฟังทันที'],
+  ['HTML', 'index.html', 'L495, L535', '<footer> และ <dialog id="service-modal">', '', 'landmark ท้ายหน้า และหน้าต่างแบบ native'],
+  ['CSS', 'style.css', 'L169–179', '.visually-hidden', '', 'ซ่อนจากตาแต่ยังอ่านออกเสียงได้ ใช้กับ `<label for="service-search-input">` ที่ L221'],
+  ['CSS', 'style.css', 'L213', '.btn:focus-visible', '', 'วาดวงโฟกัสรอบปุ่มเฉพาะตอนใช้คีย์บอร์ด'],
+  ['JS', 'app.js', 'L480–482', '<img alt>', 'renderServices()', 'ใส่ alt เป็นชื่อบริการให้รูปทุกใบในการ์ด'],
+  ['JS', 'app.js', 'L768–770', '<span class="inline-error-text">', 'showError() .textContent', 'เขียนข้อความผิดพลาดลง span ที่มี aria-live'],
+],
+F2: [
+  ['HTML', 'index.html', 'L5', '<meta name="viewport">', '', 'ให้มือถือใช้ความกว้างจริงของจอ ไม่ย่อหน้าเว็บทั้งหน้า'],
+  ['HTML', 'index.html', 'L64', '<button id="menu-toggle-btn" aria-controls="main-nav">', '', 'ปุ่มแฮมเบอร์เกอร์ที่คุม `<nav id="main-nav">`'],
+  ['CSS', 'style.css', 'L123', '*', 'box-sizing: border-box', 'นับ padding กับ border รวมในความกว้าง กล่องจึงไม่ล้นจอ'],
+  ['CSS', 'style.css', 'L928–932', '.services-grid', 'repeat(auto-fill, minmax(320px, 1fr))', 'L930 จัดคอลัมน์การ์ดเองตามความกว้างที่เหลือ'],
+  ['CSS', 'style.css', 'L1739', '@media (max-width: 1023px)', '', 'L1740 แสดง `.menu-toggle-btn` L1748 ซ่อน `.main-nav` L1766 `.main-nav.is-open` เปิดเมนู'],
+  ['CSS', 'style.css', 'L1832', '@media (max-width: 480px)', '', 'ปรับระยะและขนาดตัวอักษรสำหรับจอโทรศัพท์'],
+  ['CSS', 'style.css', 'L1908', '@media (min-width: 1024px)', '', 'จอใหญ่ แสดงเมนูเต็มแถว'],
+  ['JS', 'app.js', 'L883–886', '#menu-toggle-btn, #main-nav', 'setupMobileNav() classList.toggle("is-open")', 'คลิกแล้วสลับ aria-expanded และเติมหรือถอด class `is-open`'],
+  ['JS', 'app.js', 'L552–558', '#expand-services-wrapper', 'updateServicesDisplay() innerWidth <= 768', 'จอไม่เกิน 768px แสดง 4 การ์ดด้วย `slice(0, 4)` และเปิดปุ่มดูทั้งหมด'],
+  ['JS', 'app.js', 'L971', '#expand-services-btn', 'addEventListener("click")', 'สลับ isServicesExpanded แล้ววาดการ์ดใหม่'],
+  ['JS', 'app.js', 'L1267', 'window', 'addEventListener("resize")', 'ย่อขยายหน้าต่างแล้วเรียก updateServicesDisplay ใหม่'],
+],
+F3: [
+  ['HTML', 'index.html', 'L244', '<div id="services-grid-container" class="services-grid">', '', 'กล่องว่างที่ JS เติมการ์ดลงไป'],
+  ['HTML', 'index.html', 'L257', '<div id="no-results-msg" hidden>', '', 'ข้อความไม่พบบริการ ซ่อนไว้ก่อน'],
+  ['JS', 'app.js', 'L195–420', 'servicesData', 'array 16 object', 'ข้อมูลบริการทั้งหมด หนึ่ง object ต่อหนึ่งการ์ด'],
+  ['JS', 'app.js', 'L434', '#services-grid-container', 'document.getElementById()', 'หยิบกล่องการ์ดจาก HTML'],
+  ['JS', 'app.js', 'L439', '#services-grid-container', '.innerHTML = ""', 'ล้างการ์ดชุดเก่าก่อนวาดใหม่'],
+  ['JS', 'app.js', 'L443, L446', '#no-results-msg', '.hidden', 'ไม่มีรายการให้แสดง ถ้ามีรายการให้ซ่อน'],
+  ['JS', 'app.js', 'L451–454', '<article class="service-card">', 'createElement("article") .className dataset.id', 'สร้างการ์ดหนึ่งใบต่อหนึ่ง object และฝาก id ไว้'],
+  ['JS', 'app.js', 'L480', '<img> <h3 class="card-title"> <p class="card-desc"> <button>', 'card.innerHTML', 'ใส่รูป ชื่อ คำอธิบาย และปุ่ม data-service-id data-toggle-id data-delete-id'],
+  ['JS', 'app.js', 'L495', '#services-grid-container', '.appendChild(card)', 'ต่อการ์ดลงกล่องทีละใบ'],
+  ['CSS', 'style.css', 'L928, L935', '.services-grid  .service-card', '', 'จัดตารางการ์ดและหน้าตาการ์ด'],
+  ['CSS', 'style.css', 'L969–985', '.card-badge .badge-office .badge-factory', '', 'ป้ายหมวดสีต่างกันตาม category'],
+],
+F4: [
+  ['HTML', 'index.html', 'L408', '<form id="consultation-form" novalidate>', '', 'novalidate ปิดการตรวจของเบราว์เซอร์ ให้ JS ตรวจเอง'],
+  ['HTML', 'index.html', 'L416, L433, L448', '<input id="contact-name"> <input id="contact-phone"> <select id="contact-service">', '', 'สามช่องที่ต้องตรวจ'],
+  ['HTML', 'index.html', 'L423, L440, L458', '<span class="inline-error-text" aria-live="polite">', '', 'ที่ว่างสำหรับข้อความผิดพลาดใต้แต่ละช่อง'],
+  ['HTML', 'index.html', 'L477, L482', '<button type="submit"> <div id="form-success-alert" hidden>', '', 'ปุ่มส่ง และกล่องส่งสำเร็จที่ซ่อนไว้'],
+  ['JS', 'app.js', 'L755–764', '#consultation-form #contact-name #error-contact-name ...', 'document.getElementById()', 'หยิบฟอร์ม ช่องกรอก และ span ข้อความผิดพลาด'],
+  ['JS', 'app.js', 'L768–771', '<span> และ <input>', 'showError() .textContent classList.add("is-invalid")', 'เขียนข้อความผิดพลาดและเติมขอบแดง'],
+  ['JS', 'app.js', 'L773–776', '<span> และ <input>', 'clearError()', 'ล้างข้อความและถอด class `is-invalid`'],
+  ['JS', 'app.js', 'L779–781', '#contact-name #contact-phone #contact-service', 'addEventListener("input") และ ("change")', 'เริ่มพิมพ์ใหม่แล้วข้อความผิดพลาดหายทันที'],
+  ['JS', 'app.js', 'L783, L785', '#consultation-form', 'addEventListener("submit") e.preventDefault()', 'ดักการส่ง ไม่ให้หน้าโหลดใหม่'],
+  ['JS', 'app.js', 'L823', '', 'if (!isValid) return', 'มีข้อผิดก็หยุดตรงนี้ ไม่เพิ่มข้อมูล'],
+  ['JS', 'app.js', 'L837, L853', 'servicesData', 'newId  .unshift()', 'ผ่านทุกกฎแล้วสร้าง object ใหม่ใส่ต้น array แล้ววาดการ์ดใหม่'],
+  ['JS', 'app.js', 'L866', '#form-success-alert', '.hidden = false', 'แสดงกล่องส่งสำเร็จ'],
+  ['CSS', 'style.css', 'L1490, L1496, L1512', '.form-input.is-invalid  .inline-error-text  .alert-success', '', 'ขอบแดง ข้อความแดงใต้ช่อง และกล่องสีเขียว'],
+],
+F5: [
+  ['HTML', 'index.html', 'L214–216', '<button class="filter-btn" data-category>', '', 'ปุ่มกรอง All Office Industrial'],
+  ['HTML', 'index.html', 'L224, L236', '<input id="service-search-input"> <select id="service-sort-select">', '', 'ช่องค้นหาและตัวเลือกเรียง'],
+  ['JS', 'app.js', 'L423–425', 'currentCategory searchKeyword currentSort', 'let', 'ตัวแปรสถานะสามตัวที่ทุกปุ่มเปลี่ยน'],
+  ['JS', 'app.js', 'L722–727', '.filter-btn', 'querySelectorAll() classList.add("active") dataset.category', 'ย้ายไฮไลต์ไปปุ่มที่กด แล้วเก็บหมวดลง currentCategory'],
+  ['JS', 'app.js', 'L735', '#service-search-input', 'addEventListener("input")', 'พิมพ์แล้วเก็บคำค้นลง searchKeyword'],
+  ['JS', 'app.js', 'L744', '#service-sort-select', 'addEventListener("change")', 'เปลี่ยนแล้วเก็บลง currentSort'],
+  ['JS', 'app.js', 'L502–547', 'servicesData', 'getFilteredAndSortedServices() .filter() localeCompare', 'คัดลอก array แล้วกรอง ค้น เรียง'],
+  ['JS', 'app.js', 'L575', '#services-grid-container', 'addEventListener("click")', 'listener ตัวเดียวที่กล่องแม่ รับคลิกทุกปุ่มในการ์ด'],
+  ['JS', 'app.js', 'L577–579', '[data-delete-id]', 'e.target.closest() Number()', 'หาปุ่มลบ แปลง id เป็นตัวเลขแล้ว filter ทิ้ง'],
+  ['JS', 'app.js', 'L588–590', '[data-toggle-id]', 'e.target.closest()', 'สลับ isSelected ของบริการนั้น'],
+  ['JS', 'app.js', 'L601–603', '[data-service-id]', 'e.target.closest() openServiceModal()', 'เปิดหน้าต่างรายละเอียด ส่งต่อให้ F6'],
+  ['CSS', 'style.css', 'L855', '.filter-btn.active', '', 'สีปุ่มกรองที่กำลังเลือก'],
+  ['CSS', 'style.css', 'L1073, L1090', '.btn-card-selected  .service-card.is-selected', '', 'หน้าตาปุ่มและการ์ดที่สนใจแล้ว'],
+],
+F6: [
+  ['HTML', 'index.html', 'L535', '<dialog id="service-modal" class="native-dialog" aria-labelledby="dialog-title">', '', 'หน้าต่างแบบ native ของ HTML5'],
+  ['HTML', 'index.html', 'L538, L542', '<h3 id="dialog-title"> <div id="dialog-body-content">', '', 'ที่ว่างให้ JS ใส่ชื่อและรายละเอียด'],
+  ['HTML', 'index.html', 'L539, L548', '<button id="dialog-close-btn"> <button id="dialog-confirm-btn">', '', 'ปุ่มปิดสองปุ่ม'],
+  ['JS', 'app.js', 'L601–603', '[data-service-id]', 'closest() Number() openServiceModal(id)', 'คลิก View Details แล้วส่ง id ตัวเลขเข้าฟังก์ชัน'],
+  ['JS', 'app.js', 'L614–616', '#service-modal #dialog-title #dialog-body-content', 'document.getElementById()', 'หยิบ dialog และสองช่องข้างใน'],
+  ['JS', 'app.js', 'L627', '#dialog-title', '.textContent', 'ใส่ชื่อบริการตามภาษาปัจจุบัน'],
+  ['JS', 'app.js', 'L636', '#dialog-body-content', '.innerHTML', 'ใส่รูปและคำอธิบาย'],
+  ['JS', 'app.js', 'L654', '#service-modal', 'modal.showModal()', 'เปิดแบบ modal มีฉากหลังและกักโฟกัส'],
+  ['JS', 'app.js', 'L666, L671', '#dialog-close-btn #dialog-confirm-btn', 'addEventListener("click") modal.close()', 'กดปุ่มแล้วปิด'],
+  ['JS', 'app.js', 'L675–686', '#service-modal', 'getBoundingClientRect() modal.close()', 'คลิกนอกกล่องแล้วปิด'],
+  ['JS', 'app.js', 'L689–693', 'window', 'addEventListener("keydown") e.key === "Escape"', 'กด Esc ตอน modal.open แล้วปิด'],
+  ['CSS', 'style.css', 'L1596, L1607, L1613', '.native-dialog  .native-dialog::backdrop  .dialog-box', '', 'กล่องหน้าต่าง ฉากหลังมืด และเนื้อในกล่อง'],
+],
+F7: [
+  ['HTML', 'index.html', 'L224', '<input id="service-search-input">', '', 'ปลายทางของคีย์ลัด /'],
+  ['HTML', 'index.html', 'L477', '<button type="submit">', '', 'กด Enter ในฟอร์มแล้วส่งได้เอง'],
+  ['HTML', 'index.html', 'ทั้งไฟล์', '<button> <a> <input> <select>', '', 'element ที่ Tab ไปถึงได้โดยไม่ต้องใส่ tabindex'],
+  ['JS', 'app.js', 'L700', '#service-search-input', 'document.getElementById()', 'หยิบช่องค้นหา'],
+  ['JS', 'app.js', 'L702', 'window', 'addEventListener("keydown")', 'ฟังทุกปุ่มที่กดทั้งหน้า'],
+  ['JS', 'app.js', 'L704', '', 'e.key === "/" && document.activeElement !== searchInput', 'กด / และยังไม่ได้อยู่ในช่องค้นหา'],
+  ['JS', 'app.js', 'L705–706', 'input textarea select', 'activeElement.tagName.toLowerCase()', 'ถ้ากำลังพิมพ์ในช่องอื่นอยู่ ไม่แย่งโฟกัส'],
+  ['JS', 'app.js', 'L707', '', 'e.preventDefault()', 'กันไม่ให้ตัว / ถูกพิมพ์ลงช่อง'],
+  ['JS', 'app.js', 'L709–710', '#service-search-input', '.focus() .select()', 'ย้ายโฟกัสเข้าช่องค้นหาและเลือกข้อความเดิม'],
+  ['JS', 'app.js', 'L689–693', 'window', 'keydown e.key === "Escape" modal.close()', 'Esc ปิดหน้าต่าง F6'],
+  ['CSS', 'style.css', 'L213, L892', '.btn:focus-visible  .search-input:focus', '', 'วงโฟกัสให้เห็นว่ากำลังอยู่ที่ไหน'],
+],
+THEME: [
+  ['HTML', 'index.html', 'L2', '<html data-theme="dark">', '', 'ค่าเริ่มต้นเป็นธีมมืด'],
+  ['HTML', 'index.html', 'L33', '<button id="theme-toggle-btn" role="switch" aria-checked="false">', '', 'สวิตช์เปลี่ยนธีม'],
+  ['HTML', 'index.html', 'L52', '<span id="theme-mode-text">', '', 'คำว่า Dark หรือ Light ข้างสวิตช์'],
+  ['CSS', 'style.css', 'L44', ':root', '', 'ตัวแปรสีชุดมืด เช่น --bg --text'],
+  ['CSS', 'style.css', 'L95', '[data-theme="light"]', '', 'ทับตัวแปรเดิมด้วยค่าชุดสว่าง ทุกอย่างที่ใช้ var() เปลี่ยนตาม'],
+  ['CSS', 'style.css', 'L360, L419', '.theme-switch  .theme-switch.is-light .theme-switch-thumb', '', 'หน้าตาสวิตช์และตำแหน่งปุ่มกลม'],
+  ['JS', 'app.js', 'L1152', 'currentTheme', 'let', 'จำธีมปัจจุบันไว้ในหน่วยความจำ'],
+  ['JS', 'app.js', 'L1161', '<html>', 'document.documentElement.setAttribute("data-theme")', 'เปลี่ยนค่าที่ CSS L95 ใช้จับ'],
+  ['JS', 'app.js', 'L1162–1163', '#theme-toggle-btn', 'setAttribute("aria-checked") classList.toggle("is-light")', 'บอกสถานะสวิตช์และเลื่อนปุ่มกลม'],
+  ['JS', 'app.js', 'L1166', '#theme-mode-text', '.textContent', 'เปลี่ยนคำ Dark Light ตามภาษา'],
+  ['JS', 'app.js', 'L1178–1181', '#theme-toggle-btn', 'addEventListener("click") applyTheme()', 'คลิกแล้วสลับ dark กับ light'],
+],
+LANG: [
+  ['HTML', 'index.html', 'L58', '<button id="lang-toggle-btn">', '', 'ปุ่มสลับภาษา'],
+  ['HTML', 'index.html', 'L59, L61', '<span id="lang-code-th"> <span id="lang-code-en" class="lang-label is-active">', '', 'ตัวอักษร TH EN ในปุ่ม'],
+  ['HTML', 'index.html', 'L204', '<h2 data-i18n="services.title">', '', 'ตัวอย่าง element ที่มีกุญแจคำแปล'],
+  ['HTML', 'index.html', 'L228', '<input data-i18n-placeholder>', '', 'ช่องค้นหาที่แปล placeholder'],
+  ['JS', 'app.js', 'L14', 'currentLang', 'let currentLang = "en"', 'เปิดหน้ามาเป็นภาษาอังกฤษ'],
+  ['JS', 'app.js', 'L16–189', 'translations', 'object th และ en', 'พจนานุกรม กุญแจเดียวกันมีสองภาษา'],
+  ['JS', 'app.js', 'L1030–1033', '[data-i18n]', 'querySelectorAll() .textContent', 'วนทุก element ที่มีกุญแจ แล้วใส่คำแปล'],
+  ['JS', 'app.js', 'L1038', '[data-i18n-placeholder]', 'querySelectorAll() .placeholder', 'แปลข้อความจางในช่องกรอก'],
+  ['JS', 'app.js', 'L1048–1052', '#lang-code-th #lang-code-en', 'classList.add("is-active")', 'ไฮไลต์ภาษาที่ใช้อยู่'],
+  ['JS', 'app.js', 'L1061', '#theme-toggle-btn', 'setAttribute("aria-label")', 'แปลชื่อสวิตช์ธีมด้วย'],
+  ['JS', 'app.js', 'L1080', '#services-grid-container', 'updateServicesDisplay()', 'วาดการ์ดใหม่ให้เป็นภาษาที่เลือก'],
+  ['JS', 'app.js', 'L1087–1089', '#lang-toggle-btn', 'addEventListener("click") applyLanguage()', 'คลิกแล้วสลับ th กับ en'],
+  ['CSS', 'style.css', 'L446, L479', '.lang-toggle-btn  .lang-label.is-active', '', 'หน้าตาปุ่มและตัวอักษรภาษาที่เลือก'],
+],
+};
+for (const k in W) DATA[k].wiring = W[k];
+
+const CAP = {"F1": [{"code": [{"file": "index.html", "rows": [{"n": 409, "t": "              <!-- Field 1: Customer Name -->", "m": ""}, {"n": 410, "t": "              <div class=\"form-group\">", "m": ""}, {"n": 411, "t": "                <label for=\"contact-name\" class=\"form-label\">", "m": "del"}, {"n": 411, "t": "                <label for=\"name\" class=\"form-label\">", "m": "add"}, {"n": 412, "t": "                  <span data-i18n=\"contact.nameLabel\">ชื่อผู้ติดต่อ / บริษัท</span> <span class=\"required-mark\" aria-hidden=\"true\">*</span>", "m": ""}, {"n": 413, "t": "                </label>", "m": ""}]}], "cap": {"a": {"img": "f1_0_a.webp", "w": 1000, "h": 236, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f1_0_b.webp", "w": 1000, "h": 236, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "labelClick"}, {"code": [{"file": "index.html", "rows": [{"n": 72, "t": "", "m": ""}, {"n": 73, "t": "  <!-- ==================== MAIN CONTENT LANDMARK ==================== -->", "m": ""}, {"n": 74, "t": "  <main>", "m": "del"}, {"n": 74, "t": "  <div>", "m": "add"}, {"n": 75, "t": "", "m": ""}, {"n": 76, "t": "    <!-- SECTION 1: HERO -->", "m": ""}]}, {"file": "index.html", "rows": [{"n": 490, "t": "    </section>", "m": ""}, {"n": 491, "t": "", "m": ""}, {"n": 492, "t": "  </main>", "m": "del"}, {"n": 492, "t": "  </div>", "m": "add"}, {"n": 493, "t": "", "m": ""}, {"n": 494, "t": "  <!-- ==================== FOOTER LANDMARK ==================== -->", "m": ""}]}], "cap": {"a": {"img": "f1_1_a.webp", "w": 1000, "h": 56, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f1_1_b.webp", "w": 1000, "h": 56, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "scrollServices"}, {"code": [{"file": "css/style.css", "rows": [{"n": 167, "t": "", "m": ""}, {"n": 168, "t": "/* Screen reader utility */", "m": ""}, {"n": 169, "t": ".visually-hidden {", "m": "del"}, {"n": 170, "t": "  position: absolute;", "m": "del"}, {"n": 171, "t": "  width: 1px;", "m": "del"}, {"n": 172, "t": "  height: 1px;", "m": "del"}, {"n": 173, "t": "  padding: 0;", "m": "del"}, {"n": 174, "t": "  margin: -1px;", "m": "del"}, {"n": 175, "t": "  overflow: hidden;", "m": "del"}, {"n": 176, "t": "  clip: rect(0, 0, 0, 0);", "m": "del"}, {"n": 177, "t": "  white-space: nowrap;", "m": "del"}, {"n": 178, "t": "  border: 0;", "m": "del"}, {"n": 179, "t": "}", "m": "del"}, {"n": 180, "t": "", "m": ""}, {"n": 181, "t": "/* --------------------------------------------------------------------------", "m": ""}]}], "cap": {"a": {"img": "f1_2_a.webp", "w": 1000, "h": 94, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f1_2_b.webp", "w": 1000, "h": 115, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "none"}], "F2": [{"code": [{"file": "css/style.css", "rows": [{"n": 121, "t": "/* CSS Reset ensuring zero horizontal overflow */", "m": ""}, {"n": 122, "t": "*, *::before, *::after {", "m": ""}, {"n": 123, "t": "  box-sizing: border-box;", "m": "del"}, {"n": 124, "t": "  margin: 0;", "m": ""}, {"n": 125, "t": "  padding: 0;", "m": ""}]}], "cap": {"a": {"img": "f2_0_a.webp", "w": 800, "h": 1600, "cons": [], "facts": {"url": "", "cards": 4, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f2_0_b.webp", "w": 800, "h": 1600, "cons": [], "facts": {"url": "", "cards": 4, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "w400scroll"}, {"code": [{"file": "css/style.css", "rows": [{"n": 1738, "t": "/* Tablet & Mobile Screens (<= 1023px) */", "m": ""}, {"n": 1739, "t": "@media (max-width: 1023px) {", "m": ""}, {"n": 1740, "t": "  .menu-toggle-btn {", "m": "del"}, {"n": 1741, "t": "    display: flex;", "m": "del"}, {"n": 1742, "t": "  }", "m": "del"}, {"n": 1743, "t": "", "m": ""}, {"n": 1744, "t": "  .nav-cta {", "m": ""}]}], "cap": {"a": {"img": "f2_1_a.webp", "w": 800, "h": 128, "cons": [], "facts": {"url": "", "cards": 4, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f2_1_b.webp", "w": 800, "h": 128, "cons": [], "facts": {"url": "", "cards": 4, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "w400"}, {"code": [{"file": "css/style.css", "rows": [{"n": 928, "t": ".services-grid {", "m": ""}, {"n": 929, "t": "  display: grid;", "m": ""}, {"n": 930, "t": "  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));", "m": "del"}, {"n": 930, "t": "  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));", "m": "add"}, {"n": 931, "t": "  gap: 1.75rem;", "m": ""}, {"n": 932, "t": "}", "m": ""}]}], "cap": {"a": {"img": "f2_2_a.webp", "w": 1000, "h": 441, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f2_2_b.webp", "w": 1000, "h": 767, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "none"}], "F3": [{"code": [{"file": "js/app.js", "rows": [{"n": 437, "t": "", "m": ""}, {"n": 438, "t": "  // 1. เคลียร์คอนเทนเนอร์ก่อนแสดงผลใหม่เสมอ (ตามกฎเกณฑ์ข้อ 3)", "m": ""}, {"n": 439, "t": "  container.innerHTML = \"\";", "m": "del"}, {"n": 440, "t": "", "m": ""}, {"n": 441, "t": "  // 2. ตรวจสอบกรณีไม่มีข้อมูลตรงตามเงื่อนไข (Empty State)", "m": ""}]}], "cap": {"a": {"img": "f3_0_a.webp", "w": 1000, "h": 1159, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f3_0_b.webp", "w": 1000, "h": 1159, "cons": [], "facts": {"url": "", "cards": 48, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": true, "act": "none"}, {"code": [{"file": "js/app.js", "rows": [{"n": 493, "t": "    `;", "m": ""}, {"n": 494, "t": "", "m": ""}, {"n": 495, "t": "    container.appendChild(card);", "m": "del"}, {"n": 496, "t": "  });", "m": ""}, {"n": 497, "t": "}", "m": ""}]}], "cap": {"a": {"img": "f3_1_a.webp", "w": 1000, "h": 552, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f3_1_b.webp", "w": 1000, "h": 310, "cons": [], "facts": {"url": "", "cards": 0, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "none"}, {"code": [{"file": "js/app.js", "rows": [{"n": 432, "t": "", "m": ""}, {"n": 433, "t": "function renderServices(items) {", "m": ""}, {"n": 434, "t": "  const container = document.getElementById(\"services-grid-container\");", "m": "del"}, {"n": 434, "t": "  const container = document.getElementById(\"service-grid-container\");", "m": "add"}, {"n": 435, "t": "  const emptyMessage = document.getElementById(\"no-results-msg\");", "m": ""}, {"n": 436, "t": "  if (!container) return;", "m": ""}]}], "cap": {"a": {"img": "f3_2_a.webp", "w": 1000, "h": 552, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f3_2_b.webp", "w": 1000, "h": 310, "cons": [], "facts": {"url": "", "cards": 0, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "none"}], "F4": [{"code": [{"file": "js/app.js", "rows": [{"n": 783, "t": "  form.addEventListener(\"submit\", (e) => {", "m": ""}, {"n": 784, "t": "    // 1. บังคับใช้ e.preventDefault()", "m": ""}, {"n": 785, "t": "    e.preventDefault();", "m": "del"}, {"n": 786, "t": "", "m": ""}, {"n": 787, "t": "    let isValid = true;", "m": ""}]}], "cap": {"a": {"img": "f4_0_a.webp", "w": 1000, "h": 441, "cons": [], "facts": {"url": "", "cards": 17, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f4_0_b.webp", "w": 1000, "h": 441, "cons": [], "facts": {"url": "?contactName=&contactPhone=&contactService=&contactNotes=", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "submitValid"}, {"code": [{"file": "js/app.js", "rows": [{"n": 821, "t": "    }", "m": ""}, {"n": 822, "t": "", "m": ""}, {"n": 823, "t": "    if (!isValid) return;", "m": "del"}, {"n": 824, "t": "", "m": ""}, {"n": 825, "t": "    // แผนผังข้อมูลระบบที่เลือก", "m": ""}]}], "cap": {"a": {"img": "f4_1_a.webp", "w": 1000, "h": 1305, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f4_1_b.webp", "w": 800, "h": 970, "cons": [], "facts": {"url": "", "cards": 17, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "submitEmpty"}, {"code": [{"file": "js/app.js", "rows": [{"n": 754, "t": "function setupFormValidation() {", "m": ""}, {"n": 755, "t": "  const form = document.getElementById(\"consultation-form\");", "m": ""}, {"n": 756, "t": "  const nameInput = document.getElementById(\"contact-name\");", "m": "del"}, {"n": 756, "t": "  const nameInput = document.getElementById(\"contact-nme\");", "m": "add"}, {"n": 757, "t": "  const phoneInput = document.getElementById(\"contact-phone\");", "m": ""}, {"n": 758, "t": "  const serviceSelect = document.getElementById(\"contact-service\");", "m": ""}]}], "cap": {"a": {"img": "f4_2_a.webp", "w": 1000, "h": 1305, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f4_2_b.webp", "w": 1000, "h": 1294, "cons": [], "facts": {"url": "?contactName=&contactPhone=&contactService=&contactNotes=", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "submitEmpty"}], "F5": [{"code": [{"file": "js/app.js", "rows": [{"n": 577, "t": "    const deleteBtn = e.target.closest(\"[data-delete-id]\");", "m": ""}, {"n": 578, "t": "    if (deleteBtn) {", "m": ""}, {"n": 579, "t": "      const idToDelete = Number(deleteBtn.dataset.deleteId);", "m": "del"}, {"n": 579, "t": "      const idToDelete = deleteBtn.dataset.deleteId;", "m": "add"}, {"n": 580, "t": "      servicesData = servicesData.filter((service) => service.id !== idToDelete);", "m": ""}, {"n": 581, "t": "      updateServicesDisplay();", "m": ""}]}], "cap": {"a": {"img": "f5_0_a.webp", "w": 1000, "h": 441, "cons": ["Item ID 17 deleted via Event Delegation."], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f5_0_b.webp", "w": 1000, "h": 441, "cons": ["Item ID 17 deleted via Event Delegation."], "facts": {"url": "", "cards": 17, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "addThenDelete"}, {"code": [{"file": "js/app.js", "rows": [{"n": 586, "t": "", "m": ""}, {"n": 587, "t": "    // 2. ตรวจสอบการคลิกปุ่ม Status Toggle \"+ สนใจระบบนี้ / ✔ เลือกแล้ว\" (Feature 5: Status Toggle)", "m": ""}, {"n": 588, "t": "    const toggleBtn = e.target.closest(\"[data-toggle-id]\");", "m": "del"}, {"n": 588, "t": "    const toggleBtn = e.target.closest(\"[data-toggleid]\");", "m": "add"}, {"n": 589, "t": "    if (toggleBtn) {", "m": ""}, {"n": 590, "t": "      const idToToggle = Number(toggleBtn.dataset.toggleId);", "m": ""}]}], "cap": {"a": {"img": "f5_1_a.webp", "w": 800, "h": 1066, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f5_1_b.webp", "w": 800, "h": 1066, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "toggleFirst"}, {"code": [{"file": "js/app.js", "rows": [{"n": 605, "t": "      return;", "m": ""}, {"n": 606, "t": "    }", "m": ""}, {"n": 607, "t": "  });", "m": "del"}, {"n": 607, "t": "  }", "m": "add"}, {"n": 608, "t": "}", "m": ""}, {"n": 609, "t": "", "m": ""}]}], "cap": {"a": {"img": "f5_2_a.webp", "w": 1000, "h": 552, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f5_2_b.webp", "w": 1000, "h": 310, "cons": ["error: missing ) after argument list"], "facts": {"url": "", "cards": 0, "search": "", "name": "", "modal": false, "theme": "dark"}}}, "same": false, "act": "none"}], "F6": [{"code": [{"file": "js/app.js", "rows": [{"n": 652, "t": "", "m": ""}, {"n": 653, "t": "  // เรียกใช้เมธอด Native HTML5 .showModal()", "m": ""}, {"n": 654, "t": "  modal.showModal();", "m": "del"}, {"n": 654, "t": "  modal.show();", "m": "add"}, {"n": 655, "t": "}", "m": ""}, {"n": 656, "t": "", "m": ""}]}], "cap": {"a": {"img": "f6_0_a.webp", "w": 1000, "h": 625, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": true, "theme": "light"}}, "b": {"img": "f6_0_b.webp", "w": 1000, "h": 625, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": true, "theme": "light"}}}, "same": false, "act": "openDetail"}, {"code": [{"file": "js/app.js", "rows": [{"n": 612, "t": "   ========================================================================== */", "m": ""}, {"n": 613, "t": "function openServiceModal(serviceId) {", "m": ""}, {"n": 614, "t": "  const modal = document.getElementById(\"service-modal\");", "m": "del"}, {"n": 614, "t": "  const modal = document.getElementById(\"servise-modal\");", "m": "add"}, {"n": 615, "t": "  const dialogTitle = document.getElementById(\"dialog-title\");", "m": ""}, {"n": 616, "t": "  const dialogBody = document.getElementById(\"dialog-body-content\");", "m": ""}]}], "cap": {"a": {"img": "f6_1_a.webp", "w": 1000, "h": 625, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": true, "theme": "light"}}, "b": {"img": "f6_1_b.webp", "w": 1000, "h": 625, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "openDetail"}, {"code": [{"file": "js/app.js", "rows": [{"n": 601, "t": "    const detailBtn = e.target.closest(\"[data-service-id]\");", "m": ""}, {"n": 602, "t": "    if (detailBtn) {", "m": ""}, {"n": 603, "t": "      const idToView = Number(detailBtn.dataset.serviceId);", "m": "del"}, {"n": 603, "t": "      const idToView = detailBtn.dataset.serviceId;", "m": "add"}, {"n": 604, "t": "      openServiceModal(idToView);", "m": ""}, {"n": 605, "t": "      return;", "m": ""}]}], "cap": {"a": {"img": "f6_2_a.webp", "w": 1000, "h": 625, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": true, "theme": "light"}}, "b": {"img": "f6_2_b.webp", "w": 1000, "h": 625, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "openDetail"}], "F7": [{"code": [{"file": "js/app.js", "rows": [{"n": 705, "t": "      const activeTag = document.activeElement.tagName.toLowerCase();", "m": ""}, {"n": 706, "t": "      if (activeTag !== \"input\" && activeTag !== \"textarea\" && activeTag !== \"select\") {", "m": ""}, {"n": 707, "t": "        e.preventDefault();", "m": "del"}, {"n": 708, "t": "        if (searchInput) {", "m": ""}, {"n": 709, "t": "          searchInput.focus();", "m": ""}]}], "cap": {"a": {"img": "f7_0_a.webp", "w": 1000, "h": 552, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f7_0_b.webp", "w": 1000, "h": 552, "cons": [], "facts": {"url": "", "cards": 2, "search": "/", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "slash"}, {"code": [{"file": "js/app.js", "rows": [{"n": 704, "t": "    if (e.key === \"/\" && document.activeElement !== searchInput) {", "m": ""}, {"n": 705, "t": "      const activeTag = document.activeElement.tagName.toLowerCase();", "m": ""}, {"n": 706, "t": "      if (activeTag !== \"input\" && activeTag !== \"textarea\" && activeTag !== \"select\") {", "m": "del"}, {"n": 706, "t": "      if (true) {", "m": "add"}, {"n": 707, "t": "        e.preventDefault();", "m": ""}, {"n": 708, "t": "        if (searchInput) {", "m": ""}]}], "cap": {"a": {"img": "f7_1_a.webp", "w": 1000, "h": 236, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "a/b", "modal": false, "theme": "light"}}, "b": {"img": "f7_1_b.webp", "w": 1000, "h": 236, "cons": [], "facts": {"url": "", "cards": 14, "search": "b", "name": "a", "modal": false, "theme": "light"}}}, "same": false, "act": "typeAB"}, {"code": [{"file": "js/app.js", "rows": [{"n": 687, "t": "", "m": ""}, {"n": 688, "t": "  // ปิดด้วยปุ่ม Escape บนแป้นพิมพ์ (Explicit Keydown Listener)", "m": ""}, {"n": 689, "t": "  window.addEventListener(\"keydown\", (e) => {", "m": "del"}, {"n": 690, "t": "    if (e.key === \"Escape\" && modal.open) {", "m": "del"}, {"n": 691, "t": "      modal.close();", "m": "del"}, {"n": 692, "t": "    }", "m": "del"}, {"n": 693, "t": "  });", "m": "del"}, {"n": 694, "t": "}", "m": ""}, {"n": 695, "t": "", "m": ""}]}], "cap": {"a": {"img": "f7_2_a.webp", "w": 1000, "h": 625, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f7_2_b.webp", "w": 1000, "h": 625, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": true, "act": "openThenEsc"}], "THEME": [{"code": [{"file": "js/app.js", "rows": [{"n": 1159, "t": "  function applyTheme(theme) {", "m": ""}, {"n": 1160, "t": "    currentTheme = theme;", "m": ""}, {"n": 1161, "t": "    document.documentElement.setAttribute(\"data-theme\", theme);", "m": "del"}, {"n": 1162, "t": "    themeToggleBtn.setAttribute(\"aria-checked\", theme === \"light\" ? \"true\" : \"false\");", "m": ""}, {"n": 1163, "t": "    themeToggleBtn.classList.toggle(\"is-light\", theme === \"light\");", "m": ""}]}], "cap": {"a": {"img": "theme_0_a.webp", "w": 1000, "h": 406, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "theme_0_b.webp", "w": 1000, "h": 406, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "dark"}}}, "same": false, "act": "theme"}, {"code": [{"file": "css/style.css", "rows": [{"n": 93, "t": "", "m": ""}, {"n": 94, "t": "/* Light Theme Variables (High Contrast, Enterprise Calibrated) */", "m": ""}, {"n": 95, "t": "[data-theme=\"light\"] {", "m": "del"}, {"n": 95, "t": "[data-theme=\"ligth\"] {", "m": "add"}, {"n": 96, "t": "  --color-primary: #1f6b24;", "m": ""}, {"n": 97, "t": "  --color-primary-hover: #17541b;", "m": ""}]}], "cap": {"a": {"img": "theme_1_a.webp", "w": 1000, "h": 406, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "theme_1_b.webp", "w": 1000, "h": 406, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "theme"}, {"code": [{"file": "js/app.js", "rows": [{"n": 1161, "t": "    document.documentElement.setAttribute(\"data-theme\", theme);", "m": ""}, {"n": 1162, "t": "    themeToggleBtn.setAttribute(\"aria-checked\", theme === \"light\" ? \"true\" : \"false\");", "m": ""}, {"n": 1163, "t": "    themeToggleBtn.classList.toggle(\"is-light\", theme === \"light\");", "m": "del"}, {"n": 1164, "t": "", "m": ""}, {"n": 1165, "t": "    if (themeModeText) {", "m": ""}]}], "cap": {"a": {"img": "theme_2_a.webp", "w": 1000, "h": 406, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "theme_2_b.webp", "w": 1000, "h": 406, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "theme"}], "LANG": [{"code": [{"file": "js/app.js", "rows": [{"n": 1078, "t": "", "m": ""}, {"n": 1079, "t": "    // 6. แสดงผล dynamic services และ selected tags ใหม่ในภาษาที่เลือก", "m": ""}, {"n": 1080, "t": "    updateServicesDisplay();", "m": "del"}, {"n": 1081, "t": "    updateSelectedServicesUI();", "m": ""}, {"n": 1082, "t": "  }", "m": ""}]}], "cap": {"a": {"img": "lang_0_a.webp", "w": 1000, "h": 533, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light", "title": "เครื่อง X-Ray Scanner"}}, "b": {"img": "lang_0_b.webp", "w": 1000, "h": 552, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light", "title": "Access Control System"}}}, "same": false, "act": "lang"}, {"code": [{"file": "index.html", "rows": [{"n": 20, "t": "      <nav id=\"main-nav\" class=\"main-nav\" aria-label=\"เมนูนำทางหลัก\">", "m": ""}, {"n": 21, "t": "        <ul class=\"nav-list\">", "m": ""}, {"n": 22, "t": "          <li class=\"nav-item\"><a href=\"#hero\" class=\"nav-link active\" data-i18n=\"nav.home\">หน้าแรก</a></li>", "m": "del"}, {"n": 22, "t": "          <li class=\"nav-item\"><a href=\"#hero\" class=\"nav-link active\" data-i18n=\"nav.hom\">หน้าแรก</a></li>", "m": "add"}, {"n": 23, "t": "          <li class=\"nav-item\"><a href=\"#about\" class=\"nav-link\" data-i18n=\"nav.about\">เกี่ยวกับเรา</a></li>", "m": ""}, {"n": 24, "t": "          <li class=\"nav-item\"><a href=\"#services\" class=\"nav-link\" data-i18n=\"nav.services\">บริการ</a></li>", "m": ""}]}], "cap": {"a": {"img": "lang_1_a.webp", "w": 1000, "h": 56, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "lang_1_b.webp", "w": 1000, "h": 56, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "none"}, {"code": [{"file": "js/app.js", "rows": [{"n": 1086, "t": "", "m": ""}, {"n": 1087, "t": "  langToggleBtn.addEventListener(\"click\", () => {", "m": ""}, {"n": 1088, "t": "    const nextLang = currentLang === \"th\" ? \"en\" : \"th\";", "m": "del"}, {"n": 1088, "t": "    const nextLang = currentLang === \"th\" ? \"th\" : \"en\";", "m": "add"}, {"n": 1089, "t": "    applyLanguage(nextLang);", "m": ""}, {"n": 1090, "t": "  });", "m": ""}]}], "cap": {"a": {"img": "lang_2_a.webp", "w": 1000, "h": 56, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "lang_2_b.webp", "w": 1000, "h": 56, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "lang"}]};
+
+const ORDER = ['F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'THEME', 'LANG'];
+const KIND = { event: ['Terminator', 'จุดเริ่ม เหตุการณ์จากผู้ใช้'], fn: ['Predefined process', 'เรียกฟังก์ชันหรือ listener'], data: ['Process', 'คำสั่งที่เปลี่ยนค่า'], dec: ['Decision', 'ตัดสินใจ ใช่ หรือ ไม่ใช่'], screen: ['Display', 'แสดงผลบนจอ'], end: ['Terminator', 'จุดจบ ไม่ทำอะไร'] };
+const SVGNS = 'http://www.w3.org/2000/svg';
+const DX = 30, DY = 20;
+function symPath(kind, w, h) {
+  const r = n => Math.round(n * 10) / 10;
+  if (kind === 'event' || kind === 'end') { const rr = Math.min(h / 2, 40); return '<rect x="1" y="1" width="' + r(w - 2) + '" height="' + r(h - 2) + '" rx="' + r(rr) + '"/>'; }
+  if (kind === 'fn') return '<rect x="1" y="1" width="' + r(w - 2) + '" height="' + r(h - 2) + '" rx="2"/><line x1="10" y1="1" x2="10" y2="' + r(h - 1) + '"/><line x1="' + r(w - 10) + '" y1="1" x2="' + r(w - 10) + '" y2="' + r(h - 1) + '"/>';
+  if (kind === 'data') return '<rect x="1" y="1" width="' + r(w - 2) + '" height="' + r(h - 2) + '" rx="1"/>';
+  if (kind === 'dec') return '<polygon points="' + [[w / 2, -DY], [w + DX, h / 2], [w / 2, h + DY], [-DX, h / 2]].map(p => p.map(r).join(',')).join(' ') + '"/>';
+  if (kind === 'screen') return '<path d="M16 1 H' + r(w - 24) + ' Q' + r(w - 1) + ' 1 ' + r(w - 1) + ' ' + r(h / 2) + ' Q' + r(w - 1) + ' ' + r(h - 1) + ' ' + r(w - 24) + ' ' + r(h - 1) + ' H16 L1 ' + r(h / 2) + ' Z"/>';
+  return '';
+}
+function legendIcon(kind) {
+  const w = 34, h = 20, pad = kind === 'dec' ? '-10 -4 54 28' : '-1 -1 36 22';
+  return '<svg class="lgi" viewBox="' + pad + '" width="' + (kind === 'dec' ? 40 : 34) + '" height="' + (kind === 'dec' ? 22 : 20) + '" style="--f:var(--k-' + kind + '-bg);--s:var(--k-' + kind + ')">' + (kind === 'dec' ? '<polygon points="17,-3 43,10 17,23 -9,10"/>' : symPath(kind, w, h)) + '</svg>';
+}
+const TV = { syntax: 'syntax', selector: 'selector', logic: 'logic' };
+
+/* ---------- text helpers ---------- */
+const escH = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+function plain(s) {
+  let h = escH(s);
+  h = h.replace(/\[\[(.+?)\]\]/g, '<span class="uic">$1</span>');
+  h = h.replace(/(^|[\s(])(L\d+(?:–\d+)?(?:,\s*L\d+(?:–\d+)?)*)/g, '$1<span class="ln">$2</span>');
+  h = h.replace(/[()]/g, (m, i, str) => {
+    let a = i - 1, b = i + 1; while (a >= 0 && str[a] === ' ') a--; while (b < str.length && str[b] === ' ') b++;
+    return /[\u0E00-\u0E7F]/.test((str[a] || '') + (str[b] || '')) ? '<span class="p">' + m + '</span>' : m;
+  });
+  return h;
+}
+function rich(s) { return String(s).split('`').map((part, i) => i % 2 ? '<code class="cc">' + escH(part) + '</code>' : plain(part)).join(''); }
+const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+const TESTED = '<span class="tested">ทดสอบกับเบราว์เซอร์แล้ว</span>';
+
+/* ---------- lightbox ---------- */
+function shotEl(key, w, h, marks, big) {
+  const b = el(big ? 'div' : 'button', 'shot');
+  if (!big) { b.type = 'button'; b.setAttribute('aria-label', 'ขยายภาพ ' + key); b.addEventListener('click', () => openLB(key, w, h, marks)); }
+  const img = el('img'); img.src = 'shots/' + key + '.webp'; img.alt = 'ภาพหน้าจอ ' + key; img.width = w; img.height = h; img.loading = 'lazy';
+  b.appendChild(img);
+  for (const m of marks) { const k = el('span', 'mk', String(m.n)); k.style.left = (m.x / w * 100) + '%'; k.style.top = (m.y / h * 100) + '%'; b.appendChild(k); }
+  return b;
+}
+function openLB(key, w, h, marks) {
+  const body = document.getElementById('lb-body'); body.innerHTML = '';
+  const s = shotEl(key, w, h, marks, true); s.style.width = Math.min(w * 1.5, 1370) + 'px'; s.style.maxWidth = '100%';
+  body.appendChild(s); document.getElementById('lb').showModal();
+}
+document.getElementById('lb-close').addEventListener('click', () => document.getElementById('lb').close());
+document.getElementById('lb').addEventListener('click', e => { if (e.target.id === 'lb') e.target.close(); });
+
+function section(title, hint) {
+  const s = el('section', 'sec'); s.appendChild(el('h2', '', rich(title)));
+  if (hint) s.appendChild(el('p', 'hint', rich(hint)));
+  return s;
+}
+
+/* ---------- real UI screenshots ---------- */
+function buildUI(d, root) {
+  const s = section('หน้า UI จริงในธีมสว่าง', 'วงกลมแดงคือจุดที่ผู้ใช้กดหรือพิมพ์ ลูกศรบอกการกระทำที่พาไปยังภาพถัดไป คลิกภาพเพื่อขยาย');
+  const row = el('div', 'uirow');
+  d.ui.items.forEach((it, i) => {
+    const col = el('div', 'shotcol');
+    col.style.flex = ((it.w / it.h) * (it.hh ? it.hh / 280 : 1)) + ' 1 0';
+    if (it.w / it.h < 0.6) col.classList.add('narrow');
+    if (it.inset) { const n = it.inset; col.appendChild(el('p', 'inset-cap', rich(n.cap))); const sm = shotEl(n.key, n.w, n.h, n.marks); sm.style.maxWidth = (n.w * 0.9) + 'px'; col.appendChild(sm); }
+    col.appendChild(shotEl(it.key, it.w, it.h, it.marks));
+    col.appendChild(el('p', 'cap', rich(it.cap) + (it.tested ? ' ' + TESTED : '')));
+    row.appendChild(col);
+    if (i < d.ui.arrows.length) {
+      const a = el('div', 'action');
+      for (const [n, t] of d.ui.arrows[i]) a.appendChild(el('div', 'act', '<span class="b">' + n + '</span><span>' + rich(t) + '</span>'));
+      a.appendChild(el('div', 'arrow'));
+      row.appendChild(a);
+    }
+  });
+  s.appendChild(row); root.appendChild(s);
+}
+
+/* ---------- what the live frame shows ---------- */
+const HIDE = '.hero-section,.about-section,.partners-section,.projects-section,.site-footer{display:none!important}';
+const TIGHT = '.services-section,.contact-section{padding:28px 0!important}.section-header{margin-bottom:18px!important}.section-subtitle{display:none!important}.services-controls-bar{margin-bottom:20px!important}';
+const FORM_ONLY = '.contact-info-block{display:none!important}.contact-container{grid-template-columns:1fr!important;max-width:760px}';
+const X = {
+  cat: ['currentCategory', 'currentCategory'], kw: ['searchKeyword', 'searchKeyword'], sort: ['currentSort', 'currentSort'],
+  count: ['servicesData.length', 'servicesData.length'], shown: ['การ์ดบนจอ', 'document.querySelectorAll("#services-grid-container .service-card").length'],
+  sel: ['การ์ดที่สนใจ', 'servicesData.filter(s => s.isSelected).length'], exp: ['isServicesExpanded', 'isServicesExpanded'],
+  lang: ['currentLang', 'currentLang'], theme: ['currentTheme', 'currentTheme'], dt: ['data-theme', 'document.documentElement.getAttribute("data-theme")'],
+  hl: ['html lang', 'document.documentElement.lang'], focus: ['activeElement', '(a => a.tagName.toLowerCase() + (a.id ? "#" + a.id : ""))(document.activeElement)'],
+  modal: ['modal.open', 'document.getElementById("service-modal").open'], errs: ['ช่องที่มีข้อความแดง', '[...document.querySelectorAll(".inline-error-text")].filter(e => e.textContent).length'],
+  width: ['innerWidth', 'innerWidth'], cols: ['คอลัมน์การ์ด', 'getComputedStyle(document.getElementById("services-grid-container")).gridTemplateColumns.split(" ").length'],
+  mq: ['media query', 'matchMedia("(max-width: 480px)").matches ? "ไม่เกิน 480px" : matchMedia("(max-width: 1023px)").matches ? "ไม่เกิน 1023px" : "1024px ขึ้นไป"'],
+  nav: ['เมนูมือถือเปิด', 'document.getElementById("main-nav").classList.contains("is-open")'], aria: ['aria-expanded', 'document.getElementById("menu-toggle-btn").getAttribute("aria-expanded")'],
+  isl: ['class is-light', 'document.getElementById("theme-toggle-btn").classList.contains("is-light")'],
+  nav1: ['เมนูแรก', 'document.querySelector(".nav-link").textContent'], card1: ['การ์ดใบแรก', '(document.querySelector("#services-grid-container .card-title") || {}).textContent']
+};
+// tasks: [number, selector for the red badge or null, text, node id that marks it done]
+const PLAY = {
+  F1: { vw: 820, to: '#contact', css: HIDE + TIGHT + '#services{display:none!important}' + FORM_ONLY, watch: ['focus', 'hl', 'errs', 'aria'],
+    tasks: [[1, 'label[for="contact-name"]', 'คลิกที่ข้อความ Contact Name ไม่ใช่ที่ช่อง', 'S0'], [2, '#submit-btn', 'กดส่งตอนฟอร์มยังว่าง', 'S2'], [3, '#lang-toggle-btn', 'กดสลับภาษา แล้วดู html lang', 'S4'], [4, null, 'กดปุ่ม แสดง landmark เหนือกรอบ', 'LM']] },
+  F2: { vw: 1280, to: '#services', resize: true, css: HIDE + TIGHT + '#contact{display:none!important}', watch: ['width', 'mq', 'cols', 'shown', 'exp', 'nav'],
+    tasks: [[1, null, 'กดปุ่ม 400px เหนือกรอบ', 'SC'], [2, '#expand-services-btn', 'กด Show All Services', 'S2'], [3, '#menu-toggle-btn', 'กดปุ่มแฮมเบอร์เกอร์', 'S3'], [4, null, 'กดปุ่ม 1280px กลับเป็นจอใหญ่', 'SA']] },
+  F3: { vw: 820, to: '#services', css: HIDE + TIGHT + '#contact{display:none!important}.main-nav,.nav-cta,#theme-toggle-btn,#menu-toggle-btn{display:none!important}', watch: ['count', 'shown', 'lang', 'card1'],
+    tasks: [[1, '#lang-toggle-btn', 'กดสลับภาษา แล้วดูการ์ดวาดใหม่', 'H1'], [2, '.filter-btn[data-category="factory"]', 'กดกรอง Industrial Plants', 'H2'], [3, '.search-wrapper', 'พิมพ์คำที่ไม่มี เช่น zzz', 'S2']] },
+  F4: { vw: 820, to: '#contact', css: HIDE + TIGHT + '.site-header{display:none!important}' + FORM_ONLY, watch: ['errs', 'count', 'shown', 'focus'],
+    tasks: [[1, '#submit-btn', 'กดส่งตอนฟอร์มยังว่าง', 'N4'], [2, '#consultation-form .form-group:nth-of-type(1)', 'พิมพ์แก้ในช่องที่แดง', 'S8'], [3, '#consultation-form .form-group:nth-of-type(2)', 'กรอกชื่อ เบอร์ 0812345678 เลือกระบบ แล้วส่ง', 'S7']] },
+  F5: { vw: 820, to: '#services', css: HIDE + TIGHT + '.site-header,#contact{display:none!important}', watch: ['cat', 'kw', 'sort', 'count', 'shown', 'sel'],
+    tasks: [[1, '.filter-btn[data-category="factory"]', 'กดกรอง Industrial Plants', 'D0'], [2, '.search-wrapper', 'พิมพ์ chiller ในช่องค้นหา', 'D1'], [3, '.sort-wrapper', 'เปลี่ยน Sort เป็น Z ถึง A', 'D2'], [4, '#services-grid-container .service-card:first-child [data-toggle-id]', 'กด + Interested ที่การ์ดใบแรก', 'D5'], [5, '#services-grid-container .service-card:first-child [data-service-id]', 'กด View Details', 'S6']] },
+  F6: { vw: 820, to: '#services', css: HIDE + TIGHT + '.site-header,#contact{display:none!important}', watch: ['modal', 'focus'],
+    tasks: [[1, '#services-grid-container .service-card:first-child [data-service-id]', 'กด View Details', 'S2'], [2, '#dialog-close-btn', 'ปิดด้วยปุ่มกากบาท', 'A4'], [3, null, 'เปิดใหม่ แล้วคลิกฉากหลังมืด', 'A5'], [4, null, 'เปิดใหม่ แล้วกด Esc', 'A7']] },
+  F7: { vw: 820, to: '#services', css: HIDE + TIGHT + '.site-header{display:none!important}' + FORM_ONLY, watch: ['focus', 'kw', 'shown', 'modal'],
+    tasks: [[1, '.search-wrapper', 'คลิกพื้นที่ว่างในกรอบ แล้วกด /', 'S1'], [2, null, 'พิมพ์ cctv ต่อเลย', 'S2'], [3, '#consultation-form .form-group:nth-of-type(1)', 'เลื่อนลงไปคลิกช่องชื่อ แล้วพิมพ์ a/b', 'N1'], [4, null, 'กด Enter ในช่องชื่อ', 'S4']] },
+  THEME: { vw: 1024, to: null, keepDark: true, css: '', watch: ['theme', 'dt', 'isl'], tasks: [[1, '#theme-toggle-btn', 'กดปุ่ม Dark บนแถบเมนู แล้วดู data-theme ด้านล่าง', 'S2']] },
+  LANG: { vw: 1024, to: null, css: '', watch: ['lang', 'hl', 'nav1', 'card1'], tasks: [[1, '#lang-toggle-btn', 'กดปุ่ม TH EN บนแถบเมนู', 'S5']] }
+};
+const isIn = (t, sel) => t && t.closest && t.closest(sel);
+const R = {
+  F1(ev, e, q) {
+    const t = e.target;
+    if (ev === 'click' && isIn(t, 'label[for]')) { const f = isIn(t, 'label[for]').htmlFor; return () => q('document.activeElement.id') === f ? ['E0', 'H0', 'Q0', 'S0'] : ['E0', 'H0', 'Q0', 'N0']; }
+    if (ev === 'click' && isIn(t, '#menu-toggle-btn')) return ['E3', 'H3', 'D3', 'S3'];
+    if (ev === 'click' && isIn(t, '#lang-toggle-btn')) return ['E4', 'H4', 'D4', 'S4'];
+    if (ev === 'submit') return () => q(X.errs[1]) > 0 ? ['E2', 'H2', 'S2'] : null;
+  },
+  F2(ev, e) {
+    const t = e.target;
+    if (ev === 'click' && isIn(t, '#expand-services-btn')) return ['E2', 'H2', 'D2', 'P2', 'S2'];
+    if (ev === 'click' && isIn(t, '#menu-toggle-btn')) return ['E3', 'H3', 'D3', 'S3'];
+  },
+  F3(ev, e, q) {
+    const t = e.target, tail = () => ['P0', 'R0', 'Q1', 'C1', 'Q2'].concat(q(X.shown[1]) > 0 ? ['L1', 'S3'] : ['S2']);
+    if (ev === 'load') return () => ['E0', 'H0'].concat(tail());
+    if (ev === 'click' && isIn(t, '#lang-toggle-btn')) return () => ['E1', 'H1'].concat(tail());
+    if ((ev === 'click' && isIn(t, '.filter-btn, [data-delete-id], [data-toggle-id], #expand-services-btn')) || (ev === 'input' && isIn(t, '#service-search-input')) || (ev === 'change' && isIn(t, '#service-sort-select'))) return () => ['E2', 'H2'].concat(tail());
+    if (ev === 'submit') return () => q(X.errs[1]) > 0 ? null : ['E2', 'H2'].concat(tail());
+  },
+  F4(ev, e, q) {
+    const t = e.target;
+    if (ev === 'submit') return () => {
+      const err = id => !!q('document.getElementById("' + id + '").textContent');
+      const a = err('error-contact-name'), b = err('error-contact-phone'), c = err('error-contact-service');
+      let p = ['E0', 'H0', 'H1', 'Q1']; if (a) p.push('A1'); p.push('Q2'); if (b) p.push('A2'); p.push('Q3'); if (c) p.push('A3'); p.push('Q4');
+      return p.concat(a || b || c ? ['N4', 'S1'] : ['D5', 'D6', 'P7', 'S7']);
+    };
+    if ((ev === 'input' && isIn(t, '#contact-name, #contact-phone')) || (ev === 'change' && isIn(t, '#contact-service'))) return ['E8', 'H8', 'A8', 'S8'];
+  },
+  F5(ev, e) {
+    const t = e.target;
+    if (ev === 'click' && isIn(t, '.filter-btn')) return ['E0', 'H0', 'D0', 'P0', 'P1', 'P2', 'S2'];
+    if (ev === 'input' && isIn(t, '#service-search-input')) return ['E1', 'H1', 'D1', 'P0', 'P1', 'P2', 'S2'];
+    if (ev === 'change' && isIn(t, '#service-sort-select')) return ['E2', 'H2', 'D2', 'P0', 'P1', 'P2', 'S2'];
+    if (ev === 'click' && isIn(t, '#services-grid-container')) {
+      if (isIn(t, '[data-delete-id]')) return ['E3', 'H3', 'H4', 'D4', 'P0', 'P1', 'P2', 'S2'];
+      if (isIn(t, '[data-toggle-id]')) return ['E3', 'H3', 'H4', 'H5', 'D5', 'P0', 'P1', 'P2', 'S2'];
+      if (isIn(t, '[data-service-id]')) return ['E3', 'H3', 'H4', 'H5', 'H6', 'D6', 'S6'];
+      return ['E3', 'H3', 'H4', 'H5', 'H6', 'H7'];
+    }
+  },
+  F6(ev, e, q, doc) {
+    const t = e.target, modal = doc.getElementById('service-modal');
+    if (ev === 'click' && isIn(t, '#services-grid-container [data-service-id]')) return ['E0', 'H0', 'F0', 'Q0', 'Q1', 'D2', 'A2', 'S2'];
+    if (ev === 'click' && isIn(t, '#dialog-close-btn, #dialog-confirm-btn')) return ['E4', 'H4', 'A4', 'S5'];
+    if (ev === 'click' && modal.open && isIn(t, '#service-modal')) {
+      const r = modal.getBoundingClientRect(), out = e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
+      return out ? ['E5', 'H5', 'Q5', 'A5', 'S5'] : ['E5', 'H5', 'Q5', 'N5'];
+    }
+    if (ev === 'keydown' && e.key === 'Escape' && modal.open) return ['E7', 'H7', 'A7', 'S5'];
+  },
+  F7(ev, e, q, doc) {
+    const t = e.target;
+    if (ev === 'keydown' && e.key === '/') {
+      const a = doc.activeElement, tag = a.tagName.toLowerCase();
+      if (a.id === 'service-search-input') return ['E0', 'H0', 'Q0', 'N0'];
+      if (tag === 'input' || tag === 'textarea' || tag === 'select') return ['E0', 'H0', 'Q0', 'Q1', 'N1'];
+      return ['E0', 'H0', 'Q0', 'Q1', 'A1', 'S1'];
+    }
+    if (ev === 'keydown' && e.key === 'Escape') return doc.getElementById('service-modal').open ? ['E3', 'H3', 'Q3', 'A3', 'S3'] : ['E3', 'H3', 'Q3', 'N3'];
+    if (ev === 'keydown' && e.key === 'Enter' && isIn(t, '#consultation-form input')) return ['E4', 'H4', 'A4', 'S4'];
+    if (ev === 'input' && isIn(t, '#service-search-input')) return ['E2', 'H2', 'D2', 'P2', 'S2'];
+  },
+  THEME(ev, e) {
+    if (ev === 'load') return ['E5', 'H5', 'S5'];
+    if (ev === 'click' && isIn(e.target, '#theme-toggle-btn')) return ['E0', 'H0', 'D0', 'F1', 'D1', 'D2', 'S2', 'D3', 'S3', 'D4', 'S4'];
+  },
+  LANG(ev, e) {
+    if (ev === 'load') return ['E6', 'H6', 'S6'];
+    if (ev === 'click' && isIn(e.target, '#lang-toggle-btn')) return ['E0', 'H0', 'D0', 'F1', 'D1', 'L2', 'S2', 'D3', 'S3', 'D4', 'S4', 'P5', 'S5'];
+  }
+};
+function f2path(q) {
+  const w = q('innerWidth');
+  const css = w >= 1024 ? ['E0', 'H0', 'QA', 'DA', 'SA'] : w <= 480 ? ['E0', 'H0', 'QA', 'QB', 'DC', 'SC'] : ['E0', 'H0', 'QA', 'QB', 'DB', 'SB'];
+  const cut = q('innerWidth <= 768 && !searchKeyword && currentCategory === "all" && servicesData.length > 4 && !isServicesExpanded');
+  return css.concat(['E1', 'H1', 'P1', 'Q1'], cut ? ['S1'] : ['N1', 'S1b']);
+}
+function badgeCSS(tasks) {
+  return tasks.filter(t => t[1]).map(([n, sel]) => sel + '{position:relative}' + sel + '::after{content:"' + n + '";position:absolute;top:-11px;right:-11px;width:24px;height:24px;border-radius:50%;background:#E5372B;color:#fff;font:700 13px/24px Poppins,sans-serif;text-align:center;box-shadow:0 0 0 2px #fff,0 2px 6px rgba(0,0,0,.3);z-index:30;pointer-events:none}').join('');
+}
+
+/* ---------- live site + flowchart, side by side ---------- */
+function buildCombo(k, d, root) {
+  const cfg = PLAY[k];
+  const s = section('ลองเล่นกับเว็บจริง แล้วดูลำดับการทำงานไปพร้อมกัน', 'กรอบซ้ายคือโค้ดจริงของคุณทั้งไฟล์ แต่ซ่อนส่วนที่ไม่เกี่ยวกับฟีเจอร์นี้ไว้ วงกลมแดงในกรอบตรงกับภารกิจด้านล่าง กดแล้วกล่องใน flowchart ด้านขวาจะสว่างตามลำดับที่โค้ดวิ่งผ่าน');
+  s.classList.add('combo-sec'); s.id = 'flow-' + k.toLowerCase();
+  const bar = el('div', 'pbar'); s.appendChild(bar);
+  const btnLoad = el('button', 'tbtn primary', 'เปิดเว็บ BAS ในกรอบ'); btnLoad.type = 'button'; bar.appendChild(btnLoad);
+  let presets = [];
+  if (cfg.resize) {
+    for (const w of [400, 800, 1024, 1280]) { const b = el('button', 'tbtn', w + 'px'); b.type = 'button'; b.dataset.w = w; b.addEventListener('click', () => setW(w, true)); presets.push(b); bar.appendChild(b); }
+  }
+  let lmOn = false;
+  const btnLm = el('button', 'tbtn', 'แสดง landmark'); btnLm.type = 'button'; btnLm.setAttribute('aria-pressed', 'false');
+  if (k === 'F1') { bar.appendChild(btnLm); btnLm.addEventListener('click', () => { lmOn = !lmOn; btnLm.setAttribute('aria-pressed', lmOn); applyLm(); if (lmOn) done('LM'); }); }
+  const btnFull = el('button', 'tbtn push', 'เต็มจอ'); btnFull.type = 'button'; bar.appendChild(btnFull);
+
+  const combo = el('div', 'combo'); s.appendChild(combo);
+  const left = el('div', 'pane'); const right = el('div', 'pane'); combo.append(left, right);
+  const stage = el('div', 'stage'); left.appendChild(stage);
+  const empty = el('div', 'stage-empty', '<p>กดปุ่ม เปิดเว็บ BAS ในกรอบ ด้านบน<br>โหลดประมาณ 2 ถึง 3 MB</p>'); stage.appendChild(empty);
+  const sizer = el('div', 'stage-sizer'); stage.appendChild(sizer);
+  const taskBox = el('div', 'box', '<h3>ภารกิจ</h3>'); const tl = el('ol', 'tasks'); taskBox.appendChild(tl); left.appendChild(taskBox);
+  const taskEls = {};
+  for (const [n, sel, text, node] of cfg.tasks) { const li = el('li', '', '<span class="tb">' + n + '</span><span>' + rich(text) + '</span>'); tl.appendChild(li); (taskEls[node] = taskEls[node] || []).push(li); }
+
+  const ftools = el('div', 'flowtools');
+  const zb = {};
+  for (const [key, label] of [['fit', 'ทั้งแผนภาพ'], [0.7, '70%'], [1, '100%']]) { const b = el('button', 'tbtn', label); b.type = 'button'; b.addEventListener('click', () => setZoom(key)); zb[key] = b; ftools.appendChild(b); }
+  const lg = el('div', 'legend small');
+  for (const kk of ['event', 'fn', 'data', 'dec', 'screen', 'end']) lg.appendChild(el('span', '', legendIcon(kk) + '<b>' + KIND[kk][0] + '</b> ' + KIND[kk][1]));
+  right.append(ftools, lg);
+  const view = el('div', 'flowview'); const fsz = el('div', 'flowsizer'); const cv = el('div', 'canvas');
+  cv.style.height = d.flow.h + 'px'; fsz.appendChild(cv); view.appendChild(fsz); right.appendChild(view);
+  const stepsBox = el('div', 'box', '<h3>เส้นทางล่าสุด</h3>'); const note = el('p', 'empty-note', 'ยังไม่มี ลองทำภารกิจข้อ 1'); const ol = el('ol', 'steps');
+  stepsBox.append(note, ol); right.appendChild(stepsBox);
+
+  const strip = el('div', 'varstrip'); s.appendChild(strip);
+  const dd = {};
+  for (const key of cfg.watch) { const v = el('div', 'vi', '<code class="cc">' + escH(X[key][0]) + '</code>'); dd[key] = el('b', '', '–'); v.appendChild(dd[key]); strip.appendChild(v); }
+  const consWrap = el('div', 'vi cons-vi', '<span class="lab2">console.log ล่าสุด</span>'); const cl = el('span', 'cons1', '–'); consWrap.appendChild(cl); strip.appendChild(consWrap);
+  root.appendChild(s);
+
+  /* flowchart drawing */
+  const N = {}, E = {};
+  for (const [id, c, y, kind, t, ln, sub] of d.flow.nodes) {
+    const [x, w] = d.flow.cols[c];
+    const b = el('div', 'node ' + kind);
+    b.style.cssText = 'left:' + x + 'px;width:' + w + 'px;--f:var(--k-' + kind + '-bg);--s:var(--k-' + kind + ')';
+    const sym = document.createElementNS(SVGNS, 'svg'); sym.setAttribute('class', 'sym'); b.appendChild(sym);
+    b.appendChild(el('div', 'nc', '<div class="t">' + rich(t) + (ln ? '<span class="ln">' + escH(ln) + '</span>' : '') + '</div>' + (sub ? '<div class="s">' + rich(sub) + '</div>' : '')));
+    cv.appendChild(b); N[id] = { el: b, sym, x, w, cy: y, t, ln, k: kind };
+  }
+  const svgNS = SVGNS;
+  const svg = document.createElementNS(svgNS, 'svg'); svg.setAttribute('width', 1728); svg.setAttribute('height', d.flow.h);
+  svg.innerHTML = '<defs><marker id="ah-' + k + '" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="context-stroke"/></marker></defs>';
+  cv.insertBefore(svg, cv.firstChild);
+  const edges = d.flow.edges.map(str => { const m = str.match(/^(\w+)([>|])(\w+):(.*?)(?:@(\d+))?$/); return { a: m[1], v: m[2] === '|', b: m[3], l: m[4], bend: m[5] ? +m[5] : 30 }; });
+  let laidOut = false;
+  function layout() {
+    for (const id in N) {
+      const o = N[id]; o.h = o.el.offsetHeight; o.y = Math.round(o.cy - o.h / 2); o.el.style.top = o.y + 'px';
+      const ex = o.k === 'dec' ? DX : 0, ey = o.k === 'dec' ? DY : 0;
+      o.sym.setAttribute('width', o.w + 2 * ex); o.sym.setAttribute('height', o.h + 2 * ey);
+      o.sym.setAttribute('viewBox', (-ex) + ' ' + (-ey) + ' ' + (o.w + 2 * ex) + ' ' + (o.h + 2 * ey));
+      o.sym.style.left = (-ex) + 'px'; o.sym.style.top = (-ey) + 'px';
+      o.sym.innerHTML = symPath(o.k, o.w, o.h);
+      o.L = o.x - ex; o.R = o.x + o.w + ex; o.T = o.y - ey; o.B = o.y + o.h + ey;
+    }
+    svg.querySelectorAll('path.e').forEach(p => p.remove()); cv.querySelectorAll('.lbl').forEach(l => l.remove());
+    for (const e of edges) {
+      const A = N[e.a], B = N[e.b]; let pts, lx, ly;
+      if (e.v) { const x = A.x + A.w / 2; pts = [[x, A.B], [x, B.T]]; lx = x + 8; ly = (A.B + B.T) / 2; }
+      else { const sx = A.R, sy = A.cy, tx = B.L, ty = B.cy;
+        if (Math.abs(sy - ty) < 1) { pts = [[sx, sy], [tx, ty]]; lx = (sx + tx) / 2; e.lmax = tx; } else { const mx = tx - e.bend; pts = [[sx, sy], [mx, sy], [mx, ty], [tx, ty]]; lx = (sx + mx) / 2; e.lmax = mx; }
+        e.lmin = sx;
+        ly = sy; }
+      const p = document.createElementNS(svgNS, 'path'); p.setAttribute('class', 'e');
+      p.setAttribute('d', 'M' + pts.map(q => q.join(' ')).join(' L'));
+      p.setAttribute('fill', 'none'); p.setAttribute('stroke', '#5B6675'); p.setAttribute('stroke-width', '2'); p.setAttribute('stroke-linejoin', 'round');
+      p.setAttribute('marker-end', 'url(#ah-' + k + ')'); svg.appendChild(p); E[e.a + '>' + e.b] = p;
+      const L = el('span', 'lbl', rich(e.l)); cv.appendChild(L);
+      if (e.v) { L.style.left = Math.round(lx) + 'px'; L.style.top = Math.round(ly - L.offsetHeight / 2) + 'px'; }
+      else { let left = lx - L.offsetWidth / 2; left = Math.min(left, e.lmax - L.offsetWidth - 6); left = Math.max(left, e.lmin + 6); L.style.left = Math.round(left) + 'px'; L.style.top = Math.round(ly - L.offsetHeight - 3) + 'px'; }
+    }
+    laidOut = true;
+    const rects = Object.entries(N).map(([id, o]) => [id, o.L, o.T, o.R, o.B]);
+    const bad = [];
+    for (let i = 0; i < rects.length; i++) for (let j = i + 1; j < rects.length; j++) { const a = rects[i], c = rects[j]; if (a[1] < c[3] - 2 && c[1] < a[3] - 2 && a[2] < c[4] + 8 && c[2] < a[4] + 8) bad.push(a[0] + '/' + c[0]); }
+    cv.querySelectorAll('.lbl').forEach(l => { const lx1 = l.offsetLeft, ly1 = l.offsetTop, lx2 = lx1 + l.offsetWidth, ly2 = ly1 + l.offsetHeight; for (const r of rects) { const o = N[r[0]]; let hit;
+      if (o.k === 'dec') { const cx = o.x + o.w / 2, hw = o.w / 2 + DX, hh = o.h / 2 + DY;
+        hit = (lx1 < o.x + o.w && o.x < lx2 && ly1 < o.y + o.h && o.y < ly2) || [[lx1, ly1], [lx2, ly1], [lx1, ly2], [lx2, ly2]].some(([px, py]) => Math.abs(px - cx) / hw + Math.abs(py - o.cy) / hh < 1); }
+      else hit = lx1 < r[3] && r[1] < lx2 && ly1 < r[4] && r[2] < ly2;
+      if (hit) bad.push('label ' + l.textContent + '/' + r[0]); } });
+    (window.__ov = window.__ov || {})[k] = bad;
+  }
+  let zoom = null, sc = 1;
+  function setZoom(z) {
+    zoom = z; sc = z === 'fit' ? Math.min(1, (view.clientWidth - 4) / 1728, (view.clientHeight - 4) / d.flow.h) : z;
+    cv.style.transform = 'scale(' + sc + ')'; fsz.style.width = (1728 * sc) + 'px'; fsz.style.height = (d.flow.h * sc) + 'px';
+    for (const key in zb) zb[key].setAttribute('aria-pressed', String(key) === String(z));
+  }
+  function follow(id) {
+    const n = N[id]; if (!n || zoom === 'fit') return;
+    view.scrollTo({ left: Math.max(0, (n.x + n.w / 2) * sc - view.clientWidth / 2), top: Math.max(0, n.cy * sc - view.clientHeight / 2), behavior: 'smooth' });
+  }
+
+  /* live frame */
+  let vw = cfg.vw, frame = null, win = null, doc = null, timers = [];
+  const q = expr => { try { return win.eval(expr); } catch (e) { return undefined; } };
+  function refresh() {
+    if (!win) return;
+    for (const key of cfg.watch) {
+      let v = q(X[key][1]); v = v === undefined ? '–' : (typeof v === 'string' ? '"' + v + '"' : String(v));
+      if (dd[key].textContent !== v) { dd[key].textContent = v; const box = dd[key].parentNode; box.classList.add('changed'); setTimeout(() => box.classList.remove('changed'), 900); }
+    }
+  }
+  function done(node) { (taskEls[node] || []).forEach(li => li.classList.add('done')); }
+  let lastAnim = 0;
+  function animate(path) {
+    lastAnim = Date.now();
+    timers.forEach(clearTimeout); timers = [];
+    for (const id in N) N[id].el.classList.remove('lit', 'now');
+    for (const id in E) E[id].classList.remove('on');
+    ol.innerHTML = ''; note.hidden = true;
+    const lis = path.map(id => { const n = N[id]; const li = el('li', '', rich(n.t) + (n.ln ? ' <span class="ln">' + escH(n.ln) + '</span>' : '')); ol.appendChild(li); return li; });
+    path.forEach((id, i) => timers.push(setTimeout(() => {
+      const n = N[id]; if (!n) return;
+      if (i > 0) { N[path[i - 1]].el.classList.remove('now'); const ed = E[path[i - 1] + '>' + id]; if (ed) ed.classList.add('on'); }
+      n.el.classList.add('lit', 'now'); lis[i].classList.add('on'); follow(id); done(id);
+      if (i === path.length - 1) timers.push(setTimeout(() => n.el.classList.remove('now'), 500));
+    }, i * 320)));
+  }
+  function outside(e) {
+    const t = e.target;
+    if (!t || !t.closest || !t.closest('button, a, input, select, textarea, label')) return;
+    if (Date.now() - lastAnim < 500) return;
+    timers.forEach(clearTimeout); timers = [];
+    note.hidden = false; note.textContent = 'สิ่งที่เพิ่งกดไม่ได้อยู่ในลำดับของฟีเจอร์นี้ ลองทำตามภารกิจที่มีวงกลมแดง';
+    ol.innerHTML = '';
+  }
+  function handle(ev, e) {
+    const r = R[k] && R[k](ev, e, q, doc);
+    setTimeout(() => {
+      const p = typeof r === 'function' ? r() : r;
+      if (p) animate(p); else if (ev === 'click' && k !== 'F2') outside(e);
+      refresh();
+    }, 60);
+  }
+  function fitFrame() {
+    if (!frame) return;
+    const avail = stage.clientWidth - 2, s2 = Math.min(1, avail / vw), h = stage.clientHeight - 2;
+    frame.style.width = vw + 'px'; frame.style.height = Math.round(h / s2) + 'px'; frame.style.transform = 'scale(' + s2 + ')';
+    sizer.style.width = (vw * s2) + 'px'; sizer.style.height = h + 'px';
+  }
+  function setW(w, settle) {
+    vw = w; fitFrame(); presets.forEach(b => b.setAttribute('aria-pressed', +b.dataset.w === w));
+    if (settle && win) setTimeout(() => { animate(f2path(q)); refresh(); }, 250);
+  }
+  function applyLm() {
+    if (!doc) return; let st = doc.getElementById('lm-style');
+    if (!lmOn) { if (st) st.remove(); return; }
+    if (!st) { st = doc.createElement('style'); st.id = 'lm-style'; doc.head.appendChild(st); }
+    st.textContent = 'header.site-header,nav,main,section,footer,form{outline:3px dashed #E5372B!important;outline-offset:-3px}main,section,footer,form{position:relative}header.site-header::before,main::before,section::before,footer::before,form::before{content:attr(data-lm);position:absolute;z-index:99;left:0;top:0;background:#E5372B;color:#fff;font:600 13px Poppins,sans-serif;padding:1px 6px;border-radius:0 0 6px 0}';
+    doc.querySelectorAll('header.site-header,main,section,footer,form').forEach(n => n.setAttribute('data-lm', '<' + n.tagName.toLowerCase() + (n.id ? ' id="' + n.id + '"' : '') + '>'));
+  }
+  function load() {
+    empty.hidden = true; btnLoad.textContent = 'เริ่มใหม่';
+    vw = (stage.clientWidth < 480 && !cfg.resize) ? 420 : cfg.vw;
+    win = doc = null; sizer.innerHTML = '';
+    frame = el('iframe'); frame.title = 'เว็บ BAS สำหรับลองเล่น'; frame.src = 'site/index.html';
+    sizer.appendChild(frame); fitFrame(); presets.forEach(b => b.setAttribute('aria-pressed', +b.dataset.w === vw));
+    tl.querySelectorAll('li').forEach(li => li.classList.remove('done'));
+    frame.addEventListener('load', () => {
+      try { win = frame.contentWindow; doc = win.document; void doc.body; }
+      catch (err) { win = doc = null; note.hidden = false; note.textContent = 'เบราว์เซอร์นี้ไม่ให้อ่านค่าข้างในกรอบ ยังกดเล่นได้ แต่ flowchart จะไม่สว่างตาม'; return; }
+      const st = doc.createElement('style'); st.textContent = cfg.css + badgeCSS(cfg.tasks); doc.head.appendChild(st);
+      if (!cfg.keepDark) { const tb = doc.getElementById('theme-toggle-btn'); if (tb && doc.documentElement.getAttribute('data-theme') !== 'light') tb.click(); }
+      const orig = win.console.log.bind(win.console);
+      win.console.log = (...a) => { orig(...a); cl.textContent = a.join(' '); const box = cl.parentNode; box.classList.add('changed'); setTimeout(() => box.classList.remove('changed'), 900); };
+      doc.addEventListener('mousedown', () => { try { win.focus(); } catch (e) {} }, true);
+      for (const ev of ['click', 'input', 'change', 'keydown', 'submit']) doc.addEventListener(ev, e => handle(ev, e), true);
+      win.addEventListener('resize', () => setTimeout(refresh, 60));
+      doc.documentElement.style.scrollBehavior = 'auto';
+      if (cfg.to) { const t = doc.querySelector(cfg.to); if (t) t.scrollIntoView(); } else win.scrollTo(0, 0);
+      setTimeout(() => { doc.documentElement.style.scrollBehavior = ''; }, 50);
+      applyLm(); refresh(); handle('load', {});
+    });
+  }
+  btnLoad.addEventListener('click', load);
+  let full = false;
+  function setFull(on) {
+    full = on; s.classList.toggle('full', on); document.body.classList.toggle('noscroll', on);
+    btnFull.textContent = on ? 'ออกจากเต็มจอ' : 'เต็มจอ';
+    requestAnimationFrame(() => { fitFrame(); setZoom(zoom === 'fit' ? 'fit' : zoom); });
+  }
+  btnFull.addEventListener('click', () => setFull(!full));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && full && !document.getElementById('lb').open) setFull(false); });
+  return {
+    refit() {
+      if (!laidOut) layout();
+      if (zoom === null) zoom = view.clientWidth < 500 ? 0.7 : 0.7;
+      setZoom(zoom); fitFrame();
+    },
+    relayout() { layout(); setZoom(zoom || 0.7); }
+  };
+}
+
+/* ---------- explanation and breaks ---------- */
+function buildExplain(d, root) {
+  const s = section('คำอธิบาย 2 ระดับ');
+  const two = el('div', 'two');
+  two.appendChild(el('div', 'easy', '<h3>แบบเข้าใจง่าย</h3><p>' + rich(d.easy) + '</p>'));
+  const deep = el('div', 'deep', '<h3>แบบวิเคราะห์หลักการ</h3>');
+  for (const p of d.points) deep.appendChild(el('div', 'qa', '<h4>' + rich(p.q) + '</h4><p>' + rich(p.a) + '</p>' + (p.tested ? TESTED : '')));
+  two.appendChild(deep); s.appendChild(two); root.appendChild(s);
+}
+const ACTS = { none: 'เปิดหน้าเฉยๆ ไม่ได้กดอะไร', labelClick: 'คลิกที่ข้อความ Contact Name', scrollServices: 'เลื่อนหน้าลงไปส่วน Services แล้วดูเมนูด้านบน', w400: 'เปิดบนจอกว้าง 400px', w400scroll: 'เปิดบนจอกว้าง 400px แล้วเลื่อนไปส่วน Services', submitValid: 'กรอกครบทุกช่องแล้วกด Submit', submitEmpty: 'ไม่กรอกอะไรเลยแล้วกด Submit', addThenDelete: 'ส่งฟอร์มเพิ่มการ์ด Oatk Co แล้วกด Delete Item', toggleFirst: 'กด + Interested ที่การ์ดแรก', openDetail: 'กด View Details ที่การ์ดแรก', slash: 'กดปุ่ม / บนคีย์บอร์ด', typeAB: 'คลิกช่องชื่อแล้วพิมพ์ a/b', openThenEsc: 'เปิด View Details แล้วกด Esc', theme: 'กดสวิตช์ธีมหนึ่งครั้ง', lang: 'กดปุ่มภาษาจาก EN เป็น TH' };
+const FACT = { url: 'ท้าย URL', cards: 'การ์ดในกริด', search: 'ช่องค้นหา', name: 'ช่องชื่อ', modal: 'dialog', theme: 'data-theme', title: 'ชื่อการ์ดแรก' };
+function factVal(k, v) { if (k === 'modal') return v ? 'เปิดอยู่' : 'ปิด'; if (v === '' || v == null) return 'ว่าง'; if (k === 'cards') return v + ' ใบ'; return String(v); }
+function codeView(code) {
+  const box = el('div', 'codev');
+  for (const blk of code) {
+    box.appendChild(el('div', 'cf', escH(blk.file.replace(/^(js|css)\//, ''))));
+    const pre = el('div', 'cl');
+    for (const r of blk.rows) pre.appendChild(el('div', 'row ' + (r.m || ''), '<span class="n">' + (r.m === 'add' ? '+' : r.n) + '</span><span class="t">' + (escH(r.t) || '&nbsp;') + '</span>'));
+    box.appendChild(pre);
+  }
+  return box;
+}
+function capFig(c, label, cls) {
+  const f = el('figure', 'cap ' + cls);
+  f.appendChild(el('figcaption', '', label));
+  const im = el('img'); im.src = 'bk/' + c.img; im.width = c.w; im.height = c.h; im.loading = 'lazy'; im.alt = label;
+  const a = el('a'); a.href = 'bk/' + c.img; a.target = '_blank'; a.rel = 'noopener'; a.appendChild(im); f.appendChild(a);
+  return f;
+}
+function buildBreaks(d, root, k) {
+  const s = section('ลองทำให้พัง 3 แบบ', 'ดูบรรทัดจริงที่ถูกลบหรือแก้ แล้วกด Preview เพื่อดูภาพจากเว็บจริงก่อนและหลังแก้');
+  const g = el('div', 'breaks');
+  d.breaks.forEach((b, i) => {
+    const v = TV[b.type] || 'none', cap = (CAP[k] || [])[i];
+    const card = el('article', 'bk');
+    card.appendChild(el('div', 'bk-h', '<strong>' + (i + 1) + '. <span class="ln">' + escH(b.at) + '</span></strong><span class="tpill" style="background:var(--t-' + v + '-bg);color:var(--t-' + v + ')">' + escH(b.type) + '</span>' + (b.tested ? TESTED : '')));
+    const cols = el('div', 'bk-cols');
+    const txt = el('div', 'bk-txt', '<div class="lab">ลบหรือแก้</div><p>' + rich(b.change) + '</p><div class="lab">เห็นอะไร</div><p>' + rich(b.see) + '</p><div class="lab">ทำไม</div><p>' + rich(b.why) + '</p>');
+    cols.appendChild(txt);
+    if (cap) {
+      const right = el('div', 'bk-code');
+      right.appendChild(el('div', 'lab', 'โค้ดจริง <span class="key"><i class="kd"></i>ลบออก <i class="ka"></i>ใส่แทน</span>'));
+      right.appendChild(codeView(cap.code));
+      const btn = el('button', 'pv-btn', 'Preview ก่อนและหลังแก้'); btn.type = 'button'; btn.setAttribute('aria-expanded', 'false');
+      right.appendChild(btn);
+      cols.appendChild(right);
+      const pv = el('div', 'pv'); pv.hidden = true;
+      pv.appendChild(el('p', 'pv-act', '<b>ทำอะไรก่อนถ่ายภาพ</b> ' + escH(ACTS[cap.act] || '')));
+      const pair = el('div', 'pv-pair');
+      pair.appendChild(capFig(cap.cap.a, 'ปกติ', 'ok'));
+      pair.appendChild(capFig(cap.cap.b, 'หลังแก้บรรทัดนี้', 'bad'));
+      pv.appendChild(pair);
+      const fa = cap.cap.a.facts, fb = cap.cap.b.facts;
+      const diffs = Object.keys(FACT).filter(x => x in fa && fa[x] !== fb[x]);
+      let note = '';
+      if (cap.same) note = '<p class="pv-same">ภาพสองฝั่งเหมือนกันทุกพิกเซล' + (diffs.length ? ' แต่ค่าข้างล่างต่างกัน' : ' หน้าจอไม่เปลี่ยนเลย') + '</p>';
+      const facts = diffs.length ? '<table class="facts"><thead><tr><th>ค่าที่วัดจากหน้าเว็บ</th><th>ปกติ</th><th>หลังแก้</th></tr></thead><tbody>' + diffs.map(x => '<tr><td>' + FACT[x] + '</td><td>' + escH(factVal(x, fa[x])) + '</td><td class="bad">' + escH(factVal(x, fb[x])) + '</td></tr>').join('') + '</tbody></table>' : '';
+      const cons = cap.cap.b.cons.length ? '<div class="pv-cons"><div class="lab">Console หลังแก้</div>' + cap.cap.b.cons.map(c => '<div class="cline' + (c.startsWith('error') ? ' err' : '') + '">' + escH(c.replace(/^error: /, '')) + '</div>').join('') + '</div>' : '<p class="pv-quiet">Console หลังแก้ไม่มี error</p>';
+      pv.appendChild(el('div', 'pv-meta', note + facts + cons));
+      btn.addEventListener('click', () => { pv.hidden = !pv.hidden; btn.setAttribute('aria-expanded', String(!pv.hidden)); btn.textContent = pv.hidden ? 'Preview ก่อนและหลังแก้' : 'ซ่อน Preview'; });
+      card.appendChild(cols); card.appendChild(pv);
+    } else card.appendChild(cols);
+    g.appendChild(card);
+  });
+  s.appendChild(g); root.appendChild(s);
+}
+
+/* ---------- wiring table ---------- */
+function codeChips(s) { return s ? s.split(/\s{2,}/).map(x => '<code class="cc">' + escH(x) + '</code>').join(' ') : ''; }
+function buildWiring(d) {
+  const w = el('details', 'wiring'); w.open = true;
+  const n = { HTML: 0, CSS: 0, JS: 0 }; for (const r of d.wiring) n[r[0]]++;
+  w.appendChild(el('summary', '', '<span class="wt">ไฟล์และบรรทัดที่ทำงานร่วมกัน</span>' + ['HTML', 'CSS', 'JS'].filter(x => n[x]).map(x => '<span class="lang ' + x + '">' + x + ' ' + n[x] + ' จุด</span>').join('')));
+  const tb = el('table', 'wtab');
+  tb.innerHTML = '<thead><tr><th>ไฟล์ บรรทัด</th><th>element หรือ selector</th><th>ฟังก์ชันหรือคำสั่ง</th><th>ทำอะไร</th></tr></thead>';
+  const body = el('tbody');
+  for (const [lang, file, ln, sel, fn, act] of d.wiring) {
+    const tr = el('tr', 'r-' + lang);
+    tr.innerHTML = '<td class="c-f"><span class="lang ' + lang + '">' + lang + '</span><b>' + escH(file) + '</b> <span class="ln">' + escH(ln) + '</span></td>' +
+      '<td class="c-s" data-h="element หรือ selector">' + (sel ? '<code class="cc sel">' + escH(sel) + '</code>' : '') + '</td>' +
+      '<td class="c-x" data-h="ฟังก์ชันหรือคำสั่ง">' + codeChips(fn) + '</td>' +
+      '<td class="c-a">' + rich(act) + '</td>';
+    body.appendChild(tr);
+  }
+  tb.appendChild(body); w.appendChild(tb);
+  return w;
+}
+
+/* ---------- assemble ---------- */
+const main = document.getElementById('main'), tabs = document.getElementById('tabs');
+const views = {}, combos = {};
+for (const k of ORDER) {
+  const d = DATA[k], me = d.owner === 'me';
+  if (k === 'THEME') tabs.appendChild(el('span', 'tabsep'));
+  const label = (k.startsWith('F') ? k + ' ' : '') + d.short;
+  const t = el('button', 'tab', '<span class="dot" style="background:var(--' + (me ? 'me' : 'beef') + ')"></span>' + escH(label));
+  t.type = 'button'; t.setAttribute('role', 'tab'); t.id = 'tab-' + k.toLowerCase();
+  t.addEventListener('click', () => show(k, true)); tabs.appendChild(t);
+  const v = el('div', 'feature'); v.id = 'view-' + k.toLowerCase(); v.setAttribute('role', 'tabpanel'); v.hidden = true;
+  const head = el('header', 'head');
+  const eb = el('div', 'eyebrow');
+  eb.appendChild(el('span', 'owner', '<i style="background:var(--' + (me ? 'me' : 'beef') + ')"></i>' + (me ? 'ของวัชรชัย' : 'ของบีฟ')));
+  eb.appendChild(el('span', '', d.score ? d.score + ' คะแนน' : 'ฟีเจอร์เสริม'));
+  eb.appendChild(el('span', '', rich(d.exam)));
+  head.appendChild(eb);
+  head.appendChild(el('h1', '', rich((k.startsWith('F') ? k + ' ' : '') + d.title)));
+  head.appendChild(buildWiring(d));
+  v.appendChild(head);
+  buildUI(d, v);
+  combos[k] = buildCombo(k, d, v);
+  buildExplain(d, v); buildBreaks(d, v, k);
+  main.appendChild(v); views[k] = v;
+}
+let cur = null;
+function show(k, push) {
+  for (const x of ORDER) { views[x].hidden = x !== k; document.getElementById('tab-' + x.toLowerCase()).setAttribute('aria-selected', x === k); }
+  cur = k; combos[k].refit();
+  if (push) { try { history.replaceState(null, '', '#' + k.toLowerCase()); } catch (e) {} window.scrollTo({ top: 0 }); }
+}
+const start = (location.hash || '').slice(1).toUpperCase();
+show(ORDER.includes(start) ? start : 'F5', false);
+let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => combos[cur].refit(), 120); });
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => combos[cur].relayout());
+window.addEventListener('hashchange', () => { const h = (location.hash || '').slice(1).toUpperCase(); if (ORDER.includes(h) && h !== cur) show(h, false); });
+
+</script>

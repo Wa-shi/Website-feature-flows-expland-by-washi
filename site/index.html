@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BAS - Building Advanced Solution | Smart Building Engineering & Solutions</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ==================== HEADER LANDMARK ==================== -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="#hero" class="brand-link" aria-label="กลับสู่หน้าแรก BAS">
+        <img src="images/logo.svg" alt="ตราสัญลักษณ์บริษัท บิวดิ้ง แอดวานซด์ โซลูชั่น จำกัด" class="brand-logo">
+      </a>
+
+      <!-- Desktop & Mobile Navigation Menu -->
+      <nav id="main-nav" class="main-nav" aria-label="เมนูนำทางหลัก">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="#hero" class="nav-link active" data-i18n="nav.home">หน้าแรก</a></li>
+          <li class="nav-item"><a href="#about" class="nav-link" data-i18n="nav.about">เกี่ยวกับเรา</a></li>
+          <li class="nav-item"><a href="#services" class="nav-link" data-i18n="nav.services">บริการ</a></li>
+          <li class="nav-item"><a href="#projects" class="nav-link" data-i18n="nav.projects">ผลงานโครงการ</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link" data-i18n="nav.contact">ติดต่อเรา</a></li>
+        </ul>
+      </nav>
+
+      <!-- Action Button & Mobile Toggle -->
+      <div class="header-actions">
+        <!-- Professional Enterprise Theme Switcher -->
+        <button type="button" id="theme-toggle-btn" class="theme-switch" role="switch" aria-checked="false" aria-label="Toggle Dark and Light theme" title="Toggle Theme (Dark / Light)">
+          <span class="theme-switch-track">
+            <span class="theme-switch-thumb">
+              <svg class="theme-svg theme-svg-moon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+              <svg class="theme-svg theme-svg-sun" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+            </span>
+          </span>
+          <span class="theme-switch-label" id="theme-mode-text">Dark</span>
+        </button>
+
+
+
+        <!-- Language Switcher Button (TH / EN) -->
+        <button type="button" id="lang-toggle-btn" class="lang-toggle-btn" aria-label="Switch Language / สลับภาษา">
+          <span class="lang-label" id="lang-code-th">TH</span>
+          <span class="lang-divider">/</span>
+          <span class="lang-label is-active" id="lang-code-en">EN</span>
+        </button>
+        <a href="#contact" class="btn btn-outline nav-cta" data-i18n="nav.cta">Schedule Survey</a>
+        <button type="button" id="menu-toggle-btn" class="menu-toggle-btn" aria-expanded="false" aria-controls="main-nav" aria-label="เปิดหรือปิดเมนูนำทาง">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT LANDMARK ==================== -->
+  <main>
+
+    <!-- SECTION 1: HERO -->
+    <section id="hero" class="hero-section" aria-labelledby="hero-heading">
+      <div class="container hero-container">
+        <div class="hero-content">
+          <span class="hero-tag" data-i18n="hero.tag">Smart Building & Energy Solutions</span>
+          <h1 id="hero-heading" class="hero-title">
+            We Prepare <br>
+            For The <span class="highlight-text">Future</span>
+          </h1>
+          <p class="hero-description" data-i18n="hero.desc">
+            เพื่อความปลอดภัย พร้อมรักษาสิ่งแวดล้อม และพลังงานที่ยั่งยืน <br>
+            บริษัท บิวดิ้ง แอดวานซด์ โซลูชั่น จำกัด (BAS) ผู้นำด้านระบบควบคุมอัตโนมัติภายในอาคาร ระบบปรับอากาศ HVAC และระบบรักษาความปลอดภัยอัจฉริยะครบวงจร
+          </p>
+          <div class="hero-actions">
+            <a href="#services" class="btn btn-primary" data-i18n="hero.btnServices">ดูบริการของเรา</a>
+            <a href="#contact" class="btn btn-secondary" data-i18n="hero.btnContact">ปรึกษาวิศวกร</a>
+          </div>
+        </div>
+
+        <div class="hero-highlights-card">
+          <h2 class="card-title" data-i18n="hero.cardTitle">หัวใจสำคัญของการบริการ</h2>
+          <ul class="highlights-list">
+            <li>
+              <span class="check-icon" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M2.5 6L5 8.5L9.5 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span data-i18n="hero.hl1">นำเข้าและติดตั้งเทคโนโลยีที่ทันสมัยสูงสุดระดับสากล</span>
+            </li>
+            <li>
+              <span class="check-icon" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M2.5 6L5 8.5L9.5 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span data-i18n="hero.hl2">ทีมวิศวกรผู้เชี่ยวชาญได้รับใบรับรองจาก Johnson Controls</span>
+            </li>
+            <li>
+              <span class="check-icon" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M2.5 6L5 8.5L9.5 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span data-i18n="hero.hl3">สต็อกอะไหล่สำรองมูลค่ากว่า 5 ล้านบาท พร้อมบริการ 24 ชม.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: ABOUT -->
+    <section id="about" class="about-section" aria-labelledby="about-heading">
+      <div class="container about-container">
+        <div class="about-image-wrapper">
+          <img src="images/about-image.webp" alt="ทีมงานวิศวกรมืออาชีพ บริษัท บิวดิ้ง แอดวานซด์ โซลูชั่น จำกัด ขณะปฏิบัติหน้าที่" class="about-img">
+        </div>
+        <div class="about-content">
+          <span class="section-tag" data-i18n="about.tag">เกี่ยวกับ BAS</span>
+          <h2 id="about-heading" class="section-title" data-i18n="about.title">มุ่งสู่ความเป็นเลิศในงานวิศวกรรมอาคารอัจฉริยะ</h2>
+          <p class="about-text" data-i18n="about.desc1">
+            บริษัท บิวดิ้ง แอดวานซด์ โซลูชั่น จำกัด หรือ <strong>“BAS”</strong> ก่อตั้งขึ้นเมื่อวันที่ 21 กันยายน 2554 ด้วยทุนจดทะเบียน 15 ล้านบาท โดยมีเป้าหมายว่า เรามุ่งสู่บริษัทที่มีคุณภาพและการบริการที่ดีที่สุดในการจัดจำหน่ายและติดตั้งอุปกรณ์ในงานวิศวกรรม
+          </p>
+          <p class="about-text" data-i18n="about.desc2">
+            BAS เป็นตัวแทนจำหน่ายอย่างเป็นทางการของกลุ่มบริษัทชั้นนำระดับโลก เช่น Johnson Controls, Hikvision, Tyco, Eaton เรามีทีมวิศวกรเฉพาะทางพร้อมดูแลตั้งแต่วิเคราะห์ความต้องการ ออกแบบ ติดตั้ง จนถึงบริการหลังการขาย
+          </p>
+
+          <!-- Stats Grid -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <span class="stat-number" data-target="15" data-suffix="+">15+</span>
+              <span class="stat-label" data-i18n="about.statExp">ปีแห่งประสบการณ์</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number" data-target="47" data-suffix="+">47+</span>
+              <span class="stat-label" data-i18n="about.statProj">โครงการขนาดใหญ่สำเร็จ</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number" data-target="100" data-suffix="%">100%</span>
+              <span class="stat-label" data-i18n="about.statSat">ความพึงพอใจของลูกค้า</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2.5: PARTNERS MARQUEE (PURE CSS ANIMATION - ZERO JS) -->
+    <section class="partners-section" aria-label="พันธมิตรระดับสากล">
+      <div class="container text-center">
+        <p class="partners-label" data-i18n="partners.label">พันธมิตรทางเทคโนโลยีระดับสากลที่ร่วมงานกับ BAS</p>
+        <div class="marquee-wrapper">
+          <div class="marquee-track">
+            <!-- First set of partner logos -->
+            <div class="partner-logo-item">
+              <img src="images/partners/JC.webp" alt="โลโก้บริษัท Johnson Controls" class="partner-logo">
+            </div>
+            <div class="partner-logo-item">
+              <img src="images/partners/Hikvision.webp" alt="โลโก้บริษัท Hikvision" class="partner-logo">
+            </div>
+            <div class="partner-logo-item">
+              <img src="images/partners/tyco.webp" alt="โลโก้บริษัท Tyco" class="partner-logo">
+            </div>
+            <div class="partner-logo-item">
+              <img src="images/partners/EATON.webp" alt="โลโก้บริษัท Eaton" class="partner-logo">
+            </div>
+            <!-- Duplicated set for seamless continuous CSS loop -->
+            <div class="partner-logo-item">
+              <img src="images/partners/JC.webp" alt="โลโก้บริษัท Johnson Controls" class="partner-logo">
+            </div>
+            <div class="partner-logo-item">
+              <img src="images/partners/Hikvision.webp" alt="โลโก้บริษัท Hikvision" class="partner-logo">
+            </div>
+            <div class="partner-logo-item">
+              <img src="images/partners/tyco.webp" alt="โลโก้บริษัท Tyco" class="partner-logo">
+            </div>
+            <div class="partner-logo-item">
+              <img src="images/partners/EATON.webp" alt="โลโก้บริษัท Eaton" class="partner-logo">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: SERVICES (DYNAMIC LIST & FILTER & SEARCH) -->
+    <section id="services" class="services-section" aria-labelledby="services-heading">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag" data-i18n="services.tag">ระบบและบริการ</span>
+          <h2 id="services-heading" class="section-title" data-i18n="services.title">บริการของเรา</h2>
+          <p class="section-subtitle" data-i18n="services.subtitle">
+            บริการครอบคลุมทั้งอาคารสำนักงานและโรงงานอุตสาหกรรม เสริมความปลอดภัย เพิ่มประสิทธิภาพการประหยัดพลังงาน
+          </p>
+        </div>
+
+        <!-- Controls Bar: Filter, Search, Sort -->
+        <div class="services-controls-bar">
+          <!-- Filter Buttons (Feature 5) -->
+          <div class="filter-group" role="group" aria-label="กรองประเภทของบริการ">
+            <button type="button" class="filter-btn active" data-category="all" data-i18n="services.filterAll">ทั้งหมด</button>
+            <button type="button" class="filter-btn" data-category="office" data-i18n="services.filterOffice">สำนักงานและอาคาร</button>
+            <button type="button" class="filter-btn" data-category="factory" data-i18n="services.filterFactory">โรงงานอุตสาหกรรม</button>
+          </div>
+
+          <!-- Search Input (Feature 5 & 7) -->
+          <div class="search-wrapper">
+            <label for="service-search-input" class="visually-hidden" data-i18n="services.searchLabel">ค้นหาบริการ</label>
+            <input 
+              type="search" 
+              id="service-search-input" 
+              name="serviceSearch" 
+              class="search-input" 
+              placeholder="ค้นหาบริการ (กด / เพื่อค้นหา)..." 
+              data-i18n-placeholder="services.searchPlaceholder"
+              autocomplete="off"
+            >
+          </div>
+
+          <!-- Sort Select (Feature 5) -->
+          <div class="sort-wrapper">
+            <label for="service-sort-select" class="sort-label" data-i18n="services.sortLabel">จัดเรียงตาม</label>
+            <select id="service-sort-select" name="serviceSort" class="sort-select">
+              <option value="name-asc" data-i18n="services.sortAsc">ชื่อบริการ (ก - ฮ)</option>
+              <option value="name-desc" data-i18n="services.sortDesc">ชื่อบริการ (ฮ - ก)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Dynamic Container for Cards (Rendered by JS in Iteration 2) -->
+        <div id="services-grid-container" class="services-grid" aria-live="polite">
+          <!-- Dynamically populated by renderServices() in app.js -->
+        </div>
+
+        <!-- Expand / Collapse Button for Mobile (Shows initially 4 cards on small screens) -->
+        <div id="expand-services-wrapper" class="expand-services-wrapper" hidden>
+          <button type="button" id="expand-services-btn" class="btn btn-outline expand-services-btn" aria-expanded="false">
+            <span id="expand-services-text" data-i18n="services.expandShowMore">ดูบริการทั้งหมด (10 รายการ)</span>
+            <span id="expand-services-arrow" class="expand-arrow" aria-hidden="true">▼</span>
+          </button>
+        </div>
+
+        <!-- Empty state message (when no search results match) -->
+        <div id="no-results-msg" class="empty-state" hidden>
+          <p data-i18n="services.noResults">ไม่พบรายการบริการที่ตรงกับเงื่อนไขการค้นหาของคุณ</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: PROJECTS SHOWCASE -->
+    <section id="projects" class="projects-section" aria-labelledby="projects-heading">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag" data-i18n="projects.tag">ผลงานคุณภาพ</span>
+          <h2 id="projects-heading" class="section-title" data-i18n="projects.title">โครงการที่ได้รับความไว้วางใจ</h2>
+          <p class="section-subtitle" data-i18n="projects.subtitle">
+            เราส่งมอบโครงการคุณภาพสูงแก่องค์กรชั้นนำระดับประเทศ ด้วยมาตรฐานและใบรับรองทางวิศวกรรมระดับสากล
+          </p>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Project 1 -->
+          <article class="project-card">
+            <div class="project-img-wrapper">
+              <img src="images/projects/gc.webp" alt="โครงการศูนย์ราชการแจ้งวัฒนะ ติดตั้งระบบ BAS" class="project-img">
+            </div>
+            <div class="project-info">
+              <span class="project-badge">มูลค่าสัญญา 20M THB</span>
+              <h3 class="project-title">Government Complex</h3>
+              <p class="project-subtext">ศูนย์ราชการแจ้งวัฒนะ</p>
+              <p class="project-systems"><span class="systems-label">ระบบ</span> BAS, EMS, RMS, CPMS</p>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="project-card">
+            <div class="project-img-wrapper">
+              <img src="images/projects/scg.webp" alt="โครงการ SCG สำนักงานใหญ่บางซื่อ ติดตั้งระบบความปลอดภัย" class="project-img">
+            </div>
+            <div class="project-info">
+              <span class="project-badge">มูลค่าสัญญา 12M THB</span>
+              <h3 class="project-title">SCG HQ Bangsue</h3>
+              <p class="project-subtext">เอสซีจี สำนักงานใหญ่ บางซื่อ</p>
+              <p class="project-systems"><span class="systems-label">ระบบ</span> ACS, VMS, Lift Destination</p>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="project-card">
+            <div class="project-img-wrapper">
+              <img src="images/projects/ptt_chonburi.webp" alt="โครงการศูนย์ข้อมูล ปตท. ชลบุรี" class="project-img">
+            </div>
+            <div class="project-info">
+              <span class="project-badge">มูลค่าสัญญา 20M THB</span>
+              <h3 class="project-title">PTT New Data Center</h3>
+              <p class="project-subtext">ปตท. ดาต้าเซ็นเตอร์ ชลบุรี</p>
+              <p class="project-systems"><span class="systems-label">ระบบ</span> BAS, ACS, CPMS</p>
+            </div>
+          </article>
+
+          <!-- Project 4 -->
+          <article class="project-card">
+            <div class="project-img-wrapper">
+              <img src="images/projects/uob.webp" alt="อาคารธนาคารยูโอบี สำนักงานใหญ่ สุขุมวิทและเพชรเกษม" class="project-img">
+            </div>
+            <div class="project-info">
+              <span class="project-badge">มูลค่าสัญญา 50M THB</span>
+              <h3 class="project-title">UOB HQ Sukhumvit</h3>
+              <p class="project-subtext">ยูโอบี สำนักงานใหญ่</p>
+              <p class="project-systems"><span class="systems-label">ระบบ</span> BAS, FAS, ACS, CCTV, Road Blocker</p>
+            </div>
+          </article>
+        </div>
+
+        <!-- Download Company Project Reference PDF -->
+        <div class="projects-actions text-center">
+          <a href="pdf/project-referrenceBAS.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-pdf-download">
+            <span data-i18n="projects.downloadPdf">ดาวน์โหลดเอกสารผลงานโครงการ (Company Profile & Projects Reference PDF)</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: CONTACT & BOOKING FORM -->
+    <section id="contact" class="contact-section" aria-labelledby="contact-heading">
+      <div class="container contact-container">
+        
+        <!-- Contact Information Block -->
+        <div class="contact-info-block">
+          <span class="section-tag" data-i18n="contact.tag">ติดต่อเรา</span>
+          <h2 id="contact-heading" class="section-title" data-i18n="contact.title">ปรึกษาเราเพื่ออนาคตของอาคารคุณ</h2>
+          <p class="contact-lead-text" data-i18n="contact.lead">
+            ยินดีให้คำปรึกษาและสำรวจหน้างานโดยทีมวิศวกรผู้เชี่ยวชาญ พร้อมประเมินความคุ้มค่าและประสิทธิภาพพลังงาน
+          </p>
+
+          <div class="contact-details-list">
+            <div class="contact-item">
+              <span class="contact-item-tag" data-i18n="contact.officeTag">สำนักงาน</span>
+              <div class="contact-item-body">
+                <strong class="contact-company-title" data-i18n="contact.companyName">บริษัท บิวดิ้ง แอดวานซด์ โซลูชั่น จำกัด</strong>
+                <p data-i18n="contact.companyAddress">2/1 ซอยนนทบุรี 14 แยก 4 ตำบลบางกระสอ อำเภอเมืองนนทบุรี จังหวัดนนทบุรี 11000</p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <span class="contact-item-tag">โทรศัพท์</span>
+              <div class="contact-item-body">
+                <p>
+                  <a href="tel:029683011" class="contact-link">02-968-3011-3</a>, 
+                  <a href="tel:0818011976" class="contact-link">081-801-1976</a>
+                </p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <span class="contact-item-tag">อีเมล</span>
+              <div class="contact-item-body">
+                <p>
+                  <a href="mailto:sales@bas.co.th" class="contact-link">sales@bas.co.th</a>, 
+                  <a href="mailto:service@bas.co.th" class="contact-link">service@bas.co.th</a>
+                </p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <span class="contact-item-tag">เวลาทำการ</span>
+              <div class="contact-item-body">
+                <p>วันจันทร์ - วันศุกร์ เวลา 09:00 น. - 18:00 น. (หยุดวันเสาร์ - วันอาทิตย์)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Booking Form (Feature 4: Form Validation) -->
+        <div class="contact-form-block">
+          <div class="form-card">
+            <h3 class="form-title" data-i18n="contact.formTitle">แบบฟอร์มนัดหมายสำรวจหน้างาน / ขอใบเสนอราคา</h3>
+            <p class="form-subtitle" data-i18n="contact.formSubtitle">กรุณากรอกข้อมูลให้ครบถ้วน วิศวกรจะติดต่อกลับภายใน 24 ชั่วโมง</p>
+
+            <!-- Selected Services Summary Box (Feature 5 + 3 Connected Workflow) -->
+            <div id="selected-services-box" class="selected-services-box" hidden>
+              <div class="selected-services-header">
+                <span class="selected-services-title">
+                  <span data-i18n="contact.selectedTitle">ระบบที่คุณเลือกสนใจ</span>
+                  (<strong id="selected-count-badge">0</strong>)
+                </span>
+                <span class="selected-services-hint" data-i18n="contact.selectedHint">คลิกที่ป้ายเพื่อยกเลิกรายการ</span>
+              </div>
+              <div id="selected-services-tags" class="selected-tags-wrapper">
+                <!-- Dynamically populated by updateSelectedServicesUI() in app.js -->
+              </div>
+            </div>
+
+            <form id="consultation-form" novalidate>
+              <!-- Field 1: Customer Name -->
+              <div class="form-group">
+                <label for="contact-name" class="form-label">
+                  <span data-i18n="contact.nameLabel">ชื่อผู้ติดต่อ / บริษัท</span> <span class="required-mark" aria-hidden="true">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  id="contact-name" 
+                  name="contactName" 
+                  class="form-input" 
+                  placeholder="เช่น บจก. พัฒนาอสังหาริมทรัพย์ หรือ วิชัย ใจดี"
+                  data-i18n-placeholder="contact.namePlaceholder"
+                  required
+                >
+                <span id="error-contact-name" class="inline-error-text" aria-live="polite"></span>
+              </div>
+
+              <!-- Field 2: Phone Number -->
+              <div class="form-group">
+                <label for="contact-phone" class="form-label">
+                  <span data-i18n="contact.phoneLabel">เบอร์โทรศัพท์ติดต่อ</span> <span class="required-mark" aria-hidden="true">*</span>
+                </label>
+                <input 
+                  type="tel" 
+                  id="contact-phone" 
+                  name="contactPhone" 
+                  class="form-input" 
+                  placeholder="เช่น 0812345678 (อย่างน้อย 9-10 หลัก)"
+                  data-i18n-placeholder="contact.phonePlaceholder"
+                  required
+                >
+                <span id="error-contact-phone" class="inline-error-text" aria-live="polite"></span>
+              </div>
+
+              <!-- Field 3: Service System Category -->
+              <div class="form-group">
+                <label for="contact-service" class="form-label">
+                  <span data-i18n="contact.serviceLabel">ระบบงานที่ต้องการปรึกษา</span> <span class="required-mark" aria-hidden="true">*</span>
+                </label>
+                <select id="contact-service" name="contactService" class="form-select" required>
+                  <option value="" data-i18n="contact.optDefault">-- กรุณาเลือกระบบงานที่ต้องการ --</option>
+                  <option value="bms">Building Management System (BMS)</option>
+                  <option value="chiller">Chiller Plant Management System</option>
+                  <option value="access">Access Control & Turnstile</option>
+                  <option value="cctv">CCTV Surveillance System</option>
+                  <option value="lighting">Smart Lighting Control System</option>
+                  <option value="hvac">Variable Speed Drive & Valves</option>
+                  <option value="other" data-i18n="contact.optOther">ระบบอื่นๆ / วางแผนทั้งอาคาร</option>
+                </select>
+                <span id="error-contact-service" class="inline-error-text" aria-live="polite"></span>
+              </div>
+
+              <!-- Field 4: Additional Notes -->
+              <div class="form-group">
+                <label for="contact-notes" class="form-label" data-i18n="contact.notesLabel">
+                  รายละเอียดสถานที่หรือข้อความเพิ่มเติม
+                </label>
+                <textarea 
+                  id="contact-notes" 
+                  name="contactNotes" 
+                  class="form-textarea" 
+                  rows="3" 
+                  placeholder="เช่น ขนาดอาคาร 5 ชั้น, พื้นที่กรุงเทพฯ, ต้องการเปลี่ยนระบบเดิม"
+                  data-i18n-placeholder="contact.notesPlaceholder"
+                ></textarea>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" id="submit-btn" class="btn btn-primary btn-submit" data-i18n="contact.submitBtn">
+                ส่งข้อมูลขอนัดหมายสำรวจหน้างาน
+              </button>
+
+              <!-- Form Success Feedback Banner -->
+              <div id="form-success-alert" class="alert-success" hidden role="alert">
+                <p><strong>บันทึกข้อมูลเรียบร้อยแล้ว!</strong> ทีมวิศวกร BAS จะติดต่อกลับไปยังหมายเลขที่คุณแจ้งไว้โดยเร็วที่สุด</p>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER LANDMARK ==================== -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-col brand-col">
+        <img src="images/logo.svg" alt="ตราสัญลักษณ์บริษัท บิวดิ้ง แอดวานซด์ โซลูชั่น จำกัด" class="footer-logo">
+        <p class="footer-desc" data-i18n="footer.desc">
+          ผู้นำการจัดจำหน่าย ออกแบบ และติดตั้งระบบวิศวกรรมอาคารอัจฉริยะ ประหยัดพลังงาน และเพิ่มความปลอดภัยระดับมาตรฐานสากล
+        </p>
+      </div>
+
+      <div class="footer-col links-col">
+        <h4 class="footer-title" data-i18n="footer.quickLinks">ลิงก์ด่วน</h4>
+        <ul class="footer-links">
+          <li><a href="#hero" data-i18n="nav.home">หน้าแรก</a></li>
+          <li><a href="#about" data-i18n="nav.about">เกี่ยวกับเรา</a></li>
+          <li><a href="#services" data-i18n="nav.services">บริการของเรา</a></li>
+          <li><a href="#projects" data-i18n="nav.projects">ผลงานโครงการ</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">ติดต่อเรา</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col academic-col">
+        <h4 class="footer-title" data-i18n="footer.academicTitle">ข้อมูลโครงงานการศึกษา</h4>
+        <p class="footer-academic-text" data-i18n="footer.academicText">
+          เว็บไซต์นี้พัฒนาขึ้นสำหรับการเรียนการสอนวิชา <strong>953104 Web User Interface Design and Development</strong><br>
+          ภาคเรียนที่ 1/2026 มหาวิทยาลัยเชียงใหม่
+        </p>
+        <p class="footer-academic-meta" data-i18n="footer.academicMeta">
+          พัฒนาด้วย Pure HTML5, CSS3 และ Vanilla ES6 JavaScript (No Libraries / No Server)
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container text-center">
+        <p data-i18n="footer.copyright">© 2026 Building Advanced Solution Co., Ltd. All Rights Reserved. | พัฒนาเพื่อการศึกษา วิชา 953104</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== NATIVE DIALOG MODAL (Feature 6) ==================== -->
+  <dialog id="service-modal" class="native-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-box">
+      <header class="dialog-header">
+        <h3 id="dialog-title" class="dialog-heading" data-i18n="dialog.title">รายละเอียดบริการ</h3>
+        <button type="button" id="dialog-close-btn" class="dialog-close-btn" aria-label="ปิดหน้าต่างนี้">&times;</button>
+      </header>
+
+      <div id="dialog-body-content" class="dialog-body">
+        <!-- Content will be injected dynamically by JavaScript in Iteration 2 / 5 -->
+        <p>กำลังโหลดข้อมูลบริการ...</p>
+      </div>
+
+      <footer class="dialog-footer">
+        <button type="button" id="dialog-confirm-btn" class="btn btn-secondary" data-i18n="dialog.close">ปิดหน้าต่าง (Esc)</button>
+      </footer>
+    </div>
+  </dialog>
+
+
+
+  <!-- External Vanilla JavaScript -->
+  <script src="js/app.js"></script>
+</body>
+</html>
