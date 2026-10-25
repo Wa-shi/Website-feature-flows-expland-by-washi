@@ -264,6 +264,73 @@ body.noscroll { overflow: hidden; }
 .cline.err { border-color: #E5372B; background: #FDE2E0; color: #8F1D14; }
 .pv-quiet { margin: 0; font-size: 16px; color: var(--soft); }
 
+
+/* lab */
+@media (max-width: 700px) { .lab-stage { height: 420px; } }
+.lab-tip { margin: 8px 0 0; }
+.lab-ans summary { cursor: pointer; font-weight: 600; color: var(--me); font-size: 16px; }
+.lab-ans[open] summary { margin-bottom: 6px; }
+.lab-how { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px 18px; font-size: 16px; line-height: 1.6; }
+.lab-how ol { margin: 6px 0 0; padding-left: 22px; display: flex; flex-direction: column; gap: 4px; }
+.lab { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 18px; align-items: start; }
+@media (max-width: 960px) { .lab { grid-template-columns: minmax(0, 1fr); } .lab-r { position: static; } }
+.lab-l, .lab-r { min-width: 0; }
+.lab-chips .tbtn { white-space: normal; text-align: left; }
+.lab-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.lab-chips b { font-weight: 600; }
+.lab-code { border: 1px solid var(--line); border-radius: 10px; background: #FBFCFD; max-height: 470px; overflow: auto; padding: 4px 0; }
+.lrow { display: flex; gap: 12px; font-size: 16px; line-height: 1.7; cursor: pointer; min-width: max-content; padding-right: 12px; border-left: 4px solid transparent; }
+.lrow .n { flex: 0 0 52px; text-align: right; color: var(--soft); font-size: 15px; user-select: none; }
+.lrow .t { white-space: pre; color: var(--ink-2); }
+.lrow:hover { background: var(--tint); }
+.lrow.t-syntax { border-left-color: #F4A7A0; } .lrow.t-ref { border-left-color: #F4A7A0; }
+.lrow.t-selector { border-left-color: #F2C46D; } .lrow.t-logic { border-left-color: #9DB8F5; } .lrow.t-none { border-left-color: #9FD9B0; }
+.lrow.gstart { box-shadow: inset 0 1px 0 var(--line); }
+.lrow.on { background: #FFF1D6; }
+.lrow.on .t { color: var(--ink); font-weight: 500; }
+.lab-r { display: flex; flex-direction: column; gap: 12px; position: sticky; top: 110px; }
+.lab-sel { border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; }
+.lab-selh { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 17px; }
+.lab-ann p, .lab-q { margin: 0 0 6px; font-size: 17px; line-height: 1.6; }
+.lab-empty { margin: 0; color: var(--soft); font-size: 16px; padding: 10px 12px; }
+.lab-acts, .bk-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+.lab-acts .tbtn { padding: 8px 14px; }
+.tbtn:disabled { opacity: .45; cursor: not-allowed; }
+.lab-ed { display: flex; flex-direction: column; gap: 6px; }
+.lab-ed textarea { font: inherit; font-size: 16px; border: 1px solid var(--line-2); border-radius: 8px; padding: 8px 10px; resize: vertical; background: #fff; color: var(--ink); white-space: pre; overflow-x: auto; }
+.lab-ed .tbtn { align-self: flex-start; padding: 8px 14px; }
+.lab-run { display: flex; flex-direction: column; gap: 10px; }
+.lab-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.lab-status { font-size: 16px; font-weight: 600; margin-right: auto; }
+.lab-note { margin: 0; font-size: 16px; color: var(--muted); }
+.lab-facts { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 16px; }
+.lab-facts b { font-weight: 600; color: var(--soft); margin-right: 4px; }
+.lab-stage { height: 560px; }
+.lab-cons { border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; }
+.lab-cl { max-height: 180px; overflow: auto; display: flex; flex-direction: column; gap: 4px; margin-top: 6px; }
+.lab-none { margin: 0; color: var(--soft); font-size: 16px; }
+.cline .ph { display: inline-block; font-size: 15px; font-weight: 600; color: var(--soft); margin-right: 8px; }
+.cline.nav { border-color: #F2C46D; background: #FEF0C7; color: #7A2E0B; }
+
+
+/* drill */
+.drill-list { display: flex; flex-direction: column; gap: 18px; }
+.dq { border: 1px solid var(--line); border-radius: 12px; padding: 18px 22px 20px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.dq .owner { display: inline-flex; align-items: center; gap: 6px; font-size: 16px; color: var(--muted); }
+.dq .owner i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+.dq-q { margin: 0; font-size: 19px; line-height: 1.6; }
+.dq-ta { font: inherit; font-size: 17px; line-height: 1.6; border: 1px solid var(--line-2); border-radius: 10px; padding: 10px 12px; resize: vertical; background: #fff; color: var(--ink); }
+.dq-ta:focus-visible, .lab-ed textarea:focus-visible { outline: 3px solid var(--glow); outline-offset: 1px; }
+.dq-ans { background: var(--ok-bg); border-radius: 10px; padding: 14px 18px; display: flex; flex-direction: column; gap: 6px; }
+.dq-ans p { margin: 0; font-size: 17px; line-height: 1.65; }
+.dq-ans .lab2 { color: var(--ok); font-weight: 600; }
+.dq-code { margin: 4px 0 0; font-family: var(--font); font-size: 16px; line-height: 1.6; white-space: pre-wrap; overflow-wrap: anywhere; background: #fff; border: 1px solid #BBF7D0; border-radius: 8px; padding: 10px 12px; color: var(--ink-2); }
+.dq-run { display: flex; flex-direction: column; gap: 10px; }
+.rubric { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 10px; }
+.rubric div { display: flex; gap: 12px; align-items: baseline; border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: 16px; line-height: 1.5; }
+.rubric b { font-size: 26px; font-weight: 700; color: var(--ink); min-width: 22px; }
+.tab.tab-drill { font-weight: 600; border-color: var(--glow); }
+
 /* Explanations */
 .two { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; align-items: start; }
 @media (min-width: 1000px) { .two { grid-template-columns: minmax(0, 520px) minmax(0, 1fr); } }
@@ -412,7 +479,7 @@ F2: {
       ['P1', 2, 580, 'fn', 'updateServicesDisplay()', 'L549–566', ''],
       ['Q1', 3, 580, 'dec', 'จอไม่เกิน 768px เลือก All ไม่มีคำค้น เกิน 4 ใบ และยังไม่ขยายไหม', 'L552–557', ''],
       ['S1', 4, 580, 'screen', '4 การ์ดกับปุ่ม Show All', '', '`renderServices(filtered.slice(0, 4))` L558'],
-      ['N1', 3, 750, 'fn', 'renderServices(filtered)', 'L565', 'ซ่อนปุ่มขยายที่ L562'],
+      ['N1', 3, 750, 'fn', 'renderServices(filtered)', 'L565', 'L562 ตั้ง `hidden` ให้ปุ่มขยาย แต่ปุ่มยังโผล่ เพราะ CSS L1106 `display: flex` ชนะ attribute hidden'],
       ['S1b', 4, 750, 'screen', 'การ์ดครบตามผลกรอง', '', ''],
       ['E2', 0, 895, 'event', 'คลิกปุ่ม Show All Services', '', '`#expand-services-btn`'],
       ['H2', 1, 895, 'fn', 'setupMobileServicesExpand()', 'L966–981', ''],
@@ -487,7 +554,12 @@ F3: {
   breaks: [
     { at: 'app.js L439', change: 'ลบ `container.innerHTML = "";`', type: 'logic', see: 'เปิดหน้ามาเห็น 32 การ์ดแทน 16 กด Industrial Plants กลายเป็น 36 ค้นคำที่ไม่มีจะเห็นข้อความไม่พบพร้อมการ์ดเก่าค้างทั้งหมด', why: 'appendChild ต่อท้ายของเดิมเสมอ ถ้าไม่ล้างการ์ดจึงสะสม ไม่มี error เพราะไวยากรณ์ถูกทุกบรรทัด', tested: true },
     { at: 'app.js L495', change: 'ลบ `container.appendChild(card);`', type: 'logic', see: 'กล่องการ์ดว่างเปล่า ข้อความไม่พบก็ไม่ขึ้น console ไม่มีตัวแดง', why: 'การ์ดถูกสร้างในหน่วยความจำแต่ไม่เคยถูกใส่ลงหน้า ส่วนข้อความไม่พบถูกซ่อนเพราะ items ไม่ว่าง', tested: true },
-    { at: 'app.js L434', change: 'สะกด `"services-grid-container"` เป็น `"service-grid-container"`', type: 'selector', see: 'ไม่มีการ์ดสักใบ และไม่มี error สีแดง', why: 'getElementById คืน null แล้วบรรทัด 436 return เงียบๆ ถ้าไม่มี guard นี้จะได้ TypeError: Cannot set properties of null', tested: true }
+    { at: 'app.js L434', change: 'สะกด `"services-grid-container"` เป็น `"service-grid-container"`', type: 'selector', see: 'ไม่มีการ์ดสักใบ และไม่มี error สีแดง', why: 'getElementById คืน null แล้วบรรทัด 436 return เงียบๆ ถ้าไม่มี guard นี้จะได้ TypeError: Cannot set properties of null', tested: true },
+    { at: 'app.js L464', change: 'ลบ `const deleteText = ...`', type: 'logic', see: 'เปิดหน้าปกติทุกอย่าง แต่พอส่งฟอร์มถูกต้อง การ์ดบนจอเหลือแค่ 3 ใบ กล่องส่งสำเร็จไม่ขึ้น และ console แดงว่า deleteText is not defined', why: 'ตัวแปรนี้ใช้เฉพาะตอนสร้างปุ่มลบของการ์ดที่ผู้ใช้เพิ่มเองที่ L471 ตอนเปิดหน้ายังไม่มีการ์ดแบบนั้นจึงไม่พัง พอเพิ่มรายการแล้ว render วนมาถึงการ์ดใหม่ที่อยู่ลำดับ 4 ก็เกิด ReferenceError หยุดลูปกลางทาง การ์ด 3 ใบที่ต่อไปแล้วจึงค้างอยู่ error นี้เกิดตอนกด ไม่ใช่ตอนเปิดหน้า', tested: true },
+    { at: 'app.js L452', change: 'ลบ `card.className = ...`', type: 'logic', see: 'การ์ดยังขึ้นครบแต่ไม่มีกรอบ ไม่มีสไตล์ รูปใหญ่เต็มความกว้าง ปุ่มยังกดได้', why: 'CSS ของการ์ดผูกกับ class `service-card` ที่ L935 การ์ดที่ไม่มี class จึงเป็น article เปล่า แต่ delegation ของ F5 ใช้ `closest()` หาที่ปุ่ม ไม่ได้ดู class ของการ์ด ปุ่มจึงยังทำงาน', tested: true },
+    { at: 'app.js L453–454', change: 'ลบ `card.dataset.id` และ `card.dataset.category`', type: 'ไม่มีบั๊กที่เห็น', see: 'ภาพเหมือนเดิมทุกพิกเซล ทุกปุ่มทำงาน', why: 'ไม่มีโค้ดส่วนไหนอ่าน data-id หรือ data-category ของการ์ด ปุ่มในการ์ดมี data-service-id และ data-toggle-id ของตัวเองอยู่แล้ว ถ้าโจทย์ถามว่าลบแล้วพังไหม ต้องตอบได้ว่าไม่พังพร้อมเหตุผล', tested: true },
+    { at: 'app.js L493', change: 'ลบบรรทัดที่ปิด template ของการ์ด', type: 'syntax', see: 'การ์ดหายหมด JS ไม่รันเลย console แดงว่า Unexpected identifier Item ชี้ไปที่ L583', why: 'template literal เปิดที่ L480 แล้วไม่มีตัวปิด เบราว์เซอร์จึงอ่านต่อไปจนเจอ backtick ตัวถัดไปใน `console.log` ที่ L583 แล้วงงกับคำว่า Item ที่ตามมา บรรทัดที่ error ชี้จึงห่างจากบรรทัดที่ผิดเป็นร้อยบรรทัด', tested: true },
+    { at: 'app.js L446', change: 'ลบ `if (emptyMessage) emptyMessage.hidden = true;`', type: 'logic', see: 'พิมพ์ zzzz แล้วข้อความไม่พบบริการขึ้น พอเปลี่ยนเป็น cctv การ์ดกลับมา แต่ข้อความไม่พบยังค้างอยู่ใต้การ์ด', why: 'L443 เปิดข้อความเมื่อไม่มีรายการ แต่ไม่มีบรรทัดไหนปิดอีกแล้ว ข้อความจึงค้างจนกว่าจะโหลดหน้าใหม่ ปุ่ม Show All ที่เห็นในภาพเป็นบั๊กอีกตัวของเว็บจริง ดูข้อ Predict ในแท็บฝึกข้อสอบ', tested: true }
   ]
 },
 F4: {
@@ -541,14 +613,19 @@ F4: {
   breaks: [
     { at: 'app.js L785', change: 'ลบ `e.preventDefault();`', type: 'logic', see: 'กดส่งแล้วหน้าโหลดใหม่ URL มี ?contactName=…&contactPhone=… ต่อท้าย การ์ดใหม่หายและกลับเป็น 16 ใบ', why: 'ฟอร์มส่งแบบปกติด้วย GET ไปที่หน้าเดิม ข้อมูลทั้งหมดอยู่ใน array ในหน่วยความจำ โหลดใหม่จึงหายหมด', tested: true },
     { at: 'app.js L823', change: 'ลบ `if (!isValid) return;`', type: 'logic', see: 'ส่งฟอร์มว่าง ข้อความแดงขึ้นครบสามช่อง แต่ได้การ์ด Integrated Building Automation () เพิ่มมาด้วย', why: 'ไม่มีจุดหยุด โค้ดไหลไปสร้าง object ต่อ `serviceMetaMap[""]` เป็น undefined จึงใช้ other แทน และชื่อว่างจึงได้วงเล็บเปล่า', tested: true },
-    { at: 'app.js L756', change: 'สะกด `"contact-name"` ผิด', type: 'selector', see: 'กดส่งแล้วหน้าโหลดใหม่ ไม่มีการตรวจอะไรเลย', why: 'nameInput เป็น null บรรทัด 766 จึง return ก่อนผูก submit ฟอร์มเลยส่งแบบปกติ', tested: true }
+    { at: 'app.js L756', change: 'สะกด `"contact-name"` ผิด', type: 'selector', see: 'กดส่งแล้วหน้าโหลดใหม่ ไม่มีการตรวจอะไรเลย', why: 'nameInput เป็น null บรรทัด 766 จึง return ก่อนผูก submit ฟอร์มเลยส่งแบบปกติ', tested: true },
+    { at: 'app.js L802', change: 'ลบ `} else if (nameVal.length < 3) {`', type: 'logic', see: 'ไม่มี error ชื่อ ab ผ่าน กดส่งแล้วได้การ์ดใหม่ ฟอร์มถูกล้างและกล่องส่งสำเร็จขึ้น', why: 'ปีกกายังครบคู่ จึงไม่ใช่ syntax error แต่สองบรรทัดของกฎความยาวไปอยู่ใน if ชื่อว่าง ทำงานเฉพาะตอนชื่อว่าง ชื่อ ab ไม่ว่างจึงไม่โดนตรวจความยาวเลย', tested: true },
+    { at: 'app.js L774', change: 'ลบ `if (errorEl) errorEl.textContent = "";` ใน clearError', type: 'logic', see: 'ส่งฟอร์มว่างแล้วพิมพ์ชื่อ ข้อความแดงใต้ช่องชื่อยังค้าง แต่ขอบแดงหายไป', why: 'clearError เหลือแค่ถอด class `is-invalid` ที่ L775 ขอบแดงจึงหาย แต่ไม่มีใครล้างข้อความใน span แม้ส่งใหม่ให้ถูกข้อความก็ยังค้าง', tested: true },
+    { at: 'app.js L841', change: 'ลบ `id: newId,`', type: 'logic', see: 'เพิ่มการ์ดได้ แต่กด Delete Item แล้วการ์ดไม่หาย console พิมพ์ Item ID NaN deleted', why: 'object ใหม่ไม่มี id ปุ่มลบจึงได้ `data-delete-id="undefined"` พอ L579 แปลงด้วย `Number()` ได้ NaN และ L580 filter ด้วย `!==` ซึ่ง NaN ไม่เท่ากับอะไรเลย ทุกรายการจึงถูกเก็บไว้', tested: true },
+    { at: 'app.js L853', change: 'ลบ `servicesData.unshift(newServiceItem);`', type: 'logic', see: 'ฟอร์มถูกล้าง กล่องส่งสำเร็จขึ้นเหมือนสำเร็จ แต่ไม่มีการ์ดใหม่', why: 'object ถูกสร้างแล้วแต่ไม่ได้ใส่ลง array พอ L856 สั่งวาดใหม่ก็วาดจาก array เดิม 16 รายการ ข้อนี้โชว์ว่าหน้าจอวาดจากข้อมูล ไม่ได้วาดจากสิ่งที่ฟอร์มสร้าง', tested: true },
+    { at: 'app.js L787', change: 'ลบ `let isValid = true;`', type: 'logic', see: 'ส่งฟอร์มว่างแล้วข้อความแดงขึ้นแค่ช่องชื่อ ช่องอื่นไม่ขึ้น console แดงว่า isValid is not defined', why: 'ไฟล์มี `"use strict"` ที่ L8 การกำหนดค่าให้ตัวแปรที่ไม่ได้ประกาศจึงเป็น ReferenceError ทันทีที่ L801 หลัง showError ของช่องชื่อทำงานไปแล้ว ฟังก์ชันหยุดตรงนั้น ถ้าไม่มี use strict จะกลายเป็นตัวแปร global แบบเงียบๆ', tested: true }
   ]
 },
 F5: {
   num: 5, short: 'Dynamic list', owner: 'me', score: 6,
   title: 'Dynamic List ลบ สลับสถานะ กรอง ค้นหา และเรียง',
   exam: 'ข้อสอบจะให้อธิบาย ทำนายผล และแก้โค้ด',
-  files: [['app.js', 'L422–425', 'ตัวแปรสถานะ'], ['app.js', 'L502–566', 'กรอง ค้น เรียง'], ['app.js', 'L571–608', 'event delegation'], ['app.js', 'L720–749', 'ผูกปุ่มควบคุม']],
+  files: [['app.js', 'L422–424', 'ตัวแปรสถานะ'], ['app.js', 'L502–566', 'กรอง ค้น เรียง'], ['app.js', 'L571–608', 'event delegation'], ['app.js', 'L720–749', 'ผูกปุ่มควบคุม']],
   ui: {
     items: [
       { key: 'f5_1', w: 886, h: 651, marks: [{ n: 1, x: 396, y: 38 }, { n: 2, x: 686, y: 38 }], cap: 'ตอนเปิดหน้า เลือก All มี 16 การ์ดเรียง A ถึง Z เพราะ currentSort เป็น "name-asc"' },
@@ -592,7 +669,7 @@ F5: {
     { q: 'ทำไมใช้ e.target.closest() ไม่ใช้ e.target ตรงๆ', a: 'เพราะผู้ใช้อาจคลิกโดนข้อความหรือ element ลูกข้างในปุ่ม closest ไล่จากตัวที่ถูกคลิกขึ้นไปหาตัวแรกที่มี data attribute นั้น รวมตัวมันเองด้วย ถ้าไม่เจอจะได้ null จึงเช็กด้วย if ได้' },
     { q: 'ทำไมต้องครอบด้วย Number() ที่บรรทัด 579 และ 590', a: 'เพราะค่าจาก dataset เป็น string เสมอ แต่ id ใน servicesData เป็น number และ === กับ !== ไม่แปลงชนิด ถ้าไม่แปลง 17 !== "17" เป็น true ทุกตัว filter จึงเก็บไว้หมด การ์ดไม่หาย', tested: true },
     { q: 'ทำไมต้อง copy ด้วย [...servicesData] ก่อน sort ที่บรรทัด 503', a: 'เพราะ sort() เปลี่ยน array ตัวเดิม ถ้าไม่ copy และไม่มีการกรอง result คือ servicesData ตัวจริง ลำดับข้อมูลจริงจะถูกสลับ ทดลองแล้วตัวแรกกลายเป็น id 7 แม้จอจะดูเหมือนเดิม', tested: true },
-    { q: 'ทำไมเก็บเงื่อนไขไว้ใน 3 ตัวแปรที่บรรทัด 423 ถึง 425 แล้วเรียก updateServicesDisplay() ทุกครั้ง', a: 'เพราะทุกครั้งที่วาดใหม่ต้องใช้หมวด คำค้น และการเรียงพร้อมกัน ผลจึงซ้อนกันได้ และหน้าจอถูกสร้างจากข้อมูลเสมอ ไม่มีโค้ดไหนไปแก้การ์ดบนจอตรงๆ' },
+    { q: 'ทำไมเก็บเงื่อนไขไว้ใน 3 ตัวแปรที่บรรทัด 422 ถึง 424 แล้วเรียก updateServicesDisplay() ทุกครั้ง', a: 'เพราะทุกครั้งที่วาดใหม่ต้องใช้หมวด คำค้น และการเรียงพร้อมกัน ผลจึงซ้อนกันได้ และหน้าจอถูกสร้างจากข้อมูลเสมอ ไม่มีโค้ดไหนไปแก้การ์ดบนจอตรงๆ' },
     { q: 'ทำไมมี return หลังแต่ละเงื่อนไขที่บรรทัด 584 597 และ 605', a: 'เพื่อจบงานของคลิกนั้นทันทีเมื่อเจอปุ่มที่ใช่ ไม่ไปตรวจเงื่อนไขถัดไป ทดลองลบ return บรรทัด 584 แล้วยังทำงานเหมือนเดิม เพราะปุ่มลบไม่มี attribute ของอีกสองเงื่อนไข แต่ return ทำให้อ่านง่ายและกันปัญหาในอนาคต', tested: true }
   ],
   breaks: [
@@ -654,7 +731,12 @@ F6: {
   breaks: [
     { at: 'app.js L654', change: 'เปลี่ยน `showModal()` เป็น `show()`', type: 'logic', see: 'เปิดได้ แต่ไม่มีฉากหลังมืด ไม่ลอยขึ้นชั้นบนสุด หน้าข้างหลังยังคลิกได้ กด Esc ยังปิดได้', why: 'show() เปิดแบบไม่ใช่ modal ไม่มี backdrop และไม่ปิดด้วย Esc เอง แต่ listener ที่บรรทัด 689 ยังช่วยปิดให้', tested: true },
     { at: 'app.js L614', change: 'สะกด `"service-modal"` ผิด', type: 'selector', see: 'กด View Details แล้วไม่มีอะไรเกิดขึ้น ไม่มี error', why: 'modal เป็น null แล้วบรรทัด 617 return เงียบๆ', tested: true },
-    { at: 'app.js L603', change: 'ลบ Number() เหลือ `detailBtn.dataset.serviceId`', type: 'logic', see: 'กด View Details แล้วไม่เปิด ไม่มี error', why: 'find ที่บรรทัด 619 เทียบ 1 === "1" ได้ false ทุกตัว service เป็น undefined แล้วบรรทัด 620 return', tested: true }
+    { at: 'app.js L603', change: 'ลบ Number() เหลือ `detailBtn.dataset.serviceId`', type: 'logic', see: 'กด View Details แล้วไม่เปิด ไม่มี error', why: 'find ที่บรรทัด 619 เทียบ 1 === "1" ได้ false ทุกตัว service เป็น undefined แล้วบรรทัด 620 return', tested: true },
+    { at: 'app.js L627', change: 'ลบ `dialogTitle.textContent = displayTitle;`', type: 'logic', see: 'modal เปิดได้ รูปและคำอธิบายถูก แต่หัวข้อเป็น Service Details ทุกบริการ', why: 'หัวข้อใน HTML L538 มีคำเริ่มต้นอยู่แล้ว และตอนเปิดหน้า applyLanguage แปลเป็น Service Details พอไม่มีบรรทัดนี้ก็ไม่มีใครเขียนทับ ส่วนเนื้อหายังมาจาก L636 ตามปกติ', tested: true },
+    { at: 'app.js L684', change: 'ลบ `modal.close();` ใน listener คลิกฉากหลัง', type: 'logic', see: 'คลิกฉากหลังมืดแล้วหน้าต่างไม่ปิด ปุ่ม Close Window และ Esc ยังปิดได้', why: 'L676 ถึง L683 ยังคำนวณได้ถูกว่าคลิกนอกกรอบ แต่ไม่มีคำสั่งปิด และ dialog ไม่ได้ปิดเมื่อคลิกฉากหลังให้เอง ต่างจาก Esc ที่ showModal มีให้', tested: true },
+    { at: 'app.js L658', change: 'ลบ `const modal = document.getElementById("service-modal");` ใน setupModalListeners', type: 'logic', see: 'เปิดหน้ามาก็มี error แดงแล้ว modal ยังเปิดได้ แต่กด Close Window ไม่ปิด คีย์ลัด / และการตรวจฟอร์มก็ใช้ไม่ได้ด้วย', why: 'L662 อ้าง modal ที่ไม่ได้ประกาศจึงเกิด ReferenceError ตอนเปิดหน้า listener ทุกตัวของ modal ไม่ถูกผูก และเพราะ error เกิดใน DOMContentLoaded ฟังก์ชันที่เรียกต่อจากนี้ คือ setupKeyboardShortcuts และ setupFormValidation จึงไม่ได้ทำงาน ส่วนการเปิดยังใช้ได้เพราะ openServiceModal หยิบ dialog เองที่ L614', tested: true },
+    { at: 'app.js L614', change: 'ลบ `const modal = ...` ใน openServiceModal', type: 'logic', see: 'กด View Details แล้วไม่มีอะไรเกิดขึ้น console แดงว่า modal is not defined', why: 'เทียบกับข้อ 2 ที่พิมพ์ id ผิด ข้อนั้นได้ null แล้ว guard L617 return เงียบๆ ไม่มี error ข้อนี้ตัวแปรไม่มีอยู่เลย L617 จึงเป็น ReferenceError ตอนกด ผลบนจอเหมือนกันแต่ console ต่างกัน ส่วนอื่นของเว็บยังใช้ได้เพราะ error เกิดตอนกด', tested: true },
+    { at: 'app.js L638', change: 'ลบบรรทัด `<img>` ใน template ของ modal', type: 'logic', see: 'modal เปิดได้ แต่ไม่มีรูป เหลือกรอบสีเทาว่าง', why: 'บรรทัดนี้อยู่ใน template literal จึงเป็นแค่ข้อความ HTML ไม่ใช่โค้ด JS ลบแล้วไม่มี syntax error กล่อง modal-img-wrapper ยังอยู่แต่ข้างในว่าง', tested: true }
   ]
 },
 F7: {
@@ -824,7 +906,7 @@ F1: [
   ['HTML', 'index.html', 'L495, L535', '<footer> และ <dialog id="service-modal">', '', 'landmark ท้ายหน้า และหน้าต่างแบบ native'],
   ['CSS', 'style.css', 'L169–179', '.visually-hidden', '', 'ซ่อนจากตาแต่ยังอ่านออกเสียงได้ ใช้กับ `<label for="service-search-input">` ที่ L221'],
   ['CSS', 'style.css', 'L213', '.btn:focus-visible', '', 'วาดวงโฟกัสรอบปุ่มเฉพาะตอนใช้คีย์บอร์ด'],
-  ['JS', 'app.js', 'L480–482', '<img alt>', 'renderServices()', 'ใส่ alt เป็นชื่อบริการให้รูปทุกใบในการ์ด'],
+  ['JS', 'app.js', 'L480–482', '<img alt>', 'card.innerHTML  alt="${displayTitle}"', 'ใน renderServices ใส่ alt เป็นชื่อบริการให้รูปทุกใบในการ์ด'],
   ['JS', 'app.js', 'L768–770', '<span class="inline-error-text">', 'showError() .textContent', 'เขียนข้อความผิดพลาดลง span ที่มี aria-live'],
 ],
 F2: [
@@ -835,9 +917,11 @@ F2: [
   ['CSS', 'style.css', 'L1739', '@media (max-width: 1023px)', '', 'L1740 แสดง `.menu-toggle-btn` L1748 ซ่อน `.main-nav` L1766 `.main-nav.is-open` เปิดเมนู'],
   ['CSS', 'style.css', 'L1832', '@media (max-width: 480px)', '', 'ปรับระยะและขนาดตัวอักษรสำหรับจอโทรศัพท์'],
   ['CSS', 'style.css', 'L1908', '@media (min-width: 1024px)', '', 'จอใหญ่ แสดงเมนูเต็มแถว'],
-  ['JS', 'app.js', 'L883–886', '#menu-toggle-btn, #main-nav', 'setupMobileNav() classList.toggle("is-open")', 'คลิกแล้วสลับ aria-expanded และเติมหรือถอด class `is-open`'],
-  ['JS', 'app.js', 'L552–558', '#expand-services-wrapper', 'updateServicesDisplay() innerWidth <= 768', 'จอไม่เกิน 768px แสดง 4 การ์ดด้วย `slice(0, 4)` และเปิดปุ่มดูทั้งหมด'],
-  ['JS', 'app.js', 'L971', '#expand-services-btn', 'addEventListener("click")', 'สลับ isServicesExpanded แล้ววาดการ์ดใหม่'],
+  ['JS', 'app.js', 'L878–879', '#menu-toggle-btn  #main-nav', 'document.getElementById()', 'setupMobileNav หยิบปุ่มแฮมเบอร์เกอร์กับเมนู'],
+  ['JS', 'app.js', 'L883–886', '#menu-toggle-btn  #main-nav', 'addEventListener("click")  setAttribute("aria-expanded")  classList.toggle("is-open")', 'คลิกแล้วสลับ aria-expanded และเติมหรือถอด class `is-open`'],
+  ['JS', 'app.js', 'L889–894', '.nav-link', 'mainNav.querySelectorAll()  addEventListener("click")  classList.remove("is-open")', 'กดลิงก์ในเมนูแล้วปิดเมนูมือถือ'],
+  ['JS', 'app.js', 'L551–558', '#expand-services-wrapper', 'document.getElementById()  window.innerWidth <= 768  .slice(0, 4)', 'จอไม่เกิน 768px แสดง 4 การ์ดด้วย `slice(0, 4)` และเปิดปุ่มดูทั้งหมด'],
+  ['JS', 'app.js', 'L967–971', '#expand-services-btn  #expand-services-text', 'document.getElementById()  addEventListener("click")', 'สลับ isServicesExpanded แล้ววาดการ์ดใหม่'],
   ['JS', 'app.js', 'L1267', 'window', 'addEventListener("resize")', 'ย่อขยายหน้าต่างแล้วเรียก updateServicesDisplay ใหม่'],
 ],
 F3: [
@@ -846,7 +930,7 @@ F3: [
   ['JS', 'app.js', 'L195–420', 'servicesData', 'array 16 object', 'ข้อมูลบริการทั้งหมด หนึ่ง object ต่อหนึ่งการ์ด'],
   ['JS', 'app.js', 'L434', '#services-grid-container', 'document.getElementById()', 'หยิบกล่องการ์ดจาก HTML'],
   ['JS', 'app.js', 'L439', '#services-grid-container', '.innerHTML = ""', 'ล้างการ์ดชุดเก่าก่อนวาดใหม่'],
-  ['JS', 'app.js', 'L443, L446', '#no-results-msg', '.hidden', 'ไม่มีรายการให้แสดง ถ้ามีรายการให้ซ่อน'],
+  ['JS', 'app.js', 'L435, L443, L446', '#no-results-msg', 'document.getElementById()  .hidden', 'ไม่มีรายการให้แสดง ถ้ามีรายการให้ซ่อน'],
   ['JS', 'app.js', 'L451–454', '<article class="service-card">', 'createElement("article") .className dataset.id', 'สร้างการ์ดหนึ่งใบต่อหนึ่ง object และฝาก id ไว้'],
   ['JS', 'app.js', 'L480', '<img> <h3 class="card-title"> <p class="card-desc"> <button>', 'card.innerHTML', 'ใส่รูป ชื่อ คำอธิบาย และปุ่ม data-service-id data-toggle-id data-delete-id'],
   ['JS', 'app.js', 'L495', '#services-grid-container', '.appendChild(card)', 'ต่อการ์ดลงกล่องทีละใบ'],
@@ -871,15 +955,15 @@ F4: [
 F5: [
   ['HTML', 'index.html', 'L214–216', '<button class="filter-btn" data-category>', '', 'ปุ่มกรอง All Office Industrial'],
   ['HTML', 'index.html', 'L224, L236', '<input id="service-search-input"> <select id="service-sort-select">', '', 'ช่องค้นหาและตัวเลือกเรียง'],
-  ['JS', 'app.js', 'L423–425', 'currentCategory searchKeyword currentSort', 'let', 'ตัวแปรสถานะสามตัวที่ทุกปุ่มเปลี่ยน'],
+  ['JS', 'app.js', 'L422–424', 'currentCategory  searchKeyword  currentSort', 'let', 'ตัวแปรสถานะสามตัวที่ทุกปุ่มเปลี่ยน'],
   ['JS', 'app.js', 'L722–727', '.filter-btn', 'querySelectorAll() classList.add("active") dataset.category', 'ย้ายไฮไลต์ไปปุ่มที่กด แล้วเก็บหมวดลง currentCategory'],
-  ['JS', 'app.js', 'L735', '#service-search-input', 'addEventListener("input")', 'พิมพ์แล้วเก็บคำค้นลง searchKeyword'],
-  ['JS', 'app.js', 'L744', '#service-sort-select', 'addEventListener("change")', 'เปลี่ยนแล้วเก็บลง currentSort'],
+  ['JS', 'app.js', 'L733, L735', '#service-search-input', 'document.getElementById()  addEventListener("input")', 'พิมพ์แล้วเก็บคำค้นลง searchKeyword'],
+  ['JS', 'app.js', 'L742, L744', '#service-sort-select', 'document.getElementById()  addEventListener("change")', 'เปลี่ยนแล้วเก็บลง currentSort'],
   ['JS', 'app.js', 'L502–547', 'servicesData', 'getFilteredAndSortedServices() .filter() localeCompare', 'คัดลอก array แล้วกรอง ค้น เรียง'],
-  ['JS', 'app.js', 'L575', '#services-grid-container', 'addEventListener("click")', 'listener ตัวเดียวที่กล่องแม่ รับคลิกทุกปุ่มในการ์ด'],
+  ['JS', 'app.js', 'L572, L575', '#services-grid-container', 'document.getElementById()  addEventListener("click")', 'listener ตัวเดียวที่กล่องแม่ รับคลิกทุกปุ่มในการ์ด'],
   ['JS', 'app.js', 'L577–579', '[data-delete-id]', 'e.target.closest() Number()', 'หาปุ่มลบ แปลง id เป็นตัวเลขแล้ว filter ทิ้ง'],
   ['JS', 'app.js', 'L588–590', '[data-toggle-id]', 'e.target.closest()', 'สลับ isSelected ของบริการนั้น'],
-  ['JS', 'app.js', 'L601–603', '[data-service-id]', 'e.target.closest() openServiceModal()', 'เปิดหน้าต่างรายละเอียด ส่งต่อให้ F6'],
+  ['JS', 'app.js', 'L601–604', '[data-service-id]', 'e.target.closest()  Number()  openServiceModal()', 'เปิดหน้าต่างรายละเอียด ส่งต่อให้ F6'],
   ['CSS', 'style.css', 'L855', '.filter-btn.active', '', 'สีปุ่มกรองที่กำลังเลือก'],
   ['CSS', 'style.css', 'L1073, L1090', '.btn-card-selected  .service-card.is-selected', '', 'หน้าตาปุ่มและการ์ดที่สนใจแล้ว'],
 ],
@@ -887,11 +971,12 @@ F6: [
   ['HTML', 'index.html', 'L535', '<dialog id="service-modal" class="native-dialog" aria-labelledby="dialog-title">', '', 'หน้าต่างแบบ native ของ HTML5'],
   ['HTML', 'index.html', 'L538, L542', '<h3 id="dialog-title"> <div id="dialog-body-content">', '', 'ที่ว่างให้ JS ใส่ชื่อและรายละเอียด'],
   ['HTML', 'index.html', 'L539, L548', '<button id="dialog-close-btn"> <button id="dialog-confirm-btn">', '', 'ปุ่มปิดสองปุ่ม'],
-  ['JS', 'app.js', 'L601–603', '[data-service-id]', 'closest() Number() openServiceModal(id)', 'คลิก View Details แล้วส่ง id ตัวเลขเข้าฟังก์ชัน'],
+  ['JS', 'app.js', 'L601–604', '[data-service-id]', 'e.target.closest()  Number()  openServiceModal(idToView)', 'คลิก View Details แล้วส่ง id ตัวเลขเข้าฟังก์ชัน'],
   ['JS', 'app.js', 'L614–616', '#service-modal #dialog-title #dialog-body-content', 'document.getElementById()', 'หยิบ dialog และสองช่องข้างใน'],
   ['JS', 'app.js', 'L627', '#dialog-title', '.textContent', 'ใส่ชื่อบริการตามภาษาปัจจุบัน'],
   ['JS', 'app.js', 'L636', '#dialog-body-content', '.innerHTML', 'ใส่รูปและคำอธิบาย'],
   ['JS', 'app.js', 'L654', '#service-modal', 'modal.showModal()', 'เปิดแบบ modal มีฉากหลังและกักโฟกัส'],
+  ['JS', 'app.js', 'L658–660', '#service-modal  #dialog-close-btn  #dialog-confirm-btn', 'document.getElementById()', 'setupModalListeners หยิบ dialog กับปุ่มปิดสองปุ่มอีกรอบ เพราะเป็นคนละฟังก์ชันกับ openServiceModal'],
   ['JS', 'app.js', 'L666, L671', '#dialog-close-btn #dialog-confirm-btn', 'addEventListener("click") modal.close()', 'กดปุ่มแล้วปิด'],
   ['JS', 'app.js', 'L675–686', '#service-modal', 'getBoundingClientRect() modal.close()', 'คลิกนอกกล่องแล้วปิด'],
   ['JS', 'app.js', 'L689–693', 'window', 'addEventListener("keydown") e.key === "Escape"', 'กด Esc ตอน modal.open แล้วปิด'],
@@ -918,6 +1003,7 @@ THEME: [
   ['CSS', 'style.css', 'L95', '[data-theme="light"]', '', 'ทับตัวแปรเดิมด้วยค่าชุดสว่าง ทุกอย่างที่ใช้ var() เปลี่ยนตาม'],
   ['CSS', 'style.css', 'L360, L419', '.theme-switch  .theme-switch.is-light .theme-switch-thumb', '', 'หน้าตาสวิตช์และตำแหน่งปุ่มกลม'],
   ['JS', 'app.js', 'L1152', 'currentTheme', 'let', 'จำธีมปัจจุบันไว้ในหน่วยความจำ'],
+  ['JS', 'app.js', 'L1155–1156', '#theme-toggle-btn  #theme-mode-text', 'document.getElementById()', 'หยิบสวิตช์และข้อความ Dark Light'],
   ['JS', 'app.js', 'L1161', '<html>', 'document.documentElement.setAttribute("data-theme")', 'เปลี่ยนค่าที่ CSS L95 ใช้จับ'],
   ['JS', 'app.js', 'L1162–1163', '#theme-toggle-btn', 'setAttribute("aria-checked") classList.toggle("is-light")', 'บอกสถานะสวิตช์และเลื่อนปุ่มกลม'],
   ['JS', 'app.js', 'L1166', '#theme-mode-text', '.textContent', 'เปลี่ยนคำ Dark Light ตามภาษา'],
@@ -930,6 +1016,7 @@ LANG: [
   ['HTML', 'index.html', 'L228', '<input data-i18n-placeholder>', '', 'ช่องค้นหาที่แปล placeholder'],
   ['JS', 'app.js', 'L14', 'currentLang', 'let currentLang = "en"', 'เปิดหน้ามาเป็นภาษาอังกฤษ'],
   ['JS', 'app.js', 'L16–189', 'translations', 'object th และ en', 'พจนานุกรม กุญแจเดียวกันมีสองภาษา'],
+  ['JS', 'app.js', 'L1019–1022', '#lang-toggle-btn  #lang-code-th  #lang-code-en  #theme-toggle-btn', 'document.getElementById()', 'หยิบปุ่มภาษา ตัวอักษร TH EN และสวิตช์ธีม'],
   ['JS', 'app.js', 'L1030–1033', '[data-i18n]', 'querySelectorAll() .textContent', 'วนทุก element ที่มีกุญแจ แล้วใส่คำแปล'],
   ['JS', 'app.js', 'L1038', '[data-i18n-placeholder]', 'querySelectorAll() .placeholder', 'แปลข้อความจางในช่องกรอก'],
   ['JS', 'app.js', 'L1048–1052', '#lang-code-th #lang-code-en', 'classList.add("is-active")', 'ไฮไลต์ภาษาที่ใช้อยู่'],
@@ -941,7 +1028,9 @@ LANG: [
 };
 for (const k in W) DATA[k].wiring = W[k];
 
-const CAP = {"F1": [{"code": [{"file": "index.html", "rows": [{"n": 409, "t": "              <!-- Field 1: Customer Name -->", "m": ""}, {"n": 410, "t": "              <div class=\"form-group\">", "m": ""}, {"n": 411, "t": "                <label for=\"contact-name\" class=\"form-label\">", "m": "del"}, {"n": 411, "t": "                <label for=\"name\" class=\"form-label\">", "m": "add"}, {"n": 412, "t": "                  <span data-i18n=\"contact.nameLabel\">ชื่อผู้ติดต่อ / บริษัท</span> <span class=\"required-mark\" aria-hidden=\"true\">*</span>", "m": ""}, {"n": 413, "t": "                </label>", "m": ""}]}], "cap": {"a": {"img": "f1_0_a.webp", "w": 1000, "h": 236, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f1_0_b.webp", "w": 1000, "h": 236, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "labelClick"}, {"code": [{"file": "index.html", "rows": [{"n": 72, "t": "", "m": ""}, {"n": 73, "t": "  <!-- ==================== MAIN CONTENT LANDMARK ==================== -->", "m": ""}, {"n": 74, "t": "  <main>", "m": "del"}, {"n": 74, "t": "  <div>", "m": "add"}, {"n": 75, "t": "", "m": ""}, {"n": 76, "t": "    <!-- SECTION 1: HERO -->", "m": ""}]}, {"file": "index.html", "rows": [{"n": 490, "t": "    </section>", "m": ""}, {"n": 491, "t": "", "m": ""}, {"n": 492, "t": "  </main>", "m": "del"}, {"n": 492, "t": "  </div>", "m": "add"}, {"n": 493, "t": "", "m": ""}, {"n": 494, "t": "  <!-- ==================== FOOTER LANDMARK ==================== -->", "m": ""}]}], "cap": {"a": {"img": "f1_1_a.webp", "w": 1000, "h": 56, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f1_1_b.webp", "w": 1000, "h": 56, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "scrollServices"}, {"code": [{"file": "css/style.css", "rows": [{"n": 167, "t": "", "m": ""}, {"n": 168, "t": "/* Screen reader utility */", "m": ""}, {"n": 169, "t": ".visually-hidden {", "m": "del"}, {"n": 170, "t": "  position: absolute;", "m": "del"}, {"n": 171, "t": "  width: 1px;", "m": "del"}, {"n": 172, "t": "  height: 1px;", "m": "del"}, {"n": 173, "t": "  padding: 0;", "m": "del"}, {"n": 174, "t": "  margin: -1px;", "m": "del"}, {"n": 175, "t": "  overflow: hidden;", "m": "del"}, {"n": 176, "t": "  clip: rect(0, 0, 0, 0);", "m": "del"}, {"n": 177, "t": "  white-space: nowrap;", "m": "del"}, {"n": 178, "t": "  border: 0;", "m": "del"}, {"n": 179, "t": "}", "m": "del"}, {"n": 180, "t": "", "m": ""}, {"n": 181, "t": "/* --------------------------------------------------------------------------", "m": ""}]}], "cap": {"a": {"img": "f1_2_a.webp", "w": 1000, "h": 94, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f1_2_b.webp", "w": 1000, "h": 115, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "none"}], "F2": [{"code": [{"file": "css/style.css", "rows": [{"n": 121, "t": "/* CSS Reset ensuring zero horizontal overflow */", "m": ""}, {"n": 122, "t": "*, *::before, *::after {", "m": ""}, {"n": 123, "t": "  box-sizing: border-box;", "m": "del"}, {"n": 124, "t": "  margin: 0;", "m": ""}, {"n": 125, "t": "  padding: 0;", "m": ""}]}], "cap": {"a": {"img": "f2_0_a.webp", "w": 800, "h": 1600, "cons": [], "facts": {"url": "", "cards": 4, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f2_0_b.webp", "w": 800, "h": 1600, "cons": [], "facts": {"url": "", "cards": 4, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "w400scroll"}, {"code": [{"file": "css/style.css", "rows": [{"n": 1738, "t": "/* Tablet & Mobile Screens (<= 1023px) */", "m": ""}, {"n": 1739, "t": "@media (max-width: 1023px) {", "m": ""}, {"n": 1740, "t": "  .menu-toggle-btn {", "m": "del"}, {"n": 1741, "t": "    display: flex;", "m": "del"}, {"n": 1742, "t": "  }", "m": "del"}, {"n": 1743, "t": "", "m": ""}, {"n": 1744, "t": "  .nav-cta {", "m": ""}]}], "cap": {"a": {"img": "f2_1_a.webp", "w": 800, "h": 128, "cons": [], "facts": {"url": "", "cards": 4, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f2_1_b.webp", "w": 800, "h": 128, "cons": [], "facts": {"url": "", "cards": 4, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "w400"}, {"code": [{"file": "css/style.css", "rows": [{"n": 928, "t": ".services-grid {", "m": ""}, {"n": 929, "t": "  display: grid;", "m": ""}, {"n": 930, "t": "  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));", "m": "del"}, {"n": 930, "t": "  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));", "m": "add"}, {"n": 931, "t": "  gap: 1.75rem;", "m": ""}, {"n": 932, "t": "}", "m": ""}]}], "cap": {"a": {"img": "f2_2_a.webp", "w": 1000, "h": 441, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f2_2_b.webp", "w": 1000, "h": 767, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "none"}], "F3": [{"code": [{"file": "js/app.js", "rows": [{"n": 437, "t": "", "m": ""}, {"n": 438, "t": "  // 1. เคลียร์คอนเทนเนอร์ก่อนแสดงผลใหม่เสมอ (ตามกฎเกณฑ์ข้อ 3)", "m": ""}, {"n": 439, "t": "  container.innerHTML = \"\";", "m": "del"}, {"n": 440, "t": "", "m": ""}, {"n": 441, "t": "  // 2. ตรวจสอบกรณีไม่มีข้อมูลตรงตามเงื่อนไข (Empty State)", "m": ""}]}], "cap": {"a": {"img": "f3_0_a.webp", "w": 1000, "h": 1159, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f3_0_b.webp", "w": 1000, "h": 1159, "cons": [], "facts": {"url": "", "cards": 48, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": true, "act": "none"}, {"code": [{"file": "js/app.js", "rows": [{"n": 493, "t": "    `;", "m": ""}, {"n": 494, "t": "", "m": ""}, {"n": 495, "t": "    container.appendChild(card);", "m": "del"}, {"n": 496, "t": "  });", "m": ""}, {"n": 497, "t": "}", "m": ""}]}], "cap": {"a": {"img": "f3_1_a.webp", "w": 1000, "h": 552, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f3_1_b.webp", "w": 1000, "h": 310, "cons": [], "facts": {"url": "", "cards": 0, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "none"}, {"code": [{"file": "js/app.js", "rows": [{"n": 432, "t": "", "m": ""}, {"n": 433, "t": "function renderServices(items) {", "m": ""}, {"n": 434, "t": "  const container = document.getElementById(\"services-grid-container\");", "m": "del"}, {"n": 434, "t": "  const container = document.getElementById(\"service-grid-container\");", "m": "add"}, {"n": 435, "t": "  const emptyMessage = document.getElementById(\"no-results-msg\");", "m": ""}, {"n": 436, "t": "  if (!container) return;", "m": ""}]}], "cap": {"a": {"img": "f3_2_a.webp", "w": 1000, "h": 552, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f3_2_b.webp", "w": 1000, "h": 310, "cons": [], "facts": {"url": "", "cards": 0, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "none"}], "F4": [{"code": [{"file": "js/app.js", "rows": [{"n": 783, "t": "  form.addEventListener(\"submit\", (e) => {", "m": ""}, {"n": 784, "t": "    // 1. บังคับใช้ e.preventDefault()", "m": ""}, {"n": 785, "t": "    e.preventDefault();", "m": "del"}, {"n": 786, "t": "", "m": ""}, {"n": 787, "t": "    let isValid = true;", "m": ""}]}], "cap": {"a": {"img": "f4_0_a.webp", "w": 1000, "h": 441, "cons": [], "facts": {"url": "", "cards": 17, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f4_0_b.webp", "w": 1000, "h": 441, "cons": [], "facts": {"url": "?contactName=&contactPhone=&contactService=&contactNotes=", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "submitValid"}, {"code": [{"file": "js/app.js", "rows": [{"n": 821, "t": "    }", "m": ""}, {"n": 822, "t": "", "m": ""}, {"n": 823, "t": "    if (!isValid) return;", "m": "del"}, {"n": 824, "t": "", "m": ""}, {"n": 825, "t": "    // แผนผังข้อมูลระบบที่เลือก", "m": ""}]}], "cap": {"a": {"img": "f4_1_a.webp", "w": 1000, "h": 1305, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f4_1_b.webp", "w": 800, "h": 970, "cons": [], "facts": {"url": "", "cards": 17, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "submitEmpty"}, {"code": [{"file": "js/app.js", "rows": [{"n": 754, "t": "function setupFormValidation() {", "m": ""}, {"n": 755, "t": "  const form = document.getElementById(\"consultation-form\");", "m": ""}, {"n": 756, "t": "  const nameInput = document.getElementById(\"contact-name\");", "m": "del"}, {"n": 756, "t": "  const nameInput = document.getElementById(\"contact-nme\");", "m": "add"}, {"n": 757, "t": "  const phoneInput = document.getElementById(\"contact-phone\");", "m": ""}, {"n": 758, "t": "  const serviceSelect = document.getElementById(\"contact-service\");", "m": ""}]}], "cap": {"a": {"img": "f4_2_a.webp", "w": 1000, "h": 1305, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f4_2_b.webp", "w": 1000, "h": 1294, "cons": [], "facts": {"url": "?contactName=&contactPhone=&contactService=&contactNotes=", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "submitEmpty"}], "F5": [{"code": [{"file": "js/app.js", "rows": [{"n": 577, "t": "    const deleteBtn = e.target.closest(\"[data-delete-id]\");", "m": ""}, {"n": 578, "t": "    if (deleteBtn) {", "m": ""}, {"n": 579, "t": "      const idToDelete = Number(deleteBtn.dataset.deleteId);", "m": "del"}, {"n": 579, "t": "      const idToDelete = deleteBtn.dataset.deleteId;", "m": "add"}, {"n": 580, "t": "      servicesData = servicesData.filter((service) => service.id !== idToDelete);", "m": ""}, {"n": 581, "t": "      updateServicesDisplay();", "m": ""}]}], "cap": {"a": {"img": "f5_0_a.webp", "w": 1000, "h": 441, "cons": ["Item ID 17 deleted via Event Delegation."], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f5_0_b.webp", "w": 1000, "h": 441, "cons": ["Item ID 17 deleted via Event Delegation."], "facts": {"url": "", "cards": 17, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "addThenDelete"}, {"code": [{"file": "js/app.js", "rows": [{"n": 586, "t": "", "m": ""}, {"n": 587, "t": "    // 2. ตรวจสอบการคลิกปุ่ม Status Toggle \"+ สนใจระบบนี้ / ✔ เลือกแล้ว\" (Feature 5: Status Toggle)", "m": ""}, {"n": 588, "t": "    const toggleBtn = e.target.closest(\"[data-toggle-id]\");", "m": "del"}, {"n": 588, "t": "    const toggleBtn = e.target.closest(\"[data-toggleid]\");", "m": "add"}, {"n": 589, "t": "    if (toggleBtn) {", "m": ""}, {"n": 590, "t": "      const idToToggle = Number(toggleBtn.dataset.toggleId);", "m": ""}]}], "cap": {"a": {"img": "f5_1_a.webp", "w": 800, "h": 1066, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f5_1_b.webp", "w": 800, "h": 1066, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "toggleFirst"}, {"code": [{"file": "js/app.js", "rows": [{"n": 605, "t": "      return;", "m": ""}, {"n": 606, "t": "    }", "m": ""}, {"n": 607, "t": "  });", "m": "del"}, {"n": 607, "t": "  }", "m": "add"}, {"n": 608, "t": "}", "m": ""}, {"n": 609, "t": "", "m": ""}]}], "cap": {"a": {"img": "f5_2_a.webp", "w": 1000, "h": 552, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f5_2_b.webp", "w": 1000, "h": 310, "cons": ["error: missing ) after argument list"], "facts": {"url": "", "cards": 0, "search": "", "name": "", "modal": false, "theme": "dark"}}}, "same": false, "act": "none"}], "F6": [{"code": [{"file": "js/app.js", "rows": [{"n": 652, "t": "", "m": ""}, {"n": 653, "t": "  // เรียกใช้เมธอด Native HTML5 .showModal()", "m": ""}, {"n": 654, "t": "  modal.showModal();", "m": "del"}, {"n": 654, "t": "  modal.show();", "m": "add"}, {"n": 655, "t": "}", "m": ""}, {"n": 656, "t": "", "m": ""}]}], "cap": {"a": {"img": "f6_0_a.webp", "w": 1000, "h": 625, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": true, "theme": "light"}}, "b": {"img": "f6_0_b.webp", "w": 1000, "h": 625, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": true, "theme": "light"}}}, "same": false, "act": "openDetail"}, {"code": [{"file": "js/app.js", "rows": [{"n": 612, "t": "   ========================================================================== */", "m": ""}, {"n": 613, "t": "function openServiceModal(serviceId) {", "m": ""}, {"n": 614, "t": "  const modal = document.getElementById(\"service-modal\");", "m": "del"}, {"n": 614, "t": "  const modal = document.getElementById(\"servise-modal\");", "m": "add"}, {"n": 615, "t": "  const dialogTitle = document.getElementById(\"dialog-title\");", "m": ""}, {"n": 616, "t": "  const dialogBody = document.getElementById(\"dialog-body-content\");", "m": ""}]}], "cap": {"a": {"img": "f6_1_a.webp", "w": 1000, "h": 625, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": true, "theme": "light"}}, "b": {"img": "f6_1_b.webp", "w": 1000, "h": 625, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "openDetail"}, {"code": [{"file": "js/app.js", "rows": [{"n": 601, "t": "    const detailBtn = e.target.closest(\"[data-service-id]\");", "m": ""}, {"n": 602, "t": "    if (detailBtn) {", "m": ""}, {"n": 603, "t": "      const idToView = Number(detailBtn.dataset.serviceId);", "m": "del"}, {"n": 603, "t": "      const idToView = detailBtn.dataset.serviceId;", "m": "add"}, {"n": 604, "t": "      openServiceModal(idToView);", "m": ""}, {"n": 605, "t": "      return;", "m": ""}]}], "cap": {"a": {"img": "f6_2_a.webp", "w": 1000, "h": 625, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": true, "theme": "light"}}, "b": {"img": "f6_2_b.webp", "w": 1000, "h": 625, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "openDetail"}], "F7": [{"code": [{"file": "js/app.js", "rows": [{"n": 705, "t": "      const activeTag = document.activeElement.tagName.toLowerCase();", "m": ""}, {"n": 706, "t": "      if (activeTag !== \"input\" && activeTag !== \"textarea\" && activeTag !== \"select\") {", "m": ""}, {"n": 707, "t": "        e.preventDefault();", "m": "del"}, {"n": 708, "t": "        if (searchInput) {", "m": ""}, {"n": 709, "t": "          searchInput.focus();", "m": ""}]}], "cap": {"a": {"img": "f7_0_a.webp", "w": 1000, "h": 552, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f7_0_b.webp", "w": 1000, "h": 552, "cons": [], "facts": {"url": "", "cards": 2, "search": "/", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "slash"}, {"code": [{"file": "js/app.js", "rows": [{"n": 704, "t": "    if (e.key === \"/\" && document.activeElement !== searchInput) {", "m": ""}, {"n": 705, "t": "      const activeTag = document.activeElement.tagName.toLowerCase();", "m": ""}, {"n": 706, "t": "      if (activeTag !== \"input\" && activeTag !== \"textarea\" && activeTag !== \"select\") {", "m": "del"}, {"n": 706, "t": "      if (true) {", "m": "add"}, {"n": 707, "t": "        e.preventDefault();", "m": ""}, {"n": 708, "t": "        if (searchInput) {", "m": ""}]}], "cap": {"a": {"img": "f7_1_a.webp", "w": 1000, "h": 236, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "a/b", "modal": false, "theme": "light"}}, "b": {"img": "f7_1_b.webp", "w": 1000, "h": 236, "cons": [], "facts": {"url": "", "cards": 14, "search": "b", "name": "a", "modal": false, "theme": "light"}}}, "same": false, "act": "typeAB"}, {"code": [{"file": "js/app.js", "rows": [{"n": 687, "t": "", "m": ""}, {"n": 688, "t": "  // ปิดด้วยปุ่ม Escape บนแป้นพิมพ์ (Explicit Keydown Listener)", "m": ""}, {"n": 689, "t": "  window.addEventListener(\"keydown\", (e) => {", "m": "del"}, {"n": 690, "t": "    if (e.key === \"Escape\" && modal.open) {", "m": "del"}, {"n": 691, "t": "      modal.close();", "m": "del"}, {"n": 692, "t": "    }", "m": "del"}, {"n": 693, "t": "  });", "m": "del"}, {"n": 694, "t": "}", "m": ""}, {"n": 695, "t": "", "m": ""}]}], "cap": {"a": {"img": "f7_2_a.webp", "w": 1000, "h": 625, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f7_2_b.webp", "w": 1000, "h": 625, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": true, "act": "openThenEsc"}], "THEME": [{"code": [{"file": "js/app.js", "rows": [{"n": 1159, "t": "  function applyTheme(theme) {", "m": ""}, {"n": 1160, "t": "    currentTheme = theme;", "m": ""}, {"n": 1161, "t": "    document.documentElement.setAttribute(\"data-theme\", theme);", "m": "del"}, {"n": 1162, "t": "    themeToggleBtn.setAttribute(\"aria-checked\", theme === \"light\" ? \"true\" : \"false\");", "m": ""}, {"n": 1163, "t": "    themeToggleBtn.classList.toggle(\"is-light\", theme === \"light\");", "m": ""}]}], "cap": {"a": {"img": "theme_0_a.webp", "w": 1000, "h": 406, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "theme_0_b.webp", "w": 1000, "h": 406, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "dark"}}}, "same": false, "act": "theme"}, {"code": [{"file": "css/style.css", "rows": [{"n": 93, "t": "", "m": ""}, {"n": 94, "t": "/* Light Theme Variables (High Contrast, Enterprise Calibrated) */", "m": ""}, {"n": 95, "t": "[data-theme=\"light\"] {", "m": "del"}, {"n": 95, "t": "[data-theme=\"ligth\"] {", "m": "add"}, {"n": 96, "t": "  --color-primary: #1f6b24;", "m": ""}, {"n": 97, "t": "  --color-primary-hover: #17541b;", "m": ""}]}], "cap": {"a": {"img": "theme_1_a.webp", "w": 1000, "h": 406, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "theme_1_b.webp", "w": 1000, "h": 406, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "theme"}, {"code": [{"file": "js/app.js", "rows": [{"n": 1161, "t": "    document.documentElement.setAttribute(\"data-theme\", theme);", "m": ""}, {"n": 1162, "t": "    themeToggleBtn.setAttribute(\"aria-checked\", theme === \"light\" ? \"true\" : \"false\");", "m": ""}, {"n": 1163, "t": "    themeToggleBtn.classList.toggle(\"is-light\", theme === \"light\");", "m": "del"}, {"n": 1164, "t": "", "m": ""}, {"n": 1165, "t": "    if (themeModeText) {", "m": ""}]}], "cap": {"a": {"img": "theme_2_a.webp", "w": 1000, "h": 406, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "theme_2_b.webp", "w": 1000, "h": 406, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "theme"}], "LANG": [{"code": [{"file": "js/app.js", "rows": [{"n": 1078, "t": "", "m": ""}, {"n": 1079, "t": "    // 6. แสดงผล dynamic services และ selected tags ใหม่ในภาษาที่เลือก", "m": ""}, {"n": 1080, "t": "    updateServicesDisplay();", "m": "del"}, {"n": 1081, "t": "    updateSelectedServicesUI();", "m": ""}, {"n": 1082, "t": "  }", "m": ""}]}], "cap": {"a": {"img": "lang_0_a.webp", "w": 1000, "h": 533, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light", "title": "เครื่อง X-Ray Scanner"}}, "b": {"img": "lang_0_b.webp", "w": 1000, "h": 552, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light", "title": "Access Control System"}}}, "same": false, "act": "lang"}, {"code": [{"file": "index.html", "rows": [{"n": 20, "t": "      <nav id=\"main-nav\" class=\"main-nav\" aria-label=\"เมนูนำทางหลัก\">", "m": ""}, {"n": 21, "t": "        <ul class=\"nav-list\">", "m": ""}, {"n": 22, "t": "          <li class=\"nav-item\"><a href=\"#hero\" class=\"nav-link active\" data-i18n=\"nav.home\">หน้าแรก</a></li>", "m": "del"}, {"n": 22, "t": "          <li class=\"nav-item\"><a href=\"#hero\" class=\"nav-link active\" data-i18n=\"nav.hom\">หน้าแรก</a></li>", "m": "add"}, {"n": 23, "t": "          <li class=\"nav-item\"><a href=\"#about\" class=\"nav-link\" data-i18n=\"nav.about\">เกี่ยวกับเรา</a></li>", "m": ""}, {"n": 24, "t": "          <li class=\"nav-item\"><a href=\"#services\" class=\"nav-link\" data-i18n=\"nav.services\">บริการ</a></li>", "m": ""}]}], "cap": {"a": {"img": "lang_1_a.webp", "w": 1000, "h": 56, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "lang_1_b.webp", "w": 1000, "h": 56, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "none"}, {"code": [{"file": "js/app.js", "rows": [{"n": 1086, "t": "", "m": ""}, {"n": 1087, "t": "  langToggleBtn.addEventListener(\"click\", () => {", "m": ""}, {"n": 1088, "t": "    const nextLang = currentLang === \"th\" ? \"en\" : \"th\";", "m": "del"}, {"n": 1088, "t": "    const nextLang = currentLang === \"th\" ? \"th\" : \"en\";", "m": "add"}, {"n": 1089, "t": "    applyLanguage(nextLang);", "m": ""}, {"n": 1090, "t": "  });", "m": ""}]}], "cap": {"a": {"img": "lang_2_a.webp", "w": 1000, "h": 56, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "lang_2_b.webp", "w": 1000, "h": 56, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "lang"}]};
+const CAP = {"F1": [{"code": [{"file": "index.html", "rows": [{"n": 409, "t": "              <!-- Field 1: Customer Name -->", "m": ""}, {"n": 410, "t": "              <div class=\"form-group\">", "m": ""}, {"n": 411, "t": "                <label for=\"contact-name\" class=\"form-label\">", "m": "del"}, {"n": 411, "t": "                <label for=\"name\" class=\"form-label\">", "m": "add"}, {"n": 412, "t": "                  <span data-i18n=\"contact.nameLabel\">ชื่อผู้ติดต่อ / บริษัท</span> <span class=\"required-mark\" aria-hidden=\"true\">*</span>", "m": ""}, {"n": 413, "t": "                </label>", "m": ""}]}], "cap": {"a": {"img": "f1_0_a.webp", "w": 1000, "h": 236, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f1_0_b.webp", "w": 1000, "h": 236, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "labelClick"}, {"code": [{"file": "index.html", "rows": [{"n": 72, "t": "", "m": ""}, {"n": 73, "t": "  <!-- ==================== MAIN CONTENT LANDMARK ==================== -->", "m": ""}, {"n": 74, "t": "  <main>", "m": "del"}, {"n": 74, "t": "  <div>", "m": "add"}, {"n": 75, "t": "", "m": ""}, {"n": 76, "t": "    <!-- SECTION 1: HERO -->", "m": ""}]}, {"file": "index.html", "rows": [{"n": 490, "t": "    </section>", "m": ""}, {"n": 491, "t": "", "m": ""}, {"n": 492, "t": "  </main>", "m": "del"}, {"n": 492, "t": "  </div>", "m": "add"}, {"n": 493, "t": "", "m": ""}, {"n": 494, "t": "  <!-- ==================== FOOTER LANDMARK ==================== -->", "m": ""}]}], "cap": {"a": {"img": "f1_1_a.webp", "w": 1000, "h": 56, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f1_1_b.webp", "w": 1000, "h": 56, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "scrollServices"}, {"code": [{"file": "css/style.css", "rows": [{"n": 167, "t": "", "m": ""}, {"n": 168, "t": "/* Screen reader utility */", "m": ""}, {"n": 169, "t": ".visually-hidden {", "m": "del"}, {"n": 170, "t": "  position: absolute;", "m": "del"}, {"n": 171, "t": "  width: 1px;", "m": "del"}, {"n": 172, "t": "  height: 1px;", "m": "del"}, {"n": 173, "t": "  padding: 0;", "m": "del"}, {"n": 174, "t": "  margin: -1px;", "m": "del"}, {"n": 175, "t": "  overflow: hidden;", "m": "del"}, {"n": 176, "t": "  clip: rect(0, 0, 0, 0);", "m": "del"}, {"n": 177, "t": "  white-space: nowrap;", "m": "del"}, {"n": 178, "t": "  border: 0;", "m": "del"}, {"n": 179, "t": "}", "m": "del"}, {"n": 180, "t": "", "m": ""}, {"n": 181, "t": "/* --------------------------------------------------------------------------", "m": ""}]}], "cap": {"a": {"img": "f1_2_a.webp", "w": 1000, "h": 94, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f1_2_b.webp", "w": 1000, "h": 115, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "none"}], "F2": [{"code": [{"file": "css/style.css", "rows": [{"n": 121, "t": "/* CSS Reset ensuring zero horizontal overflow */", "m": ""}, {"n": 122, "t": "*, *::before, *::after {", "m": ""}, {"n": 123, "t": "  box-sizing: border-box;", "m": "del"}, {"n": 124, "t": "  margin: 0;", "m": ""}, {"n": 125, "t": "  padding: 0;", "m": ""}]}], "cap": {"a": {"img": "f2_0_a.webp", "w": 800, "h": 1600, "cons": [], "facts": {"url": "", "cards": 4, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f2_0_b.webp", "w": 800, "h": 1600, "cons": [], "facts": {"url": "", "cards": 4, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "w400scroll"}, {"code": [{"file": "css/style.css", "rows": [{"n": 1738, "t": "/* Tablet & Mobile Screens (<= 1023px) */", "m": ""}, {"n": 1739, "t": "@media (max-width: 1023px) {", "m": ""}, {"n": 1740, "t": "  .menu-toggle-btn {", "m": "del"}, {"n": 1741, "t": "    display: flex;", "m": "del"}, {"n": 1742, "t": "  }", "m": "del"}, {"n": 1743, "t": "", "m": ""}, {"n": 1744, "t": "  .nav-cta {", "m": ""}]}], "cap": {"a": {"img": "f2_1_a.webp", "w": 800, "h": 128, "cons": [], "facts": {"url": "", "cards": 4, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f2_1_b.webp", "w": 800, "h": 128, "cons": [], "facts": {"url": "", "cards": 4, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "w400"}, {"code": [{"file": "css/style.css", "rows": [{"n": 928, "t": ".services-grid {", "m": ""}, {"n": 929, "t": "  display: grid;", "m": ""}, {"n": 930, "t": "  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));", "m": "del"}, {"n": 930, "t": "  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));", "m": "add"}, {"n": 931, "t": "  gap: 1.75rem;", "m": ""}, {"n": 932, "t": "}", "m": ""}]}], "cap": {"a": {"img": "f2_2_a.webp", "w": 1000, "h": 441, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f2_2_b.webp", "w": 1000, "h": 767, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "none"}], "F3": [{"code": [{"file": "js/app.js", "rows": [{"n": 437, "t": "", "m": ""}, {"n": 438, "t": "  // 1. เคลียร์คอนเทนเนอร์ก่อนแสดงผลใหม่เสมอ (ตามกฎเกณฑ์ข้อ 3)", "m": ""}, {"n": 439, "t": "  container.innerHTML = \"\";", "m": "del"}, {"n": 440, "t": "", "m": ""}, {"n": 441, "t": "  // 2. ตรวจสอบกรณีไม่มีข้อมูลตรงตามเงื่อนไข (Empty State)", "m": ""}]}], "cap": {"a": {"img": "f3_0_a.webp", "w": 1000, "h": 1159, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f3_0_b.webp", "w": 1000, "h": 1159, "cons": [], "facts": {"url": "", "cards": 48, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": true, "act": "none"}, {"code": [{"file": "js/app.js", "rows": [{"n": 493, "t": "    `;", "m": ""}, {"n": 494, "t": "", "m": ""}, {"n": 495, "t": "    container.appendChild(card);", "m": "del"}, {"n": 496, "t": "  });", "m": ""}, {"n": 497, "t": "}", "m": ""}]}], "cap": {"a": {"img": "f3_1_a.webp", "w": 1000, "h": 552, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f3_1_b.webp", "w": 1000, "h": 310, "cons": [], "facts": {"url": "", "cards": 0, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "none"}, {"code": [{"file": "js/app.js", "rows": [{"n": 432, "t": "", "m": ""}, {"n": 433, "t": "function renderServices(items) {", "m": ""}, {"n": 434, "t": "  const container = document.getElementById(\"services-grid-container\");", "m": "del"}, {"n": 434, "t": "  const container = document.getElementById(\"service-grid-container\");", "m": "add"}, {"n": 435, "t": "  const emptyMessage = document.getElementById(\"no-results-msg\");", "m": ""}, {"n": 436, "t": "  if (!container) return;", "m": ""}]}], "cap": {"a": {"img": "f3_2_a.webp", "w": 1000, "h": 552, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f3_2_b.webp", "w": 1000, "h": 310, "cons": [], "facts": {"url": "", "cards": 0, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "none"}, {"code": [{"file": "js/app.js", "rows": [{"n": 462, "t": "      : translations[currentLang][\"services.btnSelect\"];", "m": ""}, {"n": 463, "t": "    const detailText = translations[currentLang][\"services.btnDetails\"];", "m": ""}, {"n": 464, "t": "    const deleteText = translations[currentLang][\"services.btnDelete\"];", "m": "del"}, {"n": 465, "t": "", "m": ""}, {"n": 466, "t": "    // ปุ่ม Action:", "m": ""}]}], "cap": {"a": {"img": "f3_3_a.webp", "w": 1000, "h": 552, "cons": [], "facts": {"url": "", "cards": 17, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f3_3_b.webp", "w": 1000, "h": 552, "cons": ["error: deleteText is not defined", "error: deleteText is not defined"], "facts": {"url": "", "cards": 3, "search": "", "name": "Oatk Co", "modal": false, "theme": "light"}}}, "same": false, "act": "submitValid"}, {"code": [{"file": "js/app.js", "rows": [{"n": 450, "t": "    const badgeClass = service.category === \"office\" ? \"badge-office\" : \"badge-factory\";", "m": ""}, {"n": 451, "t": "    const card = document.createElement(\"article\");", "m": ""}, {"n": 452, "t": "    card.className = `service-card ${service.isSelected ? \"is-selected\" : \"\"}`;", "m": "del"}, {"n": 453, "t": "    card.dataset.id = service.id;", "m": ""}, {"n": 454, "t": "    card.dataset.category = service.category;", "m": ""}]}], "cap": {"a": {"img": "f3_4_a.webp", "w": 1000, "h": 1159, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f3_4_b.webp", "w": 1000, "h": 1159, "cons": [], "facts": {"url": "", "cards": 0, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "none"}, {"code": [{"file": "js/app.js", "rows": [{"n": 451, "t": "    const card = document.createElement(\"article\");", "m": ""}, {"n": 452, "t": "    card.className = `service-card ${service.isSelected ? \"is-selected\" : \"\"}`;", "m": ""}, {"n": 453, "t": "    card.dataset.id = service.id;", "m": "del"}, {"n": 454, "t": "    card.dataset.category = service.category;", "m": "del"}, {"n": 455, "t": "", "m": ""}, {"n": 456, "t": "    const displayTitle = currentLang === \"en\" && service.titleEn ? service.titleEn : service.title;", "m": ""}]}], "cap": {"a": {"img": "f3_5_a.webp", "w": 1000, "h": 441, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f3_5_b.webp", "w": 1000, "h": 441, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": true, "act": "none"}, {"code": [{"file": "js/app.js", "rows": [{"n": 491, "t": "        </div>", "m": ""}, {"n": 492, "t": "      </div>", "m": ""}, {"n": 493, "t": "    `;", "m": "del"}, {"n": 494, "t": "", "m": ""}, {"n": 495, "t": "    container.appendChild(card);", "m": ""}]}], "cap": {"a": {"img": "f3_6_a.webp", "w": 1000, "h": 552, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f3_6_b.webp", "w": 1000, "h": 310, "cons": ["error: Unexpected identifier 'Item'"], "facts": {"url": "", "cards": 0, "search": "", "name": "", "modal": false, "theme": "dark"}}}, "same": false, "act": "none"}, {"code": [{"file": "js/app.js", "rows": [{"n": 444, "t": "    return;", "m": ""}, {"n": 445, "t": "  }", "m": ""}, {"n": 446, "t": "  if (emptyMessage) emptyMessage.hidden = true;", "m": "del"}, {"n": 447, "t": "", "m": ""}, {"n": 448, "t": "  // 3. วนลูป Array เพื่อสร้าง DOM Nodes (Card) แสดงผล", "m": ""}]}], "cap": {"a": {"img": "f3_7_a.webp", "w": 1000, "h": 531, "cons": [], "facts": {"url": "", "cards": 2, "search": "cctv", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f3_7_b.webp", "w": 1000, "h": 751, "cons": [], "facts": {"url": "", "cards": 2, "search": "cctv", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "searchNoneThenCctv"}], "F4": [{"code": [{"file": "js/app.js", "rows": [{"n": 783, "t": "  form.addEventListener(\"submit\", (e) => {", "m": ""}, {"n": 784, "t": "    // 1. บังคับใช้ e.preventDefault()", "m": ""}, {"n": 785, "t": "    e.preventDefault();", "m": "del"}, {"n": 786, "t": "", "m": ""}, {"n": 787, "t": "    let isValid = true;", "m": ""}]}], "cap": {"a": {"img": "f4_0_a.webp", "w": 1000, "h": 441, "cons": [], "facts": {"url": "", "cards": 17, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f4_0_b.webp", "w": 1000, "h": 441, "cons": [], "facts": {"url": "?contactName=&contactPhone=&contactService=&contactNotes=", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "submitValid"}, {"code": [{"file": "js/app.js", "rows": [{"n": 821, "t": "    }", "m": ""}, {"n": 822, "t": "", "m": ""}, {"n": 823, "t": "    if (!isValid) return;", "m": "del"}, {"n": 824, "t": "", "m": ""}, {"n": 825, "t": "    // แผนผังข้อมูลระบบที่เลือก", "m": ""}]}], "cap": {"a": {"img": "f4_1_a.webp", "w": 1000, "h": 1305, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f4_1_b.webp", "w": 800, "h": 970, "cons": [], "facts": {"url": "", "cards": 17, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "submitEmpty"}, {"code": [{"file": "js/app.js", "rows": [{"n": 754, "t": "function setupFormValidation() {", "m": ""}, {"n": 755, "t": "  const form = document.getElementById(\"consultation-form\");", "m": ""}, {"n": 756, "t": "  const nameInput = document.getElementById(\"contact-name\");", "m": "del"}, {"n": 756, "t": "  const nameInput = document.getElementById(\"contact-nme\");", "m": "add"}, {"n": 757, "t": "  const phoneInput = document.getElementById(\"contact-phone\");", "m": ""}, {"n": 758, "t": "  const serviceSelect = document.getElementById(\"contact-service\");", "m": ""}]}], "cap": {"a": {"img": "f4_2_a.webp", "w": 1000, "h": 1305, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f4_2_b.webp", "w": 1000, "h": 1294, "cons": [], "facts": {"url": "?contactName=&contactPhone=&contactService=&contactNotes=", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "submitEmpty"}, {"code": [{"file": "js/app.js", "rows": [{"n": 800, "t": "      showError(nameInput, nameError, \"กรุณากรอกชื่อผู้ติดต่อหรือชื่อบริษัท\");", "m": ""}, {"n": 801, "t": "      isValid = false;", "m": ""}, {"n": 802, "t": "    } else if (nameVal.length < 3) {", "m": "del"}, {"n": 803, "t": "      showError(nameInput, nameError, \"ชื่อต้องมีความยาวอย่างน้อย 3 ตัวอักษร\");", "m": ""}, {"n": 804, "t": "      isValid = false;", "m": ""}]}], "cap": {"a": {"img": "f4_3_a.webp", "w": 1000, "h": 1297, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "ab", "modal": false, "theme": "light"}}, "b": {"img": "f4_3_b.webp", "w": 1000, "h": 1446, "cons": [], "facts": {"url": "", "cards": 17, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "submitAB"}, {"code": [{"file": "js/app.js", "rows": [{"n": 772, "t": "", "m": ""}, {"n": 773, "t": "  function clearError(inputEl, errorEl) {", "m": ""}, {"n": 774, "t": "    if (errorEl) errorEl.textContent = \"\";", "m": "del"}, {"n": 775, "t": "    if (inputEl) inputEl.classList.remove(\"is-invalid\");", "m": ""}, {"n": 776, "t": "  }", "m": ""}]}], "cap": {"a": {"img": "f4_4_a.webp", "w": 1000, "h": 1302, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "Oatk Co", "modal": false, "theme": "light"}}, "b": {"img": "f4_4_b.webp", "w": 1000, "h": 1305, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "Oatk Co", "modal": false, "theme": "light"}}}, "same": false, "act": "emptyThenTypeName"}, {"code": [{"file": "js/app.js", "rows": [{"n": 839, "t": "    // สร้าง Object ใหม่ (กำหนด isCustom: true เพื่อให้มีปุ่มลบรายการนี้ได้)", "m": ""}, {"n": 840, "t": "    const newServiceItem = {", "m": ""}, {"n": 841, "t": "      id: newId,", "m": "del"}, {"n": 842, "t": "      title: `${selectedMeta.title} (${nameVal})`,", "m": ""}, {"n": 843, "t": "      category: selectedMeta.cat,", "m": ""}]}], "cap": {"a": {"img": "f4_5_a.webp", "w": 1000, "h": 441, "cons": ["Item ID 17 deleted via Event Delegation."], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f4_5_b.webp", "w": 1000, "h": 441, "cons": ["Item ID NaN deleted via Event Delegation."], "facts": {"url": "", "cards": 17, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "addThenDelete"}, {"code": [{"file": "js/app.js", "rows": [{"n": 851, "t": "", "m": ""}, {"n": 852, "t": "    // เพิ่ม Object ใหม่เข้าสู่ Array", "m": ""}, {"n": 853, "t": "    servicesData.unshift(newServiceItem);", "m": "del"}, {"n": 854, "t": "", "m": ""}, {"n": 855, "t": "    // อัปเดตการแสดงผลและเรียก render()", "m": ""}]}], "cap": {"a": {"img": "f4_6_a.webp", "w": 1000, "h": 441, "cons": [], "facts": {"url": "", "cards": 17, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f4_6_b.webp", "w": 1000, "h": 441, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "submitValid"}, {"code": [{"file": "js/app.js", "rows": [{"n": 785, "t": "    e.preventDefault();", "m": ""}, {"n": 786, "t": "", "m": ""}, {"n": 787, "t": "    let isValid = true;", "m": "del"}, {"n": 788, "t": "    const nameVal = nameInput.value.trim();", "m": ""}, {"n": 789, "t": "    const phoneVal = phoneInput.value.trim();", "m": ""}]}], "cap": {"a": {"img": "f4_7_a.webp", "w": 1000, "h": 1305, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f4_7_b.webp", "w": 1000, "h": 1297, "cons": ["error: isValid is not defined"], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "submitEmpty"}], "F5": [{"code": [{"file": "js/app.js", "rows": [{"n": 577, "t": "    const deleteBtn = e.target.closest(\"[data-delete-id]\");", "m": ""}, {"n": 578, "t": "    if (deleteBtn) {", "m": ""}, {"n": 579, "t": "      const idToDelete = Number(deleteBtn.dataset.deleteId);", "m": "del"}, {"n": 579, "t": "      const idToDelete = deleteBtn.dataset.deleteId;", "m": "add"}, {"n": 580, "t": "      servicesData = servicesData.filter((service) => service.id !== idToDelete);", "m": ""}, {"n": 581, "t": "      updateServicesDisplay();", "m": ""}]}], "cap": {"a": {"img": "f5_0_a.webp", "w": 1000, "h": 441, "cons": ["Item ID 17 deleted via Event Delegation."], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f5_0_b.webp", "w": 1000, "h": 441, "cons": ["Item ID 17 deleted via Event Delegation."], "facts": {"url": "", "cards": 17, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "addThenDelete"}, {"code": [{"file": "js/app.js", "rows": [{"n": 586, "t": "", "m": ""}, {"n": 587, "t": "    // 2. ตรวจสอบการคลิกปุ่ม Status Toggle \"+ สนใจระบบนี้ / ✔ เลือกแล้ว\" (Feature 5: Status Toggle)", "m": ""}, {"n": 588, "t": "    const toggleBtn = e.target.closest(\"[data-toggle-id]\");", "m": "del"}, {"n": 588, "t": "    const toggleBtn = e.target.closest(\"[data-toggleid]\");", "m": "add"}, {"n": 589, "t": "    if (toggleBtn) {", "m": ""}, {"n": 590, "t": "      const idToToggle = Number(toggleBtn.dataset.toggleId);", "m": ""}]}], "cap": {"a": {"img": "f5_1_a.webp", "w": 800, "h": 1066, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f5_1_b.webp", "w": 800, "h": 1066, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "toggleFirst"}, {"code": [{"file": "js/app.js", "rows": [{"n": 605, "t": "      return;", "m": ""}, {"n": 606, "t": "    }", "m": ""}, {"n": 607, "t": "  });", "m": "del"}, {"n": 607, "t": "  }", "m": "add"}, {"n": 608, "t": "}", "m": ""}, {"n": 609, "t": "", "m": ""}]}], "cap": {"a": {"img": "f5_2_a.webp", "w": 1000, "h": 552, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f5_2_b.webp", "w": 1000, "h": 310, "cons": ["error: missing ) after argument list"], "facts": {"url": "", "cards": 0, "search": "", "name": "", "modal": false, "theme": "dark"}}}, "same": false, "act": "none"}], "F6": [{"code": [{"file": "js/app.js", "rows": [{"n": 652, "t": "", "m": ""}, {"n": 653, "t": "  // เรียกใช้เมธอด Native HTML5 .showModal()", "m": ""}, {"n": 654, "t": "  modal.showModal();", "m": "del"}, {"n": 654, "t": "  modal.show();", "m": "add"}, {"n": 655, "t": "}", "m": ""}, {"n": 656, "t": "", "m": ""}]}], "cap": {"a": {"img": "f6_0_a.webp", "w": 1000, "h": 625, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": true, "theme": "light"}}, "b": {"img": "f6_0_b.webp", "w": 1000, "h": 625, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": true, "theme": "light"}}}, "same": false, "act": "openDetail"}, {"code": [{"file": "js/app.js", "rows": [{"n": 612, "t": "   ========================================================================== */", "m": ""}, {"n": 613, "t": "function openServiceModal(serviceId) {", "m": ""}, {"n": 614, "t": "  const modal = document.getElementById(\"service-modal\");", "m": "del"}, {"n": 614, "t": "  const modal = document.getElementById(\"servise-modal\");", "m": "add"}, {"n": 615, "t": "  const dialogTitle = document.getElementById(\"dialog-title\");", "m": ""}, {"n": 616, "t": "  const dialogBody = document.getElementById(\"dialog-body-content\");", "m": ""}]}], "cap": {"a": {"img": "f6_1_a.webp", "w": 1000, "h": 625, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": true, "theme": "light"}}, "b": {"img": "f6_1_b.webp", "w": 1000, "h": 625, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "openDetail"}, {"code": [{"file": "js/app.js", "rows": [{"n": 601, "t": "    const detailBtn = e.target.closest(\"[data-service-id]\");", "m": ""}, {"n": 602, "t": "    if (detailBtn) {", "m": ""}, {"n": 603, "t": "      const idToView = Number(detailBtn.dataset.serviceId);", "m": "del"}, {"n": 603, "t": "      const idToView = detailBtn.dataset.serviceId;", "m": "add"}, {"n": 604, "t": "      openServiceModal(idToView);", "m": ""}, {"n": 605, "t": "      return;", "m": ""}]}], "cap": {"a": {"img": "f6_2_a.webp", "w": 1000, "h": 625, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": true, "theme": "light"}}, "b": {"img": "f6_2_b.webp", "w": 1000, "h": 625, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "openDetail"}, {"code": [{"file": "js/app.js", "rows": [{"n": 625, "t": "", "m": ""}, {"n": 626, "t": "  if (dialogTitle) {", "m": ""}, {"n": 627, "t": "    dialogTitle.textContent = displayTitle;", "m": "del"}, {"n": 628, "t": "  }", "m": ""}, {"n": 629, "t": "", "m": ""}]}], "cap": {"a": {"img": "f6_3_a.webp", "w": 1000, "h": 625, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": true, "theme": "light"}}, "b": {"img": "f6_3_b.webp", "w": 1000, "h": 625, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": true, "theme": "light"}}}, "same": false, "act": "openDetail"}, {"code": [{"file": "js/app.js", "rows": [{"n": 682, "t": "    );", "m": ""}, {"n": 683, "t": "    if (!isClickInside) {", "m": ""}, {"n": 684, "t": "      modal.close();", "m": "del"}, {"n": 685, "t": "    }", "m": ""}, {"n": 686, "t": "  });", "m": ""}]}], "cap": {"a": {"img": "f6_4_a.webp", "w": 1000, "h": 625, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f6_4_b.webp", "w": 1000, "h": 625, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": true, "theme": "light"}}}, "same": false, "act": "openThenBackdrop"}, {"code": [{"file": "js/app.js", "rows": [{"n": 656, "t": "", "m": ""}, {"n": 657, "t": "function setupModalListeners() {", "m": ""}, {"n": 658, "t": "  const modal = document.getElementById(\"service-modal\");", "m": "del"}, {"n": 659, "t": "  const closeBtn = document.getElementById(\"dialog-close-btn\");", "m": ""}, {"n": 660, "t": "  const confirmBtn = document.getElementById(\"dialog-confirm-btn\");", "m": ""}]}], "cap": {"a": {"img": "f6_5_a.webp", "w": 1000, "h": 625, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f6_5_b.webp", "w": 1000, "h": 625, "cons": ["error: modal is not defined"], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": true, "theme": "light"}}}, "same": false, "act": "openThenConfirm"}, {"code": [{"file": "js/app.js", "rows": [{"n": 612, "t": "   ========================================================================== */", "m": ""}, {"n": 613, "t": "function openServiceModal(serviceId) {", "m": ""}, {"n": 614, "t": "  const modal = document.getElementById(\"service-modal\");", "m": "del"}, {"n": 615, "t": "  const dialogTitle = document.getElementById(\"dialog-title\");", "m": ""}, {"n": 616, "t": "  const dialogBody = document.getElementById(\"dialog-body-content\");", "m": ""}]}], "cap": {"a": {"img": "f6_6_a.webp", "w": 1000, "h": 625, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": true, "theme": "light"}}, "b": {"img": "f6_6_b.webp", "w": 1000, "h": 625, "cons": ["error: modal is not defined"], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "openDetail"}, {"code": [{"file": "js/app.js", "rows": [{"n": 636, "t": "    dialogBody.innerHTML = `", "m": ""}, {"n": 637, "t": "      <div class=\"modal-img-wrapper\">", "m": ""}, {"n": 638, "t": "        <img src=\"${service.image}\" alt=\"${displayTitle}\" class=\"modal-img\">", "m": "del"}, {"n": 639, "t": "      </div>", "m": ""}, {"n": 640, "t": "      <div class=\"modal-badge-row\">", "m": ""}]}], "cap": {"a": {"img": "f6_7_a.webp", "w": 1000, "h": 625, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": true, "theme": "light"}}, "b": {"img": "f6_7_b.webp", "w": 1000, "h": 625, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": true, "theme": "light"}}}, "same": false, "act": "openDetail"}], "F7": [{"code": [{"file": "js/app.js", "rows": [{"n": 705, "t": "      const activeTag = document.activeElement.tagName.toLowerCase();", "m": ""}, {"n": 706, "t": "      if (activeTag !== \"input\" && activeTag !== \"textarea\" && activeTag !== \"select\") {", "m": ""}, {"n": 707, "t": "        e.preventDefault();", "m": "del"}, {"n": 708, "t": "        if (searchInput) {", "m": ""}, {"n": 709, "t": "          searchInput.focus();", "m": ""}]}], "cap": {"a": {"img": "f7_0_a.webp", "w": 1000, "h": 552, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f7_0_b.webp", "w": 1000, "h": 552, "cons": [], "facts": {"url": "", "cards": 2, "search": "/", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "slash"}, {"code": [{"file": "js/app.js", "rows": [{"n": 704, "t": "    if (e.key === \"/\" && document.activeElement !== searchInput) {", "m": ""}, {"n": 705, "t": "      const activeTag = document.activeElement.tagName.toLowerCase();", "m": ""}, {"n": 706, "t": "      if (activeTag !== \"input\" && activeTag !== \"textarea\" && activeTag !== \"select\") {", "m": "del"}, {"n": 706, "t": "      if (true) {", "m": "add"}, {"n": 707, "t": "        e.preventDefault();", "m": ""}, {"n": 708, "t": "        if (searchInput) {", "m": ""}]}], "cap": {"a": {"img": "f7_1_a.webp", "w": 1000, "h": 236, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "a/b", "modal": false, "theme": "light"}}, "b": {"img": "f7_1_b.webp", "w": 1000, "h": 236, "cons": [], "facts": {"url": "", "cards": 14, "search": "b", "name": "a", "modal": false, "theme": "light"}}}, "same": false, "act": "typeAB"}, {"code": [{"file": "js/app.js", "rows": [{"n": 687, "t": "", "m": ""}, {"n": 688, "t": "  // ปิดด้วยปุ่ม Escape บนแป้นพิมพ์ (Explicit Keydown Listener)", "m": ""}, {"n": 689, "t": "  window.addEventListener(\"keydown\", (e) => {", "m": "del"}, {"n": 690, "t": "    if (e.key === \"Escape\" && modal.open) {", "m": "del"}, {"n": 691, "t": "      modal.close();", "m": "del"}, {"n": 692, "t": "    }", "m": "del"}, {"n": 693, "t": "  });", "m": "del"}, {"n": 694, "t": "}", "m": ""}, {"n": 695, "t": "", "m": ""}]}], "cap": {"a": {"img": "f7_2_a.webp", "w": 1000, "h": 625, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "f7_2_b.webp", "w": 1000, "h": 625, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": true, "act": "openThenEsc"}], "THEME": [{"code": [{"file": "js/app.js", "rows": [{"n": 1159, "t": "  function applyTheme(theme) {", "m": ""}, {"n": 1160, "t": "    currentTheme = theme;", "m": ""}, {"n": 1161, "t": "    document.documentElement.setAttribute(\"data-theme\", theme);", "m": "del"}, {"n": 1162, "t": "    themeToggleBtn.setAttribute(\"aria-checked\", theme === \"light\" ? \"true\" : \"false\");", "m": ""}, {"n": 1163, "t": "    themeToggleBtn.classList.toggle(\"is-light\", theme === \"light\");", "m": ""}]}], "cap": {"a": {"img": "theme_0_a.webp", "w": 1000, "h": 406, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "theme_0_b.webp", "w": 1000, "h": 406, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "dark"}}}, "same": false, "act": "theme"}, {"code": [{"file": "css/style.css", "rows": [{"n": 93, "t": "", "m": ""}, {"n": 94, "t": "/* Light Theme Variables (High Contrast, Enterprise Calibrated) */", "m": ""}, {"n": 95, "t": "[data-theme=\"light\"] {", "m": "del"}, {"n": 95, "t": "[data-theme=\"ligth\"] {", "m": "add"}, {"n": 96, "t": "  --color-primary: #1f6b24;", "m": ""}, {"n": 97, "t": "  --color-primary-hover: #17541b;", "m": ""}]}], "cap": {"a": {"img": "theme_1_a.webp", "w": 1000, "h": 406, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "theme_1_b.webp", "w": 1000, "h": 406, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "theme"}, {"code": [{"file": "js/app.js", "rows": [{"n": 1161, "t": "    document.documentElement.setAttribute(\"data-theme\", theme);", "m": ""}, {"n": 1162, "t": "    themeToggleBtn.setAttribute(\"aria-checked\", theme === \"light\" ? \"true\" : \"false\");", "m": ""}, {"n": 1163, "t": "    themeToggleBtn.classList.toggle(\"is-light\", theme === \"light\");", "m": "del"}, {"n": 1164, "t": "", "m": ""}, {"n": 1165, "t": "    if (themeModeText) {", "m": ""}]}], "cap": {"a": {"img": "theme_2_a.webp", "w": 1000, "h": 406, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "theme_2_b.webp", "w": 1000, "h": 406, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "theme"}], "LANG": [{"code": [{"file": "js/app.js", "rows": [{"n": 1078, "t": "", "m": ""}, {"n": 1079, "t": "    // 6. แสดงผล dynamic services และ selected tags ใหม่ในภาษาที่เลือก", "m": ""}, {"n": 1080, "t": "    updateServicesDisplay();", "m": "del"}, {"n": 1081, "t": "    updateSelectedServicesUI();", "m": ""}, {"n": 1082, "t": "  }", "m": ""}]}], "cap": {"a": {"img": "lang_0_a.webp", "w": 1000, "h": 533, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light", "title": "เครื่อง X-Ray Scanner"}}, "b": {"img": "lang_0_b.webp", "w": 1000, "h": 552, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light", "title": "Access Control System"}}}, "same": false, "act": "lang"}, {"code": [{"file": "index.html", "rows": [{"n": 20, "t": "      <nav id=\"main-nav\" class=\"main-nav\" aria-label=\"เมนูนำทางหลัก\">", "m": ""}, {"n": 21, "t": "        <ul class=\"nav-list\">", "m": ""}, {"n": 22, "t": "          <li class=\"nav-item\"><a href=\"#hero\" class=\"nav-link active\" data-i18n=\"nav.home\">หน้าแรก</a></li>", "m": "del"}, {"n": 22, "t": "          <li class=\"nav-item\"><a href=\"#hero\" class=\"nav-link active\" data-i18n=\"nav.hom\">หน้าแรก</a></li>", "m": "add"}, {"n": 23, "t": "          <li class=\"nav-item\"><a href=\"#about\" class=\"nav-link\" data-i18n=\"nav.about\">เกี่ยวกับเรา</a></li>", "m": ""}, {"n": 24, "t": "          <li class=\"nav-item\"><a href=\"#services\" class=\"nav-link\" data-i18n=\"nav.services\">บริการ</a></li>", "m": ""}]}], "cap": {"a": {"img": "lang_1_a.webp", "w": 1000, "h": 56, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "lang_1_b.webp", "w": 1000, "h": 56, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "none"}, {"code": [{"file": "js/app.js", "rows": [{"n": 1086, "t": "", "m": ""}, {"n": 1087, "t": "  langToggleBtn.addEventListener(\"click\", () => {", "m": ""}, {"n": 1088, "t": "    const nextLang = currentLang === \"th\" ? \"en\" : \"th\";", "m": "del"}, {"n": 1088, "t": "    const nextLang = currentLang === \"th\" ? \"th\" : \"en\";", "m": "add"}, {"n": 1089, "t": "    applyLanguage(nextLang);", "m": ""}, {"n": 1090, "t": "  });", "m": ""}]}], "cap": {"a": {"img": "lang_2_a.webp", "w": 1000, "h": 56, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}, "b": {"img": "lang_2_b.webp", "w": 1000, "h": 56, "cons": [], "facts": {"url": "", "cards": 16, "search": "", "name": "", "modal": false, "theme": "light"}}}, "same": false, "act": "lang"}]};
+
+const DRILL = [{"id": "p1", "type": "Predict", "feat": "F5", "owner": "me", "w": 1280, "q": "ผู้ใช้กด [[Industrial Plants]] แล้วพิมพ์ `system` ในช่องค้นหา บนจอ 1280px จะเห็นการ์ดกี่ใบ ชื่ออะไร เรียงลำดับแบบไหน", "show": [["js", 502, 537]], "a": "เห็น **2 ใบ** คือ Chiller Plant Management System แล้วตามด้วย Intelligent Lighting System\nเพราะ L506–508 กรองเหลือเฉพาะ `category === \"factory\"` ได้ 4 รายการก่อน จากนั้น L511–529 ค้นคำใน 6 ช่องทั้งชื่อ คำอธิบาย และชื่อหมวด ทั้งไทยและอังกฤษ เหลือ 2 รายการที่มีคำว่า system\nลำดับเป็น A ถึง Z เพราะ `currentSort` เริ่มเป็น `\"name-asc\"` ที่ L424 จึงเข้า L532–537 ที่เรียงด้วย `localeCompare`", "check": "กด Industrial Plants แล้วพิมพ์ system ในกรอบ"}, {"id": "p2", "type": "Predict", "feat": "F2", "owner": "me", "w": 400, "q": "เปิดเว็บบนจอกว้าง 600px ตอนโหลดเสร็จ เห็นการ์ดกี่ใบ กี่คอลัมน์ และใต้การ์ดมีอะไร ถ้าเปลี่ยนเป็น 800px จะเป็นอย่างไร", "show": [["js", 549, 566]], "a": "600px เห็น **4 ใบ เรียง 1 คอลัมน์** ใต้การ์ดมีปุ่ม [[Show All Services (16 items)]]\nเพราะ L552 `window.innerWidth <= 768` เป็นจริง ยังไม่ได้ค้นหา หมวดเป็น all และมีมากกว่า 4 รายการ เงื่อนไข L555 จึงผ่าน L556 เปิดปุ่ม แล้ว L558 ส่งไปวาดแค่ `slice(0, 4)`\nที่เป็น 1 คอลัมน์เพราะ CSS L930 `minmax(320px, 1fr)` ความกว้างไม่พอให้การ์ด 320px สองใบ\n800px เห็น **16 ใบ 2 คอลัมน์** เพราะเกิน 768 เงื่อนไข L555 ไม่ผ่าน จึงไป L562 แล้ว L565 วาดครบ\n**กับดัก** L562 ตั้ง `expandWrapper.hidden = true` แต่ปุ่ม [[Show All Services (16 items)]] ยังโผล่อยู่ใต้การ์ด เพราะ CSS L1106 `.expand-services-wrapper { display: flex; }` ชนะ attribute `hidden` ของเบราว์เซอร์ ถ้าเขาถามว่าจอใหญ่เห็นปุ่มไหม คำตอบคือเห็น แม้ JS สั่งซ่อน", "check": "กดปุ่ม จอมือถือ 400px ในกรอบเพื่อดูแบบจอแคบ"}, {"id": "p3", "type": "Predict", "feat": "F5", "owner": "me", "w": 1280, "q": "ผู้ใช้ส่งฟอร์มเพิ่มรายการใหม่ครั้งแรก แล้วกด [[Delete Item]] ที่การ์ดนั้น console จะพิมพ์ว่าอะไร", "show": [["js", 575, 585]], "a": "พิมพ์ `Item ID 17 deleted via Event Delegation.`\nเพราะตอนเพิ่ม L837 หา id ใหม่จาก `Math.max` ของ id เดิม 1 ถึง 16 แล้วบวก 1 ได้ 17 ตอนลบ L579 อ่าน `data-delete-id` มาแปลงเป็น `Number` แล้ว L583 ใส่ค่านั้นลงใน template literal", "check": "กรอกฟอร์มให้ถูก กดส่ง แล้วกด Delete Item ดู Console ด้านล่าง"}, {"id": "p4", "type": "Predict", "feat": "F7", "owner": "me", "w": 1280, "q": "เคอร์เซอร์อยู่ในช่อง Contact Name แล้วผู้ใช้กดปุ่ม `/` จะเกิดอะไร", "show": [["js", 702, 714]], "a": "ตัว `/` ถูกพิมพ์ลงช่องชื่อตามปกติ โฟกัสไม่ย้ายไปช่องค้นหา\nเพราะ L704 ผ่าน เนื่องจากตัวที่โฟกัสอยู่ไม่ใช่ช่องค้นหา แต่ L705 อ่าน tagName ได้ `\"input\"` เงื่อนไข L706 จึงเป็นเท็จ ไม่ถึง `e.preventDefault()` ที่ L707 และไม่ถึง `focus()` ที่ L709 ตั้งใจเขียนไว้เพื่อไม่แย่งโฟกัสตอนผู้ใช้กำลังพิมพ์", "check": "คลิกช่องชื่อในฟอร์มแล้วกด /"}, {"id": "p5", "type": "Predict", "feat": "F3", "owner": "beef", "w": 1280, "q": "เปิดหน้าเว็บโดยยังไม่กดอะไรเลย `renderServices` ถูกเรียกกี่ครั้ง จากบรรทัดไหนบ้าง และทำไมการ์ดไม่ซ้ำ", "show": [["js", 1084, 1086], ["js", 1239, 1240], ["js", 438, 439]], "a": "**2 ครั้ง** ครั้งแรกมาจาก `setupLanguageSwitcher()` ที่เรียก `applyLanguage(currentLang)` L1085 ข้างในมี `updateServicesDisplay()` L1080 ครั้งที่สองคือ `updateServicesDisplay()` L1240 ใน DOMContentLoaded\nการ์ดไม่ซ้ำเพราะ L439 `container.innerHTML = \"\"` ล้างของเก่าทุกครั้งก่อนวาดใหม่"}, {"id": "p6", "type": "Predict", "feat": "F4", "owner": "beef", "w": 1280, "q": "กรอกชื่อ `ab` เบอร์ `0812345678` เลือก CCTV แล้วกด Submit จอแสดงอะไร การ์ดเพิ่มหรือไม่", "show": [["js", 798, 805], ["js", 823, 823]], "a": "ใต้ช่องชื่อขึ้นข้อความแดง [[ชื่อต้องมีความยาวอย่างน้อย 3 ตัวอักษร]] ช่องชื่อขอบแดง ช่องอื่นไม่มีข้อความ การ์ดยังเป็น 16 ใบ\nเพราะ L788 `trim()` ได้ `\"ab\"` ยาว 2 จึงเข้า L802 เรียก `showError` ที่ใส่ข้อความและ class `is-invalid` และตั้ง `isValid = false` พอถึง L823 จึง `return` ก่อนสร้าง object ใหม่", "check": "กรอกตามโจทย์ในกรอบแล้วกด Submit"}, {"id": "p7", "type": "Predict", "feat": "F4", "owner": "beef", "w": 1280, "q": "กรอกชื่อ `Oatk Co` เบอร์ `0812345678` เลือก CCTV แล้วกด Submit ผ่านทุกกฎ การ์ดใหม่จะไปอยู่ตำแหน่งไหนบนจอ ทั้งที่ L853 ใช้ `unshift`", "show": [["js", 852, 856]], "a": "อยู่ **ใบที่ 4** ต่อจาก CCTV Surveillance System ไม่ใช่ใบแรก\nเพราะ `unshift` ใส่ไว้หน้าสุดของ array จริง แต่ L856 เรียก `updateServicesDisplay()` ซึ่งผ่าน `getFilteredAndSortedServices()` ที่เรียงชื่อ A ถึง Z ทุกครั้ง ชื่อใหม่คือ \"CCTV Surveillance System (Oatk Co)\" จึงไปต่อจากชื่อที่ขึ้นต้นเหมือนกัน\nข้อนี้เป็นกับดัก เพราะในเอกสารโปรเจกต์เขียนว่าการ์ดใหม่ขึ้นบนสุด ถ้าเปลี่ยน sort เป็น Z ถึง A ก่อนส่ง ตำแหน่งก็จะเปลี่ยนตาม", "check": "กรอกตามโจทย์ในกรอบแล้วกด Submit เลื่อนดูการ์ด"}, {"id": "p8", "type": "Predict", "feat": "F6", "owner": "beef", "w": 1280, "q": "บนจอคอม เปิด [[View Details]] ของการ์ดแรก แล้วคลิกตรงกลางปุ่ม `×` มุมขวาบน จะเกิดอะไร", "show": [["js", 640, 642], ["css", 969, 972]], "a": "หน้าต่าง **ไม่ปิด** ทั้งที่ L666 ผูก `modal.close()` ไว้กับปุ่ม `×`\nเพราะป้ายหมวดที่ L641 ใช้ class `card-badge` ซึ่ง CSS L969–972 ตั้ง `position: absolute; top: 12px; right: 12px` ไว้สำหรับการ์ด พออยู่ใน modal ป้ายจึงไปลอยที่มุมขวาบนของ dialog ทับปุ่ม `×` คลิกแล้วโดนป้าย ไม่โดนปุ่ม\nlistener ของ dialog ที่ L675 เห็นว่าจุดที่คลิกอยู่ในกรอบ จึงไม่ปิดเช่นกัน ยังปิดได้ด้วยปุ่ม Close Window กด Esc คลิกฉากหลัง หรือคลิกขอบล่างของ `×` ที่โผล่พ้นป้าย\nข้อนี้เป็นบั๊กจริงในโค้ดที่ส่ง ถ้าเขาถามเรื่องปุ่มปิด ให้รู้ไว้ก่อน", "check": "กด View Details แล้วลองคลิกกลางปุ่ม × ในกรอบ"}, {"id": "c6", "type": "Change", "feat": "F6", "owner": "beef", "w": 1280, "q": "แก้บั๊กป้ายหมวดใน modal ที่ลอยทับปุ่ม `×` จากข้อ Predict ก่อนหน้า โดยไม่กระทบป้ายบนการ์ด", "show": [["js", 641, 641], ["css", 969, 972]], "a": "เพิ่ม CSS ให้ class `modal-badge` ที่มีเฉพาะป้ายใน modal กลับมาเป็น `position: static`\nเพราะป้ายใน modal มีทั้ง `card-badge` และ `modal-badge` อยู่บน element เดียวกัน ตามที่ L641 เขียน selector `.modal-badge` จึงเลือกได้เฉพาะป้ายใน modal ป้ายบนการ์ดไม่มี class นี้ จึงยังลอยมุมรูปเหมือนเดิม และกฎใหม่ต้องอยู่หลัง `.card-badge` ในไฟล์ เพราะความเจาะจงเท่ากัน ตัวที่อยู่หลังชนะ", "code": "/* style.css ท้ายไฟล์ */\n.modal-badge { position: static; display: inline-block; }", "patch": [{"f": "css", "at": 1966, "add": ".modal-badge { position: static; display: inline-block; }"}], "check": "กด View Details แล้วคลิกกลางปุ่ม × หน้าต่างต้องปิด"}, {"id": "c1", "type": "Change", "feat": "F5", "owner": "me", "w": 1280, "q": "เพิ่มตัวเลือกเรียงแบบ **ใหม่ล่าสุดก่อน** ให้รายการที่ id มากที่สุดขึ้นก่อน ต้องแก้ไฟล์ไหนบรรทัดไหน", "show": [["html", 236, 239], ["js", 538, 544]], "a": "แก้ 2 ไฟล์\n`index.html` ต่อจาก L238 เพิ่ม `<option value=\"newest\">Newest first</option>`\n`app.js` L544 เปลี่ยน `}` ที่ปิด else if ให้ต่อเงื่อนไขใหม่ แล้วเรียงด้วย `result.sort((a, b) => b.id - a.id)`\nเพราะ listener L744–746 อ่าน `e.target.value` มาใส่ `currentSort` แล้วเรียกวาดใหม่อยู่แล้ว เพิ่มแค่ค่าใน select กับเงื่อนไขก็พอ `b.id - a.id` ได้ค่าบวกเมื่อ b ใหม่กว่า b จึงขึ้นก่อน", "code": "<!-- index.html ต่อจาก L238 -->\n<option value=\"newest\">Newest first</option>\n\n// app.js แทน L544\n} else if (currentSort === \"newest\") {\n  result.sort((a, b) => b.id - a.id);\n}", "patch": [{"f": "html", "at": 238, "add": "              <option value=\"newest\">Newest first</option>"}, {"f": "js", "from": 544, "to": 544, "text": "  } else if (currentSort === \"newest\") {\n    result.sort((a, b) => b.id - a.id);\n  }"}], "check": "เพิ่มรายการผ่านฟอร์มก่อน แล้วเลือก Newest first การ์ดที่เพิ่มต้องขึ้นใบแรก"}, {"id": "c2", "type": "Change", "feat": "F7", "owner": "me", "w": 1280, "q": "เปลี่ยนคีย์ลัดโฟกัสช่องค้นหาจาก `/` เป็น `Ctrl+K` และบน Mac ใช้ `Cmd+K`", "show": [["js", 704, 707]], "a": "แก้ L704 เป็น `if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === \"k\") {`\nเพราะ `e.ctrlKey` กับ `e.metaKey` บอกว่ากดปุ่ม Ctrl หรือ Cmd ค้างอยู่ และใช้ `toLowerCase()` เพื่อให้ทำงานแม้เปิด Caps Lock ส่วน L707 `e.preventDefault()` ยังต้องอยู่ เพราะเบราว์เซอร์ใช้ Ctrl+K ทำอย่างอื่น\nควรแก้ placeholder ในพจนานุกรมที่บอกให้กด / ด้วย", "code": "if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === \"k\") {", "patch": [{"f": "js", "from": 704, "to": 704, "text": "    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === \"k\") {"}], "check": "คลิกพื้นที่ว่างในกรอบ แล้วกด Ctrl+K หรือ Cmd+K"}, {"id": "c3", "type": "Change", "feat": "F2", "owner": "me", "w": 400, "q": "บนจอไม่เกิน 768px ให้แสดง 6 การ์ดแรกแทน 4 ต้องแก้ตรงไหน", "show": [["js", 555, 559]], "a": "แก้ 2 จุดใน `app.js`\nL555 เปลี่ยน `filtered.length > 4` เป็น `filtered.length > 6`\nL558 เปลี่ยน `slice(0, 4)` เป็น `slice(0, 6)`\nเพราะ L555 ตัดสินว่าจะแสดงปุ่มดูทั้งหมดไหม ถ้าแก้แค่ slice แต่มีรายการ 5 หรือ 6 รายการ ปุ่มจะยังโผล่ทั้งที่แสดงครบแล้ว ต้องแก้สองจุดให้ตรงกัน", "code": "if (isMobile && !searchKeyword && currentCategory === \"all\" && filtered.length > 6) {\n  ...\n  renderServices(filtered.slice(0, 6));", "patch": [{"f": "js", "from": 555, "to": 555, "text": "  if (isMobile && !searchKeyword && currentCategory === \"all\" && filtered.length > 6) {"}, {"f": "js", "from": 558, "to": 558, "text": "      renderServices(filtered.slice(0, 6));"}], "check": "ดูในโหมดจอมือถือ 400px ต้องเห็น 6 การ์ด"}, {"id": "c4", "type": "Change", "feat": "F1", "owner": "me", "w": 1280, "q": "เพิ่มช่องกรอกอีเมลในฟอร์มต่อจากเบอร์โทร ให้ถูกหลัก Semantic HTML และ accessibility", "show": [["html", 427, 441]], "a": "ใส่ต่อจาก L441 ใน `index.html` เป็น `<div class=\"form-group\">` ที่มี\n`<label for=\"contact-email\">` ที่ค่า for ตรงกับ id ของช่องกรอก ทำให้คลิกข้อความแล้วเข้าช่อง และโปรแกรมอ่านหน้าจออ่านชื่อช่องได้\n`<input type=\"email\" id=\"contact-email\" autocomplete=\"email\">` เพราะ type email ให้มือถือแสดงแป้นที่มี @\n`<span id=\"error-contact-email\" class=\"inline-error-text\" aria-live=\"polite\">` ไว้รับข้อความผิดพลาดและอ่านออกเสียงเมื่อเปลี่ยน", "code": "<div class=\"form-group\">\n  <label for=\"contact-email\" class=\"form-label\">Email</label>\n  <input type=\"email\" id=\"contact-email\" name=\"contactEmail\"\n         class=\"form-input\" autocomplete=\"email\">\n  <span id=\"error-contact-email\" class=\"inline-error-text\" aria-live=\"polite\"></span>\n</div>", "patch": [{"f": "html", "at": 441, "add": "\n              <div class=\"form-group\">\n                <label for=\"contact-email\" class=\"form-label\">Email</label>\n                <input type=\"email\" id=\"contact-email\" name=\"contactEmail\" class=\"form-input\" autocomplete=\"email\">\n                <span id=\"error-contact-email\" class=\"inline-error-text\" aria-live=\"polite\"></span>\n              </div>"}], "check": "เลื่อนไปที่ฟอร์ม คลิกคำว่า Email แล้วเคอร์เซอร์ต้องเข้าช่อง"}, {"id": "c5", "type": "Change", "feat": "F5", "owner": "me", "w": 1280, "q": "ให้ปุ่มกรองบอกโปรแกรมอ่านหน้าจอด้วยว่าปุ่มไหนกำลังเลือกอยู่", "show": [["js", 723, 729]], "a": "ใช้ `aria-pressed` แก้ L725 ให้ทุกปุ่มเป็น `\"false\"` ก่อน แล้ว L726 ตั้งปุ่มที่กดเป็น `\"true\"`\nเพราะ class `active` เปลี่ยนแค่สีที่ตาเห็น ส่วน `aria-pressed` บอกสถานะกับเทคโนโลยีช่วยเหลือ ต้องรีเซ็ตทุกปุ่มก่อนเหมือนที่ L725 ทำกับ class", "code": "filterBtns.forEach((b) => {\n  b.classList.remove(\"active\");\n  b.setAttribute(\"aria-pressed\", \"false\");\n});\nbtn.classList.add(\"active\");\nbtn.setAttribute(\"aria-pressed\", \"true\");", "patch": [{"f": "js", "from": 725, "to": 726, "text": "      filterBtns.forEach((b) => { b.classList.remove(\"active\"); b.setAttribute(\"aria-pressed\", \"false\"); });\n      btn.classList.add(\"active\"); btn.setAttribute(\"aria-pressed\", \"true\");"}], "check": "กดปุ่มกรอง ไม่ควรมี error ใน Console"}, {"id": "e1", "type": "Extend", "feat": "F3", "owner": "beef", "w": 1280, "q": "แสดงข้อความ \"แสดง N จาก M บริการ\" เหนือกริด และต้องถูกต้องหลังกรอง ค้นหา เพิ่ม และลบ", "show": [["html", 243, 246], ["js", 549, 551]], "a": "`index.html` ก่อน L244 เพิ่ม `<p id=\"services-count\" aria-live=\"polite\"></p>`\n`app.js` ต่อจาก L550 หยิบ element ด้วย `getElementById` แล้วใส่ `textContent`\nเพราะทุกการกระทำ ทั้งกรอง ค้น เรียง เพิ่ม ลบ และสลับภาษา เรียก `updateServicesDisplay()` จุดเดียว ใส่ตรงนี้จึงอัปเดตครบโดยไม่ต้องไปแก้หลายที่\nใช้ `filtered.length` ไม่ใช้ `items.length` ใน renderServices เพราะบนมือถือ render ได้แค่ 4 ใบ ตัวเลขจะผิด", "code": "<!-- index.html ก่อน L244 -->\n<p id=\"services-count\" aria-live=\"polite\"></p>\n\n// app.js ต่อจาก L550\nconst countEl = document.getElementById(\"services-count\");\nif (countEl) countEl.textContent = `แสดง ${filtered.length} จาก ${servicesData.length} บริการ`;", "patch": [{"f": "html", "at": 243, "add": "        <p id=\"services-count\" aria-live=\"polite\" style=\"margin:0 0 12px;font-weight:600\"></p>"}, {"f": "js", "at": 550, "add": "  const countEl = document.getElementById(\"services-count\");\n  if (countEl) countEl.textContent = `แสดง ${filtered.length} จาก ${servicesData.length} บริการ`;"}], "check": "กดกรอง Industrial Plants ตัวเลขต้องเป็น 4 จาก 16"}, {"id": "e2", "type": "Extend", "feat": "F4", "owner": "beef", "w": 1280, "q": "เพิ่มกฎตรวจฟอร์ม ชื่อต้องไม่เป็นตัวเลขล้วน เช่น `12345` ต้องขึ้นข้อความแดง", "show": [["js", 798, 805]], "a": "ต่อ `else if` อีกข้อก่อนปีกกาปิด L805\n`} else if (/^\\d+$/.test(nameVal)) {` แล้วเรียก `showError` และตั้ง `isValid = false`\nเพราะต่อสายเดียวกับกฎชื่อเดิม ช่องชื่อจึงขึ้นข้อความทีละข้อ ไม่ทับกัน และ `isValid = false` ทำให้ L823 หยุดก่อนเพิ่มข้อมูล regex `^\\d+$` แปลว่าตั้งแต่ต้นถึงท้ายเป็นตัวเลขทั้งหมด", "code": "} else if (/^\\d+$/.test(nameVal)) {\n  showError(nameInput, nameError, \"ชื่อต้องไม่เป็นตัวเลขล้วน\");\n  isValid = false;\n}", "patch": [{"f": "js", "from": 805, "to": 805, "text": "    } else if (/^\\d+$/.test(nameVal)) {\n      showError(nameInput, nameError, \"ชื่อต้องไม่เป็นตัวเลขล้วน\");\n      isValid = false;\n    }"}], "check": "กรอกชื่อ 12345 เบอร์ถูก เลือกระบบ แล้วกด Submit"}, {"id": "e3", "type": "Extend", "feat": "F6", "owner": "beef", "w": 1280, "q": "เพิ่มปุ่ม [[Interested]] ในหน้าต่างรายละเอียด กดแล้วสลับสถานะสนใจของบริการนั้นและปิดหน้าต่าง", "show": [["html", 547, 549], ["js", 653, 654], ["js", 669, 673]], "a": "ต้องแก้ 3 จุด\n`index.html` เพิ่ม `<button id=\"dialog-select-btn\">` ใน footer ของ dialog\n`app.js` ก่อน `showModal()` L654 จำ id ไว้ที่ `modal.dataset.serviceId`\n`app.js` ใน setupModalListeners ต่อจาก L672 หยิบปุ่มด้วย `getElementById` ผูก click แล้ว `find` บริการ สลับ `isSelected` เรียกวาดใหม่ แล้ว `modal.close()`\nเพราะ listener ถูกผูกครั้งเดียวตอนเปิดหน้า ไม่รู้ว่าเปิดบริการไหนอยู่ จึงต้องฝาก id ไว้กับ dialog และ dataset เก็บเป็นข้อความ ต้อง `Number()` ก่อนเทียบด้วย `===`", "code": "// index.html ใน .dialog-footer\n<button type=\"button\" id=\"dialog-select-btn\" class=\"btn btn-primary\">Interested</button>\n\n// app.js ก่อน L654\nmodal.dataset.serviceId = serviceId;\n\n// app.js ต่อจาก L672\nconst selectBtn = document.getElementById(\"dialog-select-btn\");\nif (selectBtn) {\n  selectBtn.addEventListener(\"click\", () => {\n    const s = servicesData.find((x) => x.id === Number(modal.dataset.serviceId));\n    if (s) {\n      s.isSelected = !s.isSelected;\n      updateServicesDisplay();\n      updateSelectedServicesUI();\n    }\n    modal.close();\n  });\n}", "patch": [{"f": "html", "at": 547, "add": "        <button type=\"button\" id=\"dialog-select-btn\" class=\"btn btn-primary\">Interested</button>"}, {"f": "js", "at": 653, "add": "  modal.dataset.serviceId = serviceId;"}, {"f": "js", "at": 672, "add": "  const selectBtn = document.getElementById(\"dialog-select-btn\");\n  if (selectBtn) {\n    selectBtn.addEventListener(\"click\", () => {\n      const s = servicesData.find((x) => x.id === Number(modal.dataset.serviceId));\n      if (s) {\n        s.isSelected = !s.isSelected;\n        updateServicesDisplay();\n        updateSelectedServicesUI();\n      }\n      modal.close();\n    });\n  }"}], "check": "กด View Details ที่การ์ดแรก แล้วกด Interested ในหน้าต่าง การ์ดต้องเปลี่ยนเป็น Selected"}, {"id": "e4", "type": "Extend", "feat": "F3", "owner": "beef", "w": 1280, "q": "การ์ดที่ผู้ใช้เพิ่มเองผ่านฟอร์ม ให้มีป้าย NEW สีแดงที่มุมรูป", "show": [["js", 480, 484]], "a": "ใน template ของ `card.innerHTML` ต่อจาก L483 ใส่เงื่อนไข `${service.isCustom ? ... : \"\"}` แล้วเพิ่ม CSS ให้ `.card-new` วางแบบ absolute\nเพราะ renderServices วาดการ์ดใหม่จาก array ทุกครั้ง ต้องตัดสินจากข้อมูล `isCustom` ที่ฟอร์มตั้งเป็น true ที่ L849 ไม่ใช่ไปเติมป้ายบนจอทีหลัง ซึ่งจะหายเมื่อวาดใหม่ และ `.card-img-wrapper` เป็น `position: relative` อยู่แล้วที่ CSS L952", "code": "// app.js ต่อจาก L483\n${service.isCustom ? '<span class=\"card-new\">NEW</span>' : \"\"}\n\n/* style.css */\n.card-new { position: absolute; left: 12px; top: 12px;\n  background: #E5372B; color: #fff; font-weight: 700;\n  padding: 2px 8px; border-radius: 999px; }", "patch": [{"f": "js", "at": 483, "add": "        ${service.isCustom ? '<span class=\"card-new\">NEW</span>' : \"\"}"}, {"f": "css", "at": 1966, "add": ".card-new { position: absolute; left: 12px; top: 12px; background: #E5372B; color: #fff; font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 999px; }"}], "check": "กรอกฟอร์มให้ถูกแล้วส่ง หาการ์ดที่เพิ่ม"}, {"id": "e5", "type": "Extend", "feat": "F4", "owner": "beef", "w": 1280, "q": "จำกัดให้เพิ่มรายการเองได้ไม่เกิน 3 รายการ ถ้าลบออกหนึ่งรายการต้องเพิ่มใหม่ได้", "show": [["js", 821, 824]], "a": "ก่อน L823 นับรายการที่ `isCustom` จาก `servicesData` ถ้าครบ 3 ให้ `showError` ที่ช่องระบบและตั้ง `isValid = false`\nเพราะนับจาก array จริงทุกครั้งที่กดส่ง พอลบรายการ L580 ทำให้ array สั้นลง ตัวเลขก็ลดตามเอง ไม่ต้องมีตัวแปรนับแยกที่ต้องคอยลดค่า", "code": "const customCount = servicesData.filter((s) => s.isCustom).length;\nif (isValid && customCount >= 3) {\n  showError(serviceSelect, serviceError, \"เพิ่มรายการเองได้สูงสุด 3 รายการ\");\n  isValid = false;\n}\nif (!isValid) return;", "patch": [{"f": "js", "from": 823, "to": 823, "text": "    const customCount = servicesData.filter((s) => s.isCustom).length;\n    if (isValid && customCount >= 3) {\n      showError(serviceSelect, serviceError, \"เพิ่มรายการเองได้สูงสุด 3 รายการ\");\n      isValid = false;\n    }\n    if (!isValid) return;"}], "check": "ส่งฟอร์มถูกต้อง 4 ครั้ง ครั้งที่ 4 ต้องขึ้นข้อความแดง"}];
 
 const ORDER = ['F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'THEME', 'LANG'];
 const KIND = { event: ['Terminator', 'จุดเริ่ม เหตุการณ์จากผู้ใช้'], fn: ['Predefined process', 'เรียกฟังก์ชันหรือ listener'], data: ['Process', 'คำสั่งที่เปลี่ยนค่า'], dec: ['Decision', 'ตัดสินใจ ใช่ หรือ ไม่ใช่'], screen: ['Display', 'แสดงผลบนจอ'], end: ['Terminator', 'จุดจบ ไม่ทำอะไร'] };
@@ -1379,8 +1468,18 @@ function capFig(c, label, cls) {
   const a = el('a'); a.href = 'bk/' + c.img; a.target = '_blank'; a.rel = 'noopener'; a.appendChild(im); f.appendChild(a);
   return f;
 }
+const FKEY = { 'js/app.js': 'js', 'css/style.css': 'css', 'index.html': 'html' };
+function breakEdits(code) {
+  const out = [];
+  for (const blk of code) {
+    const dels = blk.rows.filter(r => r.m === 'del').map(r => r.n); if (!dels.length) continue;
+    const adds = blk.rows.filter(r => r.m === 'add').map(r => r.t);
+    out.push({ f: FKEY[blk.file] || 'js', from: Math.min(...dels), to: Math.max(...dels), text: adds.length ? adds.join('\n') : null });
+  }
+  return out;
+}
 function buildBreaks(d, root, k) {
-  const s = section('ลองทำให้พัง 3 แบบ', 'ดูบรรทัดจริงที่ถูกลบหรือแก้ แล้วกด Preview เพื่อดูภาพจากเว็บจริงก่อนและหลังแก้');
+  const s = section('ลองทำให้พัง ' + d.breaks.length + ' แบบ', 'ดูบรรทัดจริงที่ถูกลบหรือแก้ แล้วกด Preview เพื่อดูภาพจากเว็บจริงก่อนและหลังแก้');
   const g = el('div', 'breaks');
   d.breaks.forEach((b, i) => {
     const v = TV[b.type] || 'none', cap = (CAP[k] || [])[i];
@@ -1394,7 +1493,9 @@ function buildBreaks(d, root, k) {
       right.appendChild(el('div', 'lab', 'โค้ดจริง <span class="key"><i class="kd"></i>ลบออก <i class="ka"></i>ใส่แทน</span>'));
       right.appendChild(codeView(cap.code));
       const btn = el('button', 'pv-btn', 'Preview ก่อนและหลังแก้'); btn.type = 'button'; btn.setAttribute('aria-expanded', 'false');
-      right.appendChild(btn);
+      const live = el('button', 'tbtn', 'ลองสดในห้องทดลอง'); live.type = 'button';
+      live.addEventListener('click', () => { const ed = breakEdits(cap.code); if (!ed.length || !labs[k]) return; labs[k].focusEdit(ed[0].f, ed[0].from, ed[0].to); labs[k].run(ed); });
+      const brow = el('div', 'bk-btns'); brow.append(btn, live); right.appendChild(brow);
       cols.appendChild(right);
       const pv = el('div', 'pv'); pv.hidden = true;
       pv.appendChild(el('p', 'pv-act', '<b>ทำอะไรก่อนถ่ายภาพ</b> ' + escH(ACTS[cap.act] || '')));
@@ -1418,7 +1519,7 @@ function buildBreaks(d, root, k) {
 }
 
 /* ---------- wiring table ---------- */
-function codeChips(s) { return s ? s.split(/\s{2,}/).map(x => '<code class="cc">' + escH(x) + '</code>').join(' ') : ''; }
+function codeChips(s, cls) { return s ? s.split(/\s{2,}/).map(x => '<code class="cc' + (cls ? ' ' + cls : '') + '">' + escH(x) + '</code>').join(' ') : ''; }
 function buildWiring(d) {
   const w = el('details', 'wiring'); w.open = true;
   const n = { HTML: 0, CSS: 0, JS: 0 }; for (const r of d.wiring) n[r[0]]++;
@@ -1429,7 +1530,7 @@ function buildWiring(d) {
   for (const [lang, file, ln, sel, fn, act] of d.wiring) {
     const tr = el('tr', 'r-' + lang);
     tr.innerHTML = '<td class="c-f"><span class="lang ' + lang + '">' + lang + '</span><b>' + escH(file) + '</b> <span class="ln">' + escH(ln) + '</span></td>' +
-      '<td class="c-s" data-h="element หรือ selector">' + (sel ? '<code class="cc sel">' + escH(sel) + '</code>' : '') + '</td>' +
+      '<td class="c-s" data-h="element หรือ selector">' + codeChips(sel, 'sel') + '</td>' +
       '<td class="c-x" data-h="ฟังก์ชันหรือคำสั่ง">' + codeChips(fn) + '</td>' +
       '<td class="c-a">' + rich(act) + '</td>';
     body.appendChild(tr);
@@ -1438,9 +1539,482 @@ function buildWiring(d) {
   return w;
 }
 
+/* line annotations for the lab: [file, from, to, what the line does, type if deleted, what you see]
+   every entry was checked by deleting the line in the real site */
+const SYN = 'SyntaxError ตอนเปิดหน้า ทั้งไฟล์ไม่รัน การ์ดหายหมด ทุกปุ่มที่ใช้ JS ตาย';
+const DIVS = 'แท็ก HTML ในการ์ดหายไปหนึ่งตัว เบราว์เซอร์ซ่อมโครงให้เอง ไม่มี error แต่หน้าตาส่วนนั้นอาจเพี้ยน ลองรันแล้วดูการ์ด';
+const ANN = {
+F3: [
+  ['js', 433, 433, 'ประกาศฟังก์ชัน `renderServices` และเปิดปีกกา', 'syntax', SYN + ' error แจ้ง Illegal return statement ที่ L436 เพราะ `return` หลุดออกมานอกฟังก์ชัน'],
+  ['js', 434, 434, 'หยิบกล่องการ์ด `#services-grid-container` เก็บใน `container`', 'ref', 'ReferenceError `container is not defined` ที่ L436 ตอนเปิดหน้า render ครั้งแรกถูกเรียกจาก setupLanguageSwitcher error จึงหยุดฟังก์ชันเริ่มต้นที่เหลือทั้งหมด การ์ดไม่ขึ้น ปุ่มกรอง ฟอร์ม modal และคีย์ลัดใช้ไม่ได้ ถ้าแค่พิมพ์ id ผิดแทนการลบ จะได้ `null` แล้ว L436 return เงียบๆ การ์ดไม่ขึ้นแต่ไม่มี error'],
+  ['js', 435, 435, 'หยิบ `#no-results-msg` เก็บใน `emptyMessage`', 'ref', 'ReferenceError `emptyMessage is not defined` ที่ L446 ตอนเปิดหน้า ผลเหมือนลบ L434 การ์ดไม่ขึ้น และฟังก์ชันเริ่มต้นหลังจากนั้นไม่ทำงาน'],
+  ['js', 436, 436, 'guard ถ้าหากล่องไม่เจอให้หยุด', 'none', 'ไม่เห็นความต่าง เพราะหน้านี้มีกล่องอยู่แล้ว guard มีผลเฉพาะตอน id ผิด'],
+  ['js', 439, 439, 'ล้างการ์ดเก่าด้วย `innerHTML = ""` ก่อนวาดใหม่', 'logic', 'การ์ดซ้อนต่อท้ายทุกครั้งที่วาด เปิดหน้ามาเห็น 32 ใบ เพราะ render ถูกเรียก 2 ครั้ง ค้นหาหรือกรองทีไรก็ยิ่งเพิ่ม'],
+  ['js', 442, 442, 'เปิดเงื่อนไขกรณีไม่มีรายการ', 'syntax', SYN + ' เพราะ `}` เกินมาหนึ่งตัว'],
+  ['js', 443, 443, 'แสดงข้อความไม่พบบริการ', 'logic', 'ค้นคำที่ไม่มี กริดว่างเปล่าแต่ไม่มีข้อความบอก'],
+  ['js', 444, 444, 'หยุดฟังก์ชันเมื่อไม่มีรายการ', 'logic', 'ค้นคำที่ไม่มีแล้วข้อความไม่พบบริการไม่ขึ้น เพราะไม่หยุด ไหลไป L446 ซ่อนข้อความทันที'],
+  ['js', 445, 445, 'ปิดปีกกาเงื่อนไข', 'syntax', SYN + ' error แจ้ง Unexpected end of input ชี้ไปท้ายไฟล์ เพราะปีกกาปิดไม่ครบ'],
+  ['js', 446, 446, 'ซ่อนข้อความไม่พบบริการเมื่อมีรายการ', 'logic', 'ค้นคำที่ไม่มีจนข้อความขึ้น แล้วลบคำค้นออก การ์ดกลับมาแต่ข้อความไม่พบบริการค้างอยู่'],
+  ['js', 449, 449, 'เริ่มวน `forEach` ทีละบริการ', 'syntax', SYN + ' เพราะ `});` ที่ L496 ไม่มีคู่'],
+  ['js', 450, 451, 'L450 เลือก class ป้ายหมวด L451 สร้าง `<article>` ด้วย `createElement`', 'ref', 'ReferenceError ตอนเปิดหน้า เพราะตัวแปรถูกใช้ต่อที่ L452 หรือ L483 การ์ดไม่ขึ้น และฟังก์ชันเริ่มต้นที่เหลือไม่ทำงาน'],
+  ['js', 452, 452, 'ใส่ class `service-card` และ `is-selected`', 'logic', 'การ์ดขึ้นครบ 16 ใบแต่ไม่มีสไตล์การ์ด รูปใหญ่เต็มช่อง กดสนใจแล้วการ์ดไม่เปลี่ยนสี ปุ่มยังกดได้ เพราะ delegation ดูที่ปุ่ม ไม่ได้ดู class ของการ์ด'],
+  ['js', 453, 454, 'ฝาก id และหมวดไว้ใน `data-*` ของการ์ด', 'none', 'ไม่เห็นความต่าง เพราะไม่มีโค้ดส่วนไหนอ่านสองค่านี้ ปุ่มใช้ `data-service-id` ของตัวเอง ข้อนี้เป็นกับดักที่ดี'],
+  ['js', 456, 458, 'เลือกชื่อ หมวด และคำอธิบายตามภาษา', 'ref', 'ReferenceError ตอนเปิดหน้า เพราะ template L482 ถึง L487 ใช้ตัวแปรนี้ การ์ดไม่ขึ้น'],
+  ['js', 460, 462, 'เลือกคำบนปุ่มสนใจ เป็นคำสั่งเดียวเขียน 3 บรรทัดด้วย `? :`', 'syntax', SYN + ' เพราะคำสั่งถูกตัดครึ่ง'],
+  ['js', 463, 463, 'คำบนปุ่ม View Details', 'ref', 'ReferenceError ตอนเปิดหน้าที่ L489 การ์ดไม่ขึ้น'],
+  ['js', 464, 464, 'คำบนปุ่ม Delete Item', 'ref', 'เปิดหน้าปกติ ไม่มี error เพราะใช้เฉพาะการ์ดที่เพิ่มเอง พอส่งฟอร์มสำเร็จจึงเกิด ReferenceError ที่ L471 ตอนกด render หยุดกลางลูป เหลือการ์ดบนจอแค่ 3 ใบ และกล่องส่งสำเร็จไม่ขึ้น'],
+  ['js', 469, 469, 'ประกาศ `actionBtnHtml`', 'ref', 'ReferenceError ตอนเปิดหน้า เพราะ `"use strict"` ที่ L8 ไม่ยอมให้กำหนดค่าตัวแปรที่ไม่ได้ประกาศ'],
+  ['js', 470, 470, 'เปิดเงื่อนไขการ์ดที่เพิ่มเอง', 'syntax', SYN + ' เพราะ `} else {` ไม่มี if คู่'],
+  ['js', 471, 471, 'สร้างปุ่ม Delete Item', 'logic', 'การ์ดที่เพิ่มเองมีแค่ปุ่ม View Details จึงลบไม่ได้'],
+  ['js', 472, 472, '`} else {` แยกสองกรณี', 'logic', 'ไม่มี error เพราะปีกกายังครบคู่ แต่การ์ดปกติทุกใบไม่มีปุ่ม Interested เพราะคำสั่ง L473 ย้ายไปอยู่ใน if ของการ์ดที่เพิ่มเอง'],
+  ['js', 473, 473, 'เริ่ม template ปุ่มสนใจ', 'syntax', SYN + ' เพราะ backtick เปิดหายไป'],
+  ['js', 474, 474, 'แท็กเปิดปุ่ม Interested พร้อม `data-toggle-id`', 'logic', 'การ์ดปกติไม่มีปุ่ม Interested เหลือข้อความลอยๆ'],
+  ['js', 475, 475, 'คำบนปุ่มสนใจ', 'logic', 'ปุ่ม Interested กลายเป็นปุ่มว่าง แต่ยังกดได้'],
+  ['js', 476, 476, 'แท็กปิด `</button>`', 'none', 'ไม่เห็นความต่าง เบราว์เซอร์ปิดแท็กให้เอง'],
+  ['js', 477, 478, 'ปิด template และปิด else', 'syntax', SYN],
+  ['js', 480, 480, 'เริ่ม template ของการ์ดด้วย `card.innerHTML`', 'syntax', SYN],
+  ['js', 481, 481, 'เปิดกล่องรูป', 'logic', DIVS],
+  ['js', 482, 482, 'รูปการ์ดพร้อม `alt`', 'logic', 'การ์ดไม่มีรูป และเสียคะแนน F1 เรื่อง alt ไปด้วย'],
+  ['js', 483, 483, 'ป้ายหมวดมุมรูป', 'logic', 'การ์ดไม่มีป้าย Office หรือ Industrial'],
+  ['js', 484, 485, 'ปิดกล่องรูป เปิดกล่องเนื้อหา', 'logic', DIVS],
+  ['js', 486, 486, 'ชื่อบริการ `<h3>`', 'logic', 'การ์ดไม่มีชื่อ แต่ modal ยังแสดงชื่อได้ เพราะ F6 อ่านจาก servicesData ไม่ได้อ่านจากการ์ด'],
+  ['js', 487, 487, 'คำอธิบาย `<p>`', 'logic', 'การ์ดไม่มีคำอธิบาย'],
+  ['js', 488, 488, 'เปิดกล่องปุ่ม', 'logic', DIVS],
+  ['js', 489, 489, 'ปุ่ม View Details พร้อม `data-service-id`', 'logic', 'ไม่มีปุ่มดูรายละเอียด จึงเปิด modal ของ F6 ไม่ได้เลย'],
+  ['js', 490, 490, 'ใส่ปุ่ม Interested หรือ Delete', 'logic', 'ทุกการ์ดเหลือแค่ปุ่ม View Details'],
+  ['js', 491, 492, 'ปิดกล่อง', 'logic', DIVS],
+  ['js', 493, 493, 'ปิด template ของการ์ด', 'syntax', SYN + ' แต่ error ชี้ไปไกลถึง L583 เพราะ template ยาวไปจนเจอ backtick ตัวถัดไป บรรทัดที่ error ชี้จึงไม่ใช่บรรทัดที่ผิด'],
+  ['js', 495, 495, 'ต่อการ์ดลงกล่องด้วย `appendChild`', 'logic', 'ไม่มี error แต่การ์ดไม่ขึ้นเลย ข้อความไม่พบบริการก็ไม่ขึ้น เพราะ L446 ซ่อนไปแล้ว การ์ดถูกสร้างแต่ไม่ได้ใส่ลงหน้า'],
+  ['js', 496, 497, 'ปิดลูปและปิดฟังก์ชัน', 'syntax', SYN]
+],
+F6: [
+  ['js', 613, 613, 'ประกาศ `openServiceModal`', 'syntax', SYN + ' error แจ้ง Illegal return statement'],
+  ['js', 614, 616, 'หยิบ dialog หัวข้อ และเนื้อหา ด้วย `getElementById`', 'ref', 'เปิดหน้าปกติ แต่กด View Details แล้วเกิด ReferenceError ตอนกด modal ไม่เปิด ถ้าแค่พิมพ์ id ผิดแทนการลบ จะได้ `null` แล้ว guard L617 L626 L630 ทำให้เงียบ'],
+  ['js', 617, 617, 'guard ถ้าไม่มี dialog ให้หยุด', 'none', 'ไม่เห็นความต่าง เพราะมี dialog อยู่แล้ว'],
+  ['js', 619, 619, 'หาบริการด้วย `find` และ `===`', 'ref', 'ReferenceError ตอนกด View Details modal ไม่เปิด'],
+  ['js', 620, 620, 'guard ถ้าไม่เจอบริการให้หยุด', 'none', 'ไม่เห็นความต่าง เพราะ L603 แปลง id เป็น Number มาให้ถูกต้องเสมอ'],
+  ['js', 622, 624, 'เลือกชื่อ หมวด คำอธิบายตามภาษา', 'ref', 'ReferenceError ตอนกด View Details modal ไม่เปิด'],
+  ['js', 626, 626, 'เปิด if ของหัวข้อ', 'syntax', SYN],
+  ['js', 627, 627, 'ใส่ชื่อบริการลงหัวข้อด้วย `textContent`', 'logic', 'modal เปิดได้ แต่หัวข้อเป็นคำเดิมใน HTML คือ Service Details ทุกบริการ'],
+  ['js', 628, 628, 'ปิด if', 'syntax', SYN],
+  ['js', 630, 630, 'เปิด if ของเนื้อหา', 'syntax', SYN],
+  ['js', 631, 631, 'ข้อความหัวมาตรฐาน', 'ref', 'ReferenceError ตอนกด View Details modal ไม่เปิด'],
+  ['js', 632, 634, 'ข้อความรับรอง เป็นคำสั่งเดียวเขียน 3 บรรทัดด้วย `? :`', 'syntax', SYN],
+  ['js', 636, 636, 'เริ่ม template ใส่ `innerHTML`', 'syntax', SYN],
+  ['js', 637, 649, 'HTML ข้างใน modal', 'logic', 'modal ยังเปิดได้ เฉพาะส่วนนั้นหายไป เช่น L638 ไม่มีรูป L644 ไม่มีคำอธิบาย'],
+  ['js', 650, 650, 'ปิด template', 'syntax', SYN + ' แต่ error ชี้ไปไกลถึง L842 เพราะ template ไปจบที่ backtick ตัวถัดไป'],
+  ['js', 651, 651, 'ปิด if', 'syntax', SYN],
+  ['js', 654, 654, '`modal.showModal()` เปิดหน้าต่าง', 'logic', 'ไม่มี error ชื่อและเนื้อหาถูกใส่แล้ว แต่หน้าต่างไม่เปิด'],
+  ['js', 655, 655, 'ปิดฟังก์ชัน', 'syntax', SYN],
+  ['js', 657, 657, 'ประกาศ `setupModalListeners`', 'syntax', SYN],
+  ['js', 658, 658, 'หยิบ dialog อีกรอบด้วย `getElementById`', 'ref', 'ReferenceError ที่ L662 ตอนเปิดหน้า listener ปิดทั้งหมดไม่ถูกผูก และฟังก์ชันเริ่มต้นหลังจากนี้ไม่ทำงาน คือคีย์ลัด ฟอร์ม และตัวเลขวิ่ง modal ยังเปิดได้ แต่ปิดได้ทางเดียวคือกด Esc เพราะ dialog ปิดด้วย Esc เองอยู่แล้ว'],
+  ['js', 659, 659, 'หยิบปุ่มกากบาท', 'ref', 'ReferenceError ที่ L665 ตอนเปิดหน้า ปุ่มทุกปุ่มใน modal ปิดไม่ได้ ปิดได้แค่ Esc และฟังก์ชันเริ่มต้นหลังจากนี้ไม่ทำงาน'],
+  ['js', 660, 660, 'หยิบปุ่ม Close Window', 'ref', 'ReferenceError ที่ L670 ตอนเปิดหน้า ปุ่มกากบาทยังปิดได้ แต่ปุ่มล่างกับการคลิกฉากหลังใช้ไม่ได้ และฟังก์ชันเริ่มต้นหลังจากนี้ไม่ทำงาน'],
+  ['js', 662, 662, 'guard', 'none', 'ไม่เห็นความต่าง เพราะมี dialog อยู่แล้ว'],
+  ['js', 665, 665, 'เปิด if ปุ่มกากบาท', 'syntax', SYN],
+  ['js', 666, 666, 'ผูก click ปุ่มกากบาทให้ `modal.close()`', 'logic', 'กดกากบาทแล้วไม่ปิด ปุ่มอื่นยังปิดได้'],
+  ['js', 667, 667, 'ปิด if', 'syntax', SYN],
+  ['js', 670, 670, 'เปิด if ปุ่มล่าง', 'syntax', SYN],
+  ['js', 671, 671, 'ผูก click ปุ่ม Close Window', 'logic', 'กดปุ่มล่างแล้วไม่ปิด ปุ่มอื่นยังปิดได้'],
+  ['js', 672, 672, 'ปิด if', 'syntax', SYN],
+  ['js', 675, 675, 'ผูก click ที่ตัว dialog', 'syntax', SYN],
+  ['js', 676, 676, 'วัดขอบกล่องด้วย `getBoundingClientRect()`', 'ref', 'คลิกตรงไหนใน modal ก็เกิด ReferenceError ตอนกด คลิกฉากหลังแล้วไม่ปิด ปุ่มปิดยังใช้ได้'],
+  ['js', 677, 677, 'เปิดวงเล็บของ `isClickInside`', 'syntax', SYN],
+  ['js', 678, 680, 'เงื่อนไขขอบซ้าย ขวา บน', 'logic', 'ไม่มี error เงื่อนไขหลวมขึ้นหนึ่งด้าน คลิกฉากหลังด้านนั้นแล้วไม่ปิด'],
+  ['js', 681, 683, 'ขอบล่าง ปิดวงเล็บ และ if ตัดสิน', 'syntax', SYN],
+  ['js', 684, 684, '`modal.close()` เมื่อคลิกนอกกล่อง', 'logic', 'คลิกฉากหลังแล้วไม่ปิด ปุ่มปิดกับ Esc ยังใช้ได้'],
+  ['js', 685, 686, 'ปิด if และ listener', 'syntax', SYN],
+  ['js', 689, 690, 'listener ของปุ่ม Esc', 'syntax', SYN],
+  ['js', 691, 691, '`modal.close()` เมื่อกด Esc', 'none', 'ไม่เห็นความต่าง กด Esc ยังปิดได้ เพราะ dialog ที่เปิดด้วย `showModal()` ปิดด้วย Esc เองอยู่แล้ว'],
+  ['js', 692, 694, 'ปิด if ปิด listener ปิดฟังก์ชัน', 'syntax', SYN]
+],
+F4: [
+  ['js', 754, 754, 'ประกาศ `setupFormValidation`', 'syntax', SYN + ' ฟอร์มส่งแบบเบราว์เซอร์ หน้าโหลดใหม่'],
+  ['js', 755, 758, 'หยิบฟอร์ม ช่องชื่อ ช่องเบอร์ ช่องเลือกระบบ ด้วย `getElementById`', 'ref', 'ReferenceError ที่ L766 ตอนเปิดหน้า listener ของฟอร์มไม่ถูกผูก กด Submit แล้วฟอร์มส่งแบบเบราว์เซอร์ หน้าโหลดใหม่ ค่าที่กรอกไปต่อท้าย URL ถ้าแค่พิมพ์ id ผิดแทนการลบ จะได้ `null` แล้ว guard L766 return เงียบๆ ผลบนจอเหมือนกันแต่ไม่มี error'],
+  ['js', 759, 764, 'หยิบช่องหมายเหตุ span ข้อความผิดพลาด และกล่องส่งสำเร็จ', 'ref', 'เปิดหน้าปกติ แต่กด Submit แล้วเกิด ReferenceError ตอนกด ไม่มีข้อความแดง ไม่เพิ่มการ์ด หน้าไม่โหลดใหม่ เพราะ L785 ทำงานไปก่อนแล้ว'],
+  ['js', 766, 766, 'guard ถ้าหา element หลักไม่เจอให้หยุด', 'none', 'ไม่เห็นความต่าง เพราะ element ครบ'],
+  ['js', 768, 768, 'ประกาศ `showError`', 'syntax', SYN],
+  ['js', 769, 769, 'ใส่ข้อความผิดพลาดลง span ด้วย `textContent`', 'logic', 'ช่องที่ผิดขึ้นขอบแดง แต่ไม่มีข้อความบอกว่าผิดอะไร'],
+  ['js', 770, 770, 'เติม class `is-invalid`', 'logic', 'มีข้อความแดงใต้ช่อง แต่ช่องไม่ขึ้นขอบแดง'],
+  ['js', 771, 771, 'ปิดฟังก์ชัน', 'syntax', SYN],
+  ['js', 773, 773, 'ประกาศ `clearError`', 'syntax', SYN],
+  ['js', 774, 774, 'ล้างข้อความ', 'logic', 'ข้อความแดงค้างแม้พิมพ์แก้แล้ว ส่งใหม่ให้ถูกก็ยังค้าง'],
+  ['js', 775, 775, 'ถอด class `is-invalid`', 'logic', 'ขอบแดงค้างแม้พิมพ์แก้ ข้อความหายตามปกติ'],
+  ['js', 776, 776, 'ปิดฟังก์ชัน', 'syntax', SYN],
+  ['js', 779, 781, 'ล้างข้อผิดพลาดตอนพิมพ์หรือเปลี่ยนค่า', 'logic', 'ข้อความแดงของช่องนั้นไม่หายตอนพิมพ์แก้ จะหายเมื่อกด Submit ใหม่ เพราะ L793 ถึง L795 ล้างให้ก่อนตรวจ'],
+  ['js', 783, 783, 'ผูก listener `submit`', 'syntax', SYN],
+  ['js', 785, 785, '`e.preventDefault()` กันเบราว์เซอร์ส่งฟอร์ม', 'logic', 'ข้อความแดงขึ้นแวบเดียวแล้วหน้าโหลดใหม่ ค่าที่กรอกไปต่อท้าย URL เพราะเบราว์เซอร์ส่งฟอร์มแบบ GET หลัง handler ทำงานจบ'],
+  ['js', 787, 787, '`let isValid = true`', 'ref', 'กด Submit แล้วเกิด ReferenceError ตอนกด เพราะ `"use strict"` ที่ L8 ไม่ยอมให้กำหนดค่าตัวแปรที่ไม่ได้ประกาศ ข้อความแดงขึ้นแค่ช่องแรก ส่งถูกก็ไม่เพิ่มการ์ด'],
+  ['js', 788, 791, 'อ่านค่าจากช่องกรอกพร้อม `trim()`', 'ref', 'กด Submit แล้วเกิด ReferenceError ตอนกด ตรงบรรทัดแรกที่ใช้ตัวแปรนั้น ไม่เพิ่มการ์ด'],
+  ['js', 793, 796, 'ล้างข้อผิดพลาดเก่าก่อนตรวจรอบใหม่', 'logic', 'ส่วนใหญ่ไม่เห็นความต่าง เพราะ L779 ถึง L781 ล้างตอนพิมพ์ให้แล้ว จะเห็นก็ต่อเมื่อส่งซ้ำโดยไม่พิมพ์อะไรใหม่'],
+  ['js', 799, 799, 'if ชื่อว่าง', 'syntax', SYN],
+  ['js', 800, 800, 'ข้อความชื่อว่าง', 'logic', 'ชื่อว่างไม่ขึ้นข้อความ แต่ก็ไม่เพิ่มการ์ด เพราะ L801 ยังตั้ง isValid เป็น false'],
+  ['js', 801, 801, '`isValid = false` ของกฎชื่อว่าง', 'logic', 'ข้อความแดงขึ้น แต่ถ้าช่องอื่นถูก การ์ดถูกเพิ่มเป็น CCTV Surveillance System () ชื่อว่างในวงเล็บ'],
+  ['js', 802, 802, '`} else if` ชื่อสั้นกว่า 3 ตัว', 'logic', 'ไม่มี error เพราะปีกกายังครบคู่ แต่กฎความยาวไปรวมอยู่ใน if ชื่อว่าง ชื่อ ab จึงผ่าน และชื่อว่างขึ้นข้อความเรื่องความยาวแทน'],
+  ['js', 803, 804, 'ข้อความและ `isValid` ของกฎความยาว', 'logic', 'ลบ L803 ชื่อ ab ไม่ขึ้นข้อความแต่ไม่เพิ่มการ์ด ลบ L804 ชื่อ ab ขึ้นข้อความแดงแต่ถูกเพิ่มเป็นการ์ด'],
+  ['js', 805, 805, 'ปิด if', 'syntax', SYN],
+  ['js', 808, 808, 'regex เบอร์โทร `/^0[0-9]{8,9}$/`', 'ref', 'เบอร์ว่างยังขึ้นข้อความปกติ แต่พอกรอกเบอร์แล้วกด Submit เกิด ReferenceError ตอนกด ไม่เพิ่มการ์ด'],
+  ['js', 809, 809, 'if เบอร์ว่าง', 'syntax', SYN],
+  ['js', 810, 811, 'ข้อความและ `isValid` ของเบอร์ว่าง', 'logic', 'ลบ L810 เบอร์ว่างไม่ขึ้นข้อความ ลบ L811 เบอร์ว่างแต่ช่องอื่นถูกจะเพิ่มการ์ดได้'],
+  ['js', 812, 812, '`} else if` เบอร์ไม่ตรง regex', 'logic', 'ไม่มี error แต่กฎ regex ไปรวมอยู่ใน if เบอร์ว่าง เบอร์ 12345 จึงผ่าน และเบอร์ว่างขึ้นข้อความเรื่องรูปแบบแทน'],
+  ['js', 813, 814, 'ข้อความและ `isValid` ของ regex', 'logic', 'ลบ L813 เบอร์ผิดไม่ขึ้นข้อความแต่ไม่เพิ่ม ลบ L814 เบอร์ผิดขึ้นข้อความแต่ยังเพิ่มการ์ด'],
+  ['js', 815, 815, 'ปิด if', 'syntax', SYN],
+  ['js', 818, 818, 'if ไม่เลือกระบบ', 'syntax', SYN],
+  ['js', 819, 820, 'ข้อความและ `isValid` ของช่องระบบ', 'logic', 'ลบ L819 ไม่เลือกระบบก็ไม่ขึ้นข้อความ ลบ L820 ไม่เลือกระบบแต่ช่องอื่นถูก การ์ดถูกเพิ่มเป็น Integrated Building Automation เพราะ L836 ใช้ค่า other แทน'],
+  ['js', 821, 821, 'ปิด if', 'syntax', SYN],
+  ['js', 823, 823, '`if (!isValid) return` จุดหยุด', 'logic', 'ข้อความแดงขึ้นครบ แต่ยังเพิ่มการ์ดทุกครั้ง ส่งฟอร์มว่างก็ได้การ์ด Integrated Building Automation ()'],
+  ['js', 826, 826, 'เปิด object `serviceMetaMap`', 'syntax', SYN],
+  ['js', 827, 833, 'ข้อมูลของแต่ละระบบ', 'logic', 'เลือกระบบที่ถูกลบแล้วจะได้ข้อมูลของ other แทน คือการ์ด Integrated Building Automation'],
+  ['js', 834, 834, 'ปิด object', 'syntax', SYN],
+  ['js', 836, 837, 'เลือกข้อมูลระบบ และหา id ใหม่ด้วย `Math.max`', 'ref', 'ส่งฟอร์มถูกแล้วเกิด ReferenceError ตอนกด ไม่เพิ่มการ์ด'],
+  ['js', 840, 840, 'เปิด object ใหม่', 'syntax', SYN],
+  ['js', 841, 841, '`id: newId`', 'logic', 'การ์ดใหม่ไม่มี id กด Delete Item แล้ว console พิมพ์ Item ID NaN และการ์ดไม่หาย เพราะ `Number("undefined")` ได้ NaN'],
+  ['js', 842, 842, 'ชื่อการ์ด', 'logic', 'การ์ดใหม่ขึ้นชื่อว่า undefined และไปอยู่เกือบท้ายรายการเพราะเรียงตามตัวอักษร'],
+  ['js', 843, 848, 'หมวด รูป คำอธิบาย และสถานะของการ์ดใหม่', 'logic', 'การ์ดใหม่ขาดส่วนนั้น เช่น ลบ L846 ไม่มีรูป ลบ L848 ไม่ขึ้นเป็นสนใจแล้ว'],
+  ['js', 849, 849, '`isCustom: true`', 'logic', 'การ์ดใหม่ไม่มีปุ่ม Delete Item มีปุ่ม Interested แทน เพราะ renderServices L470 เช็ก isCustom'],
+  ['js', 850, 850, 'ปิด object', 'syntax', SYN],
+  ['js', 853, 853, '`servicesData.unshift()` ใส่ array', 'logic', 'กล่องส่งสำเร็จขึ้น ฟอร์มถูกล้าง แต่ไม่มีการ์ดใหม่ เพราะข้อมูลไม่ได้เข้า array'],
+  ['js', 856, 856, 'สั่งวาดใหม่', 'logic', 'ข้อมูลเข้า array แล้วแต่จอไม่เปลี่ยน การ์ดใหม่จะโผล่เมื่อมีอย่างอื่นสั่งวาด เช่นกดปุ่มกรอง'],
+  ['js', 859, 859, 'หยิบ section บริการ', 'ref', 'การ์ดถูกเพิ่มแล้ว แต่เกิด ReferenceError ที่ L860 ตอนกด หน้าไม่เลื่อน ฟอร์มไม่ล้าง กล่องส่งสำเร็จไม่ขึ้น'],
+  ['js', 860, 860, 'if', 'syntax', SYN],
+  ['js', 861, 861, 'เลื่อนไปส่วนบริการ', 'logic', 'เพิ่มสำเร็จแต่หน้าไม่เลื่อนไปที่การ์ด'],
+  ['js', 862, 862, 'ปิด if', 'syntax', SYN],
+  ['js', 864, 864, '`form.reset()` ล้างฟอร์ม', 'logic', 'เพิ่มสำเร็จแต่ค่าที่กรอกยังค้างในฟอร์ม'],
+  ['js', 865, 865, 'if', 'syntax', SYN],
+  ['js', 866, 866, 'แสดงกล่องส่งสำเร็จ', 'logic', 'เพิ่มสำเร็จแต่ไม่มีกล่องแจ้ง'],
+  ['js', 867, 867, 'เปิด `setTimeout`', 'syntax', SYN],
+  ['js', 868, 868, 'ซ่อนกล่องหลัง 7 วินาที', 'logic', 'กล่องส่งสำเร็จค้างไม่หาย'],
+  ['js', 869, 872, 'ปิด setTimeout if listener และฟังก์ชัน', 'syntax', SYN]
+]
+};
+
+/* ---------- live lab: delete or edit any line, rerun the real site ---------- */
+const LABR = {
+  F1: [['html', 13, 71, 'ส่วนหัวและเมนู'], ['html', 405, 490, 'ฟอร์ม'], ['html', 492, 556, 'footer และ dialog'], ['css', 165, 216, 'visually-hidden และ focus']],
+  F2: [['css', 120, 128, 'box-sizing'], ['css', 925, 936, 'grid การ์ด'], ['css', 1736, 1832, 'จอไม่เกิน 1023px'], ['js', 549, 566, 'ตัดเหลือ 4 การ์ด'], ['js', 877, 898, 'เมนูมือถือ'], ['js', 966, 981, 'ปุ่มดูทั้งหมด']],
+  F3: [['js', 433, 497, 'renderServices'], ['js', 195, 223, 'ข้อมูล 2 รายการแรก']],
+  F4: [['js', 754, 872, 'setupFormValidation'], ['html', 405, 490, 'ฟอร์มใน HTML']],
+  F5: [['js', 421, 431, 'ตัวแปรสถานะ'], ['js', 502, 566, 'กรอง ค้น เรียง'], ['js', 571, 608, 'delegation'], ['js', 720, 749, 'ผูกปุ่มควบคุม']],
+  F6: [['js', 613, 694, 'openServiceModal และ listener'], ['html', 535, 551, 'dialog ใน HTML']],
+  F7: [['js', 699, 715, 'คีย์ลัด /'], ['js', 688, 694, 'Escape'], ['html', 475, 480, 'ปุ่ม submit']],
+  THEME: [['js', 1152, 1182, 'setupThemeToggle'], ['css', 93, 120, 'ตัวแปรชุดสว่าง']],
+  LANG: [['js', 1018, 1091, 'setupLanguageSwitcher'], ['html', 56, 63, 'ปุ่มภาษา']]
+};
+const LABFILE = { html: 'index.html', css: 'css/style.css', js: 'js/app.js' };
+const LABNAME = { html: 'index.html', css: 'style.css', js: 'app.js' };
+const SRCC = {};
+async function srcLines(f) {
+  if (!SRCC[f]) SRCC[f] = fetch('site/' + LABFILE[f]).then(r => { if (!r.ok) throw new Error(r.status); return r.text(); }).then(t => t.replace(/\r/g, '').split('\n'));
+  return SRCC[f];
+}
+const SBX_HOOK = "(function(){var ph='load';function s(t,m,l){try{parent.postMessage({__sbx:1,t:t,m:String(m),l:l||0,ph:ph},'*')}catch(e){}}" +
+  "window.addEventListener('error',function(e){s('error',e.message,e.lineno)});" +
+  "window.addEventListener('unhandledrejection',function(e){s('error',e.reason)});" +
+  "window.addEventListener('load',function(){setTimeout(function(){ph='event';s('ready','')},0)});" +
+  "['log','warn','error'].forEach(function(k){var o=console[k];console[k]=function(){var a=[].map.call(arguments,function(x){return typeof x==='object'?JSON.stringify(x):String(x)}).join(' ');if(!/All Features/.test(a))s(k,a);o.apply(console,arguments)}});" +
+  "document.addEventListener('submit',function(e){setTimeout(function(){if(!e.defaultPrevented)s('nav','ฟอร์มถูกส่งแบบปกติของเบราว์เซอร์ หน้าเว็บโหลดใหม่ ค่าที่กรอกไปต่อท้าย URL')},0)});})();";
+/* edits: [{f, from, to, text}] text null = blank the lines, string = replace (line count kept) */
+async function buildSandboxDoc(edits) {
+  const L = {}; for (const f of ['html', 'css', 'js']) L[f] = (await srcLines(f)).slice();
+  for (const e of edits || []) {
+    const arr = L[e.f]; const n = e.to - e.from + 1;
+    const rep = e.text == null ? [] : String(e.text).split('\n');
+    const block = rep.slice(0, n); while (block.length < n) block.push('');
+    const extra = rep.slice(n);
+    if (extra.length) block[n - 1] = block[n - 1] + '\n' + extra.join('\n');
+    arr.splice(e.from - 1, n, ...block);
+  }
+  const base = new URL('site/', location.href).href;
+  let html = L.html.join('\n');
+  html = html.replace(/<head>/i, '<head><base href="' + base + '"><script>' + SBX_HOOK + '<\/script>');
+  html = html.replace(/<link rel="stylesheet" href="css\/style\.css">/, () => '<style>' + L.css.join('\n').replace(/<\/style/gi, '<\\/style') + '</style>');
+  const tag = '<script data-app>\n';
+  html = html.replace(/<script src="js\/app\.js"><\/script>/, () => tag + L.js.join('\n').replace(/<\/script/gi, '<\\/script') + '\n<\/script>');
+  const at = html.indexOf(tag);
+  const jsStart = at < 0 ? 0 : html.slice(0, at).split('\n').length + 1;
+  return { html, jsStart, cssStart: 0 };
+}
+const SBX_FRAMES = new Map();
+window.addEventListener('message', e => { const d = e.data; if (!d || !d.__sbx) return; const h = SBX_FRAMES.get(e.source); if (h) h(d); });
+
+function buildLab(k, d, root) {
+  const ranges = LABR[k]; if (!ranges) return;
+  const ann = (typeof ANN !== 'undefined' && ANN[k]) || [];
+  const s = section('ห้องทดลอง ลบหรือแก้บรรทัดไหนก็ได้', 'คลิกเลือกบรรทัด กด Shift ค้างแล้วคลิกอีกบรรทัดเพื่อเลือกหลายบรรทัด แล้วกดรัน เว็บ BAS จะโหลดใหม่จากโค้ดที่แก้แล้วจริงๆ');
+  s.classList.add('lab-sec'); s.id = 'lab-' + k.toLowerCase();
+  const how = el('div', 'lab-how', '<b>คิด 3 ขั้นก่อนกดรัน</b>' +
+    '<ol><li><b>Syntax</b> ถ้าบรรทัดนั้นมีวงเล็บปีกกา <code class="cc">{</code> <code class="cc">}</code> หรือเครื่องหมายที่ต้องมีคู่ ลบแล้ว JS ทั้งไฟล์ไม่รัน การ์ดหาย ทุกปุ่มที่ใช้ JS ตาย</li>' +
+    '<li><b>Selector</b> ถ้าเป็นบรรทัดหยิบ element แล้วหาไม่เจอจะได้ <code class="cc">null</code> โค้ดนี้มี guard แบบ <code class="cc">if (!x) return</code> เกือบทุกจุด จึงมักเงียบ ไม่มี error แค่ฟีเจอร์นั้นหายไป ถ้าไม่มี guard จะเป็น TypeError</li>' +
+    '<li><b>Logic</b> ไม่มี error เลย แต่ผลผิด ต้องไล่ค่าตัวแปรเอง</li></ol>' +
+    '<p class="lab-tip">ถ้าลบบรรทัดประกาศตัวแปร <code class="cc">const</code> หรือ <code class="cc">let</code> ที่ถูกใช้ต่อ จะเกิด ReferenceError ตอนบรรทัดที่ใช้ทำงาน เพราะไฟล์มี <code class="cc">"use strict"</code> ที่ L8 ให้ดูว่าเกิดตอนเปิดหน้า ซึ่งทำให้ฟังก์ชันเริ่มต้นที่เหลือไม่ทำงาน หรือเกิดตอนกด ซึ่งพังแค่ปุ่มนั้น</p>');
+  s.appendChild(how);
+  const chips = el('div', 'lab-chips');
+  const wrap = el('div', 'lab');
+  const left = el('div', 'lab-l'); const codeBox = el('div', 'lab-code'); codeBox.setAttribute('role', 'listbox'); codeBox.setAttribute('aria-label', 'โค้ดจริงพร้อมเลขบรรทัด');
+  left.appendChild(chips); left.appendChild(codeBox);
+  const right = el('div', 'lab-r');
+  const sel = el('div', 'lab-sel', '<p class="lab-empty">ยังไม่ได้เลือกบรรทัด คลิกที่โค้ดทางซ้าย</p>');
+  const acts = el('div', 'lab-acts');
+  const bDel = el('button', 'tbtn primary', 'ลบบรรทัดที่เลือกแล้วรัน'); bDel.type = 'button'; bDel.disabled = true;
+  const bOrig = el('button', 'tbtn', 'รันแบบปกติ'); bOrig.type = 'button';
+  acts.append(bDel, bOrig);
+  const edBox = el('div', 'lab-ed'); edBox.hidden = true;
+  edBox.innerHTML = '<label class="lab2">หรือแก้เป็นข้อความนี้แล้วรัน</label>';
+  const ta = el('textarea'); ta.rows = 2; ta.spellcheck = false; ta.setAttribute('aria-label', 'แก้บรรทัดที่เลือก');
+  const bEd = el('button', 'tbtn', 'แก้แล้วรัน'); bEd.type = 'button';
+  edBox.append(ta, bEd);
+  right.append(sel, acts, edBox);
+  wrap.append(left, right); s.appendChild(wrap);
+  const run = el('div', 'lab-run');
+  const bar = el('div', 'lab-bar');
+  const status = el('span', 'lab-status', 'ยังไม่ได้รัน');
+  const wBtns = [1280, 400].map(w => { const b = el('button', 'tbtn', w === 1280 ? 'จอคอม' : 'จอมือถือ 400px'); b.type = 'button'; b.dataset.w = w; b.setAttribute('aria-pressed', w === 1280); return b; });
+  bar.append(status, ...wBtns);
+  const facts = el('div', 'lab-facts');
+  const stage = el('div', 'stage lab-stage'); const sizer = el('div', 'stage-sizer'); stage.appendChild(sizer);
+  stage.appendChild(el('div', 'stage-empty', '<p>เลือกบรรทัดแล้วกดรัน หรือกด รันแบบปกติ เพื่อเทียบ</p>'));
+  const cons = el('div', 'lab-cons', '<div class="lab2">Console ของเว็บในกรอบ</div>');
+  const consList = el('div', 'lab-cl'); cons.appendChild(consList);
+  run.append(bar, facts, stage, cons);
+  s.appendChild(run);
+  root.appendChild(s);
+
+  let cur = 0, lines = [], a = null, b = null, vw = 1280, frame = null, lastEdits = [], jsStart = 0, poll = null;
+  const fileOf = () => ranges[cur][0];
+  ranges.forEach((r, i) => {
+    const c = el('button', 'tbtn', '<b>' + LABNAME[r[0]] + '</b> L' + r[1] + '–' + r[2] + ' ' + escH(r[3])); c.type = 'button';
+    c.setAttribute('aria-pressed', i === 0); c.addEventListener('click', () => { cur = i; chips.querySelectorAll('button').forEach((x, j) => x.setAttribute('aria-pressed', j === i)); draw(); });
+    chips.appendChild(c);
+  });
+  function annFor(f, n) { return ann.find(x => x[0] === f && n >= x[1] && n <= x[2]); }
+  async function draw() {
+    a = b = null; showSel();
+    codeBox.innerHTML = '<p class="lab-empty">กำลังโหลดโค้ด</p>';
+    let src; try { src = await srcLines(fileOf()); } catch (e) { codeBox.innerHTML = '<p class="lab-empty">โหลดไฟล์โค้ดไม่ได้ ต้องเปิดผ่านเว็บเซิร์ฟเวอร์</p>'; return; }
+    const [f, from, to] = ranges[cur];
+    codeBox.innerHTML = ''; lines = [];
+    let lastAnn = null;
+    for (let n = from; n <= to; n++) {
+      const an = annFor(f, n);
+      const row = el('div', 'lrow' + (an && an !== lastAnn ? ' gstart' : '') + (an ? ' t-' + an[4] : ''), '<span class="n">' + n + '</span><span class="t">' + (escH(src[n - 1] || '') || '&nbsp;') + '</span>');
+      lastAnn = an;
+      row.dataset.n = n; row.setAttribute('role', 'option'); row.tabIndex = -1;
+      row.addEventListener('click', ev => { const nn = +row.dataset.n; if (ev.shiftKey && a != null) { b = nn; } else { a = nn; b = null; } showSel(); });
+      codeBox.appendChild(row); lines.push(row);
+    }
+  }
+  const range = () => { if (a == null) return null; const lo = Math.min(a, b ?? a), hi = Math.max(a, b ?? a); return [lo, hi]; };
+  async function showSel() {
+    const r = range();
+    lines.forEach(x => { const n = +x.dataset.n; x.classList.toggle('on', !!r && n >= r[0] && n <= r[1]); x.setAttribute('aria-selected', !!r && n >= r[0] && n <= r[1]); });
+    bDel.disabled = !r; edBox.hidden = !r;
+    if (!r) { sel.innerHTML = '<p class="lab-empty">ยังไม่ได้เลือกบรรทัด คลิกที่โค้ดทางซ้าย</p>'; return; }
+    const f = fileOf(); const src = await srcLines(f);
+    const txt = src.slice(r[0] - 1, r[1]).join('\n');
+    ta.value = txt; ta.rows = Math.min(8, Math.max(2, r[1] - r[0] + 1));
+    const an = annFor(f, r[0]);
+    const tv = an ? (TV2[an[4]] || 'none') : null;
+    const trivial = !an && src.slice(r[0] - 1, r[1]).every(t => !t.trim() || /^\s*(\/\/|\/\*|\*|<!--)/.test(t));
+    const multi = r[1] > r[0] && an && (an[1] !== r[0] || an[2] !== r[1]);
+    sel.innerHTML = '<div class="lab-selh"><b>' + LABNAME[f] + '</b> <span class="ln">L' + r[0] + (r[1] > r[0] ? '–' + r[1] : '') + '</span></div>' +
+      (an ? '<div class="lab-ann"><div class="lab2">บรรทัดนี้ทำอะไร</div><p>' + rich(an[3]) + '</p>' +
+        '<details class="lab-ans"><summary>เดาแล้ว ดูเฉลยว่าถ้าลบจะเป็นอย่างไร</summary><p><span class="tpill" style="background:var(--t-' + tv + '-bg);color:var(--t-' + tv + ')">' + escH(TLAB[an[4]]) + '</span></p><p>' + rich(an[5]) + '</p></details>' +
+        (multi ? '<p class="lab-q">เลือกไว้หลายบรรทัด คำอธิบายนี้เป็นของบรรทัด L' + an[1] + (an[2] > an[1] ? '–' + an[2] : '') + ' ผลจริงดูจากการกดรัน</p>' : '') + '</div>'
+        : trivial ? '<p class="lab-q">บรรทัดว่างหรือคอมเมนต์ ลบแล้วไม่มีผลกับการทำงาน</p>'
+        : '<p class="lab-q">ลองเดาก่อนว่าจะเป็นบั๊กแบบไหน แล้วกดรันเพื่อเช็ก</p>');
+  }
+  const TV2 = { syntax: 'syntax', selector: 'selector', logic: 'logic', ref: 'syntax', none: 'none' };
+  const TLAB = { syntax: 'Syntax error', selector: 'Selector เงียบ', logic: 'Logic', ref: 'ReferenceError ตอนรัน', none: 'ไม่เห็นความต่าง' };
+  function fit() {
+    if (!frame) return;
+    const avail = stage.clientWidth - 2, s2 = Math.min(1, avail / vw), h = stage.clientHeight - 2;
+    frame.style.width = vw + 'px'; frame.style.height = Math.round(h / s2) + 'px'; frame.style.transform = 'scale(' + s2 + ')';
+    sizer.style.width = (vw * s2) + 'px'; sizer.style.height = h + 'px';
+  }
+  wBtns.forEach(bt => bt.addEventListener('click', () => { vw = +bt.dataset.w; wBtns.forEach(x => x.setAttribute('aria-pressed', x === bt)); fit(); }));
+  window.addEventListener('resize', fit);
+  function addCons(d) {
+    if (d.t === 'ready') { status.textContent = lastEdits.length ? 'รันโค้ดที่แก้แล้ว โหลดเสร็จ ลองกดเล่นในกรอบได้' : 'รันโค้ดปกติ โหลดเสร็จ'; return; }
+    let ln = '';
+    if (d.t === 'error' && d.l && jsStart) { const j = d.l - jsStart + 1; if (j > 1274) ln = ' ที่ท้ายไฟล์ app.js เพราะวงเล็บปิดไม่ครบ'; else if (j > 0) ln = ' ที่ app.js L' + j; }
+    const row = el('div', 'cline' + (d.t === 'error' ? ' err' : d.t === 'nav' ? ' nav' : ''),
+      '<span class="ph">' + (d.ph === 'load' ? 'ตอนเปิดหน้า' : 'ตอนกด') + '</span>' + escH((d.t === 'error' ? 'Error ' : d.t === 'nav' ? '' : 'console.' + d.t + ' ') + d.m) + escH(ln));
+    if (consList.querySelector('.lab-none')) consList.innerHTML = '';
+    consList.appendChild(row); consList.scrollTop = consList.scrollHeight;
+  }
+  function readFacts() {
+    let doc; try { doc = frame && frame.contentDocument; } catch (e) { doc = null; }
+    if (!doc || !doc.body) { facts.innerHTML = ''; return; }
+    const q = s => doc.querySelector(s);
+    const f = [['การ์ดบนจอ', doc.querySelectorAll('#services-grid-container .service-card').length + ' ใบ'],
+      ['dialog', q('#service-modal') && q('#service-modal').open ? 'เปิดอยู่' : 'ปิด'],
+      ['data-theme', doc.documentElement.getAttribute('data-theme') || 'ไม่มี'],
+      ['เมนูนำทางแรก', (q('.nav-link') || {}).textContent || '']];
+    facts.innerHTML = f.map(x => '<span><b>' + x[0] + '</b> ' + escH(String(x[1]).trim()) + '</span>').join('');
+  }
+  async function go(edits) {
+    lastEdits = edits; consList.innerHTML = '<p class="lab-none">ยังไม่มีข้อความ</p>';
+    status.textContent = 'กำลังโหลด';
+    stage.querySelector('.stage-empty').hidden = true;
+    let doc; try { doc = await buildSandboxDoc(edits); } catch (e) { status.textContent = 'โหลดไฟล์โค้ดไม่ได้'; return; }
+    jsStart = doc.jsStart;
+    if (frame) SBX_FRAMES.delete(frame.contentWindow);
+    sizer.innerHTML = ''; frame = el('iframe'); frame.title = 'เว็บ BAS จากโค้ดที่แก้'; sizer.appendChild(frame); fit();
+    SBX_FRAMES.set(frame.contentWindow, addCons);
+    frame.addEventListener('load', () => { const w = frame.contentWindow; SBX_FRAMES.set(w, addCons); try { const t = frame.contentDocument; const st = t.createElement('style'); st.textContent = 'html{scroll-behavior:auto!important}'; t.head && t.head.appendChild(st); } catch (e) {} readFacts(); });
+    frame.srcdoc = doc.html;
+    clearInterval(poll); poll = setInterval(() => { if (!document.body.contains(frame)) return clearInterval(poll); if (!s.closest('[hidden]')) readFacts(); }, 700);
+    describeEdits(edits);
+  }
+  const editNote = el('p', 'lab-note'); run.insertBefore(editNote, facts);
+  function describeEdits(edits) {
+    editNote.innerHTML = edits.length ? edits.map(e => '<b>' + LABNAME[e.f] + '</b> <span class="ln">L' + e.from + (e.to > e.from ? '–' + e.to : '') + '</span> ' + (e.text == null ? 'ถูกลบ' : 'ถูกแก้')).join(' · ') : 'โค้ดเดิม ไม่ได้แก้อะไร';
+  }
+  bDel.addEventListener('click', () => { const r = range(); if (r) go([{ f: fileOf(), from: r[0], to: r[1], text: null }]); });
+  bEd.addEventListener('click', () => { const r = range(); if (r) go([{ f: fileOf(), from: r[0], to: r[1], text: ta.value }]); });
+  bOrig.addEventListener('click', () => go([]));
+  draw();
+  const api = {
+    run: go,
+    focusEdit(f, from, to) {
+      const i = ranges.findIndex(r => r[0] === f && from >= r[1] && to <= r[2]);
+      const after = () => { a = from; b = to > from ? to : null; showSel(); const row = lines.find(x => +x.dataset.n === from); if (row) row.scrollIntoView({ block: 'center' }); };
+      if (i >= 0 && i !== cur) { cur = i; chips.querySelectorAll('button').forEach((x, j) => x.setAttribute('aria-pressed', j === i)); draw().then(after); } else after();
+      s.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    },
+    refit: fit
+  };
+  return api;
+}
+
+/* ---------- exam drill tab ---------- */
+const rb = s => String(s).split('**').map((p, i) => i % 2 ? '<b>' + rich(p) + '</b>' : rich(p)).join('');
+const DTYPE = {
+  Predict: ['เดาผลลัพธ์', 'logic'],
+  Change: ['แก้โค้ดเดิม', 'selector'],
+  Extend: ['เพิ่มความสามารถ', 'syntax']
+};
+function lsGet(k) { try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } }
+function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+async function patchEdits(patch) {
+  const out = [];
+  for (const p of patch || []) {
+    if (p.at != null) { const src = await srcLines(p.f); out.push({ f: p.f, from: p.at, to: p.at, text: src[p.at - 1] + '\n' + p.add }); }
+    else out.push({ f: p.f, from: p.from, to: p.to, text: p.text });
+  }
+  return out;
+}
+function makeRunner(box, w0) {
+  const bar = el('div', 'lab-bar');
+  const status = el('span', 'lab-status', 'กำลังโหลด');
+  const wBtns = [1280, 400].map(w => { const b = el('button', 'tbtn', w === 1280 ? 'จอคอม' : 'จอมือถือ 400px'); b.type = 'button'; b.dataset.w = w; return b; });
+  bar.append(status, ...wBtns);
+  const stage = el('div', 'stage lab-stage'); const sizer = el('div', 'stage-sizer'); stage.appendChild(sizer);
+  const cons = el('div', 'lab-cons', '<div class="lab2">Console ของเว็บในกรอบ</div>'); const list = el('div', 'lab-cl'); cons.appendChild(list);
+  box.append(bar, stage, cons);
+  let vw = w0 || 1280, frame = null, jsStart = 0;
+  const mark = () => wBtns.forEach(b => b.setAttribute('aria-pressed', +b.dataset.w === vw));
+  function fit() {
+    if (!frame) return;
+    const avail = stage.clientWidth - 2, s2 = Math.min(1, avail / vw), h = stage.clientHeight - 2;
+    frame.style.width = vw + 'px'; frame.style.height = Math.round(h / s2) + 'px'; frame.style.transform = 'scale(' + s2 + ')';
+    sizer.style.width = (vw * s2) + 'px'; sizer.style.height = h + 'px';
+  }
+  wBtns.forEach(b => b.addEventListener('click', () => { vw = +b.dataset.w; mark(); fit(); }));
+  window.addEventListener('resize', fit);
+  function add(d) {
+    if (d.t === 'ready') { status.textContent = 'โหลดเสร็จ ลองกดเล่นในกรอบได้'; return; }
+    let ln = ''; if (d.t === 'error' && d.l && jsStart) { const j = d.l - jsStart + 1; if (j > 0 && j <= 1400) ln = ' แถว L' + j + ' ของโค้ดที่แก้'; }
+    if (list.querySelector('.lab-none')) list.innerHTML = '';
+    list.appendChild(el('div', 'cline' + (d.t === 'error' ? ' err' : d.t === 'nav' ? ' nav' : ''), '<span class="ph">' + (d.ph === 'load' ? 'ตอนเปิดหน้า' : 'ตอนกด') + '</span>' + escH((d.t === 'error' ? 'Error ' : d.t === 'nav' ? '' : 'console.' + d.t + ' ') + d.m) + escH(ln)));
+  }
+  return {
+    async go(edits) {
+      mark(); list.innerHTML = '<p class="lab-none">ยังไม่มีข้อความ</p>'; status.textContent = 'กำลังโหลด';
+      let doc; try { doc = await buildSandboxDoc(edits); } catch (e) { status.textContent = 'โหลดไฟล์โค้ดไม่ได้ ต้องเปิดผ่านเว็บเซิร์ฟเวอร์'; return; }
+      jsStart = doc.jsStart;
+      if (frame) SBX_FRAMES.delete(frame.contentWindow);
+      sizer.innerHTML = ''; frame = el('iframe'); frame.title = 'เว็บ BAS สำหรับเช็กคำตอบ'; sizer.appendChild(frame); fit();
+      SBX_FRAMES.set(frame.contentWindow, add);
+      frame.addEventListener('load', () => SBX_FRAMES.set(frame.contentWindow, add));
+      frame.srcdoc = doc.html;
+    },
+    fit
+  };
+}
+function buildDrill(v) {
+  const head = el('header', 'head');
+  head.appendChild(el('div', 'eyebrow', '<span>ฝึกข้อสอบ</span><span>' + DRILL.length + ' ข้อ</span><span>เขียนเอง แล้วเทียบกับเฉลย</span>'));
+  head.appendChild(el('h1', '', 'ฝึกตอบ Predict Change Extend'));
+  v.appendChild(head);
+  const rub = section('เกณฑ์ข้อละ 8 คะแนน', 'ทุกคำตอบควรมีประโยคที่ขึ้นต้นด้วย "เพราะ" นี่คือสิ่งที่แยก 5 คะแนนออกจาก 8');
+  rub.appendChild(el('div', 'rubric',
+    '<div><b>8</b><span>ถูกครบ ใช้คำของตัวเอง บอกว่าทำไม และโค้ดรันได้จริง</span></div>' +
+    '<div><b>5</b><span>เกือบถูก ขาดนิดหน่อย หรือ syntax ผิดเล็กน้อย</span></div>' +
+    '<div><b>2</b><span>บอกได้แค่ว่าโค้ดทำอะไร แต่ไม่บอกว่าทำยังไงหรือทำไม</span></div>' +
+    '<div><b>0</b><span>ผิด ว่าง หรือลอกคอมเมนต์ในโค้ดมาตอบ</span></div>'));
+  v.appendChild(rub);
+  const sec = section('โจทย์', 'กรองตามแบบข้อสอบหรือเจ้าของฟีเจอร์ได้ คำตอบที่พิมพ์ไว้จะจำอยู่ในเบราว์เซอร์นี้');
+  const chips = el('div', 'lab-chips');
+  const F = [['all', 'ทั้งหมด'], ['Predict', 'Predict เดาผล'], ['Change', 'Change แก้โค้ด'], ['Extend', 'Extend เพิ่มความสามารถ'], ['me', 'ของวัชรชัย'], ['beef', 'ของบีฟ']];
+  const list = el('div', 'drill-list');
+  const cards = [];
+  F.forEach(([key, label], i) => {
+    const b = el('button', 'tbtn', escH(label)); b.type = 'button'; b.setAttribute('aria-pressed', i === 0);
+    b.addEventListener('click', () => { chips.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); cards.forEach(c => { c.el.hidden = !(key === 'all' || c.q.type === key || c.q.owner === key); }); });
+    chips.appendChild(b);
+  });
+  sec.append(chips, list); v.appendChild(sec);
+  const runners = [];
+  DRILL.forEach((q, i) => {
+    const t = DTYPE[q.type];
+    const c = el('article', 'dq');
+    c.appendChild(el('div', 'bk-h', '<strong>' + (i + 1) + '.</strong><span class="tpill" style="background:var(--t-' + t[1] + '-bg);color:var(--t-' + t[1] + ')">' + q.type + ' ' + t[0] + '</span><span class="owner"><i style="background:var(--' + (q.owner === 'me' ? 'me' : 'beef') + ')"></i>' + q.feat + (q.owner === 'me' ? ' ของวัชรชัย' : ' ของบีฟ') + '</span>'));
+    c.appendChild(el('p', 'dq-q', rb(q.q)));
+    const code = el('div', 'codev'); c.appendChild(code);
+    (async () => {
+      for (const [f, a, b] of q.show || []) {
+        let src; try { src = await srcLines(f); } catch (e) { continue; }
+        code.appendChild(el('div', 'cf', LABNAME[f] + ' L' + a + (b > a ? '–' + b : '')));
+        const cl = el('div', 'cl');
+        for (let n = a; n <= b; n++) cl.appendChild(el('div', 'row', '<span class="n">' + n + '</span><span class="t">' + (escH(src[n - 1] || '') || '&nbsp;') + '</span>'));
+        code.appendChild(cl);
+      }
+      if (!code.children.length) code.remove();
+    })();
+    const key = 'drill-' + q.id;
+    const ta = el('textarea', 'dq-ta'); ta.rows = 4; ta.placeholder = 'เขียนคำตอบของคุณ อย่าลืมประโยคที่ขึ้นต้นด้วย เพราะ'; ta.value = lsGet(key);
+    ta.setAttribute('aria-label', 'คำตอบข้อ ' + (i + 1));
+    ta.addEventListener('input', () => lsSet(key, ta.value));
+    c.appendChild(ta);
+    const btns = el('div', 'bk-btns');
+    const bAns = el('button', 'pv-btn', 'ดูเฉลย'); bAns.type = 'button'; bAns.setAttribute('aria-expanded', 'false');
+    const bRun = el('button', 'tbtn', q.patch ? 'รันโค้ดเฉลยในเว็บจริง' : 'เปิดเว็บจริงเพื่อเช็ก'); bRun.type = 'button';
+    btns.append(bAns, bRun); c.appendChild(btns);
+    const ans = el('div', 'dq-ans'); ans.hidden = true;
+    ans.innerHTML = '<div class="lab2">เฉลย</div>' + q.a.split('\n').map(x => '<p>' + rb(x) + '</p>').join('') +
+      (q.code ? '<div class="lab2">โค้ด</div><pre class="dq-code">' + escH(q.code) + '</pre>' : '');
+    c.appendChild(ans);
+    bAns.addEventListener('click', () => { ans.hidden = !ans.hidden; bAns.setAttribute('aria-expanded', String(!ans.hidden)); bAns.textContent = ans.hidden ? 'ดูเฉลย' : 'ซ่อนเฉลย'; });
+    const rbox = el('div', 'dq-run'); rbox.hidden = true;
+    if (q.check) rbox.appendChild(el('p', 'pv-act', '<b>ลองทำ</b> ' + rich(q.check)));
+    if (q.patch) rbox.appendChild(el('p', 'lab-note', 'กรอบนี้รันโค้ดที่ใส่คำตอบแล้ว ไม่ใช่โค้ดเดิม'));
+    c.appendChild(rbox);
+    let runner = null;
+    bRun.addEventListener('click', async () => {
+      rbox.hidden = false;
+      if (!runner) { runner = makeRunner(rbox, q.w); runners.push(runner); }
+      runner.go(q.patch ? await patchEdits(q.patch) : []);
+      rbox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+    list.appendChild(c); cards.push({ el: c, q });
+  });
+  return { refit() { runners.forEach(r => r.fit()); } };
+}
+
 /* ---------- assemble ---------- */
 const main = document.getElementById('main'), tabs = document.getElementById('tabs');
-const views = {}, combos = {};
+const views = {}, combos = {}, labs = {};
 for (const k of ORDER) {
   const d = DATA[k], me = d.owner === 'me';
   if (k === 'THEME') tabs.appendChild(el('span', 'tabsep'));
@@ -1460,13 +2034,211 @@ for (const k of ORDER) {
   v.appendChild(head);
   buildUI(d, v);
   combos[k] = buildCombo(k, d, v);
-  buildExplain(d, v); buildBreaks(d, v, k);
+  buildExplain(d, v); buildBreaks(d, v, k); labs[k] = buildLab(k, d, v);
+  main.appendChild(v); views[k] = v;
+}
+const ALL = ORDER.slice();
+if (typeof buildDrill === 'function') {
+  tabs.appendChild(el('span', 'tabsep'));
+  const t = el('button', 'tab tab-drill', 'ฝึกข้อสอบ'); t.type = 'button'; t.setAttribute('role', 'tab'); t.id = 'tab-drill';
+  t.addEventListener('click', () => show('DRILL', true)); tabs.appendChild(t);
+  const v = el('div', 'feature'); v.id = 'view-drill'; v.setAttribute('role', 'tabpanel'); v.hidden = true;
+  combos.DRILL = buildDrill(v); main.appendChild(v); views.DRILL = v; ALL.push('DRILL');
+}
+let cur = null;
+function show(k, push) {
+  for (const x of ALL) { views[x].hidden = x !== k; document.getElementById('tab-' + x.toLowerCase()).setAttribute('aria-selected', x === k); }
+  cur = k; combos[k].refit(); if (labs[k]) labs[k].refit();
+  if (push) { try { history.replaceState(null, '', '#' + k.toLowerCase()); } catch (e) {} window.scrollTo({ top: 0 }); }
+}
+const start = (location.hash || '').slice(1).toUpperCase();
+show(ALL.includes(start) ? start : 'F5', false);
+let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => combos[cur].refit(), 120); });
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => combos[cur].relayout && combos[cur].relayout());
+window.addEventListener('hashchange', () => { const h = (location.hash || '').slice(1).toUpperCase(); if (ALL.includes(h) && h !== cur) show(h, false); });
+
+</script>');
+  const at = html.indexOf(tag);
+  const jsStart = at < 0 ? 0 : html.slice(0, at).split('\n').length + 1;
+  return { html, jsStart, cssStart: 0 };
+}
+const SBX_FRAMES = new Map();
+window.addEventListener('message', e => { const d = e.data; if (!d || !d.__sbx) return; const h = SBX_FRAMES.get(e.source); if (h) h(d); });
+
+function buildLab(k, d, root) {
+  const ranges = LABR[k]; if (!ranges) return;
+  const ann = (typeof ANN !== 'undefined' && ANN[k]) || [];
+  const s = section('ห้องทดลอง ลบหรือแก้บรรทัดไหนก็ได้', 'คลิกเลือกบรรทัด กด Shift ค้างแล้วคลิกอีกบรรทัดเพื่อเลือกหลายบรรทัด แล้วกดรัน เว็บ BAS จะโหลดใหม่จากโค้ดที่แก้แล้วจริงๆ');
+  s.classList.add('lab-sec'); s.id = 'lab-' + k.toLowerCase();
+  const how = el('div', 'lab-how', '<b>คิด 3 ขั้นก่อนกดรัน</b>' +
+    '<ol><li><b>Syntax</b> ถ้าบรรทัดนั้นมีวงเล็บปีกกา <code class="cc">{</code> <code class="cc">}</code> หรือเครื่องหมายที่ต้องมีคู่ ลบแล้ว JS ทั้งไฟล์ไม่รัน การ์ดหาย ทุกปุ่มที่ใช้ JS ตาย</li>' +
+    '<li><b>Selector</b> ถ้าเป็นบรรทัดหยิบ element แล้วหาไม่เจอจะได้ <code class="cc">null</code> โค้ดนี้มี guard แบบ <code class="cc">if (!x) return</code> เกือบทุกจุด จึงมักเงียบ ไม่มี error แค่ฟีเจอร์นั้นหายไป ถ้าไม่มี guard จะเป็น TypeError</li>' +
+    '<li><b>Logic</b> ไม่มี error เลย แต่ผลผิด ต้องไล่ค่าตัวแปรเอง ถ้าลบบรรทัดประกาศตัวแปรที่ใช้ต่อ จะเป็น ReferenceError ตอนที่บรรทัดนั้นทำงาน ดูว่าเกิดตอนเปิดหน้าหรือตอนกด</li></ol>');
+  s.appendChild(how);
+  const chips = el('div', 'lab-chips');
+  const wrap = el('div', 'lab');
+  const left = el('div', 'lab-l'); const codeBox = el('div', 'lab-code'); codeBox.setAttribute('role', 'listbox'); codeBox.setAttribute('aria-label', 'โค้ดจริงพร้อมเลขบรรทัด');
+  left.appendChild(chips); left.appendChild(codeBox);
+  const right = el('div', 'lab-r');
+  const sel = el('div', 'lab-sel', '<p class="lab-empty">ยังไม่ได้เลือกบรรทัด คลิกที่โค้ดทางซ้าย</p>');
+  const acts = el('div', 'lab-acts');
+  const bDel = el('button', 'tbtn primary', 'ลบบรรทัดที่เลือกแล้วรัน'); bDel.type = 'button'; bDel.disabled = true;
+  const bOrig = el('button', 'tbtn', 'รันแบบปกติ'); bOrig.type = 'button';
+  acts.append(bDel, bOrig);
+  const edBox = el('div', 'lab-ed'); edBox.hidden = true;
+  edBox.innerHTML = '<label class="lab2">หรือแก้เป็นข้อความนี้แล้วรัน</label>';
+  const ta = el('textarea'); ta.rows = 2; ta.spellcheck = false; ta.setAttribute('aria-label', 'แก้บรรทัดที่เลือก');
+  const bEd = el('button', 'tbtn', 'แก้แล้วรัน'); bEd.type = 'button';
+  edBox.append(ta, bEd);
+  right.append(sel, acts, edBox);
+  wrap.append(left, right); s.appendChild(wrap);
+  const run = el('div', 'lab-run');
+  const bar = el('div', 'lab-bar');
+  const status = el('span', 'lab-status', 'ยังไม่ได้รัน');
+  const wBtns = [1280, 400].map(w => { const b = el('button', 'tbtn', w === 1280 ? 'จอคอม' : 'จอมือถือ 400px'); b.type = 'button'; b.dataset.w = w; b.setAttribute('aria-pressed', w === 1280); return b; });
+  bar.append(status, ...wBtns);
+  const facts = el('div', 'lab-facts');
+  const stage = el('div', 'stage lab-stage'); const sizer = el('div', 'stage-sizer'); stage.appendChild(sizer);
+  stage.appendChild(el('div', 'stage-empty', '<p>เลือกบรรทัดแล้วกดรัน หรือกด รันแบบปกติ เพื่อเทียบ</p>'));
+  const cons = el('div', 'lab-cons', '<div class="lab2">Console ของเว็บในกรอบ</div>');
+  const consList = el('div', 'lab-cl'); cons.appendChild(consList);
+  run.append(bar, facts, stage, cons);
+  s.appendChild(run);
+  root.appendChild(s);
+
+  let cur = 0, lines = [], a = null, b = null, vw = 1280, frame = null, lastEdits = [], jsStart = 0, poll = null;
+  const fileOf = () => ranges[cur][0];
+  ranges.forEach((r, i) => {
+    const c = el('button', 'tbtn', '<b>' + LABNAME[r[0]] + '</b> L' + r[1] + '–' + r[2] + ' ' + escH(r[3])); c.type = 'button';
+    c.setAttribute('aria-pressed', i === 0); c.addEventListener('click', () => { cur = i; chips.querySelectorAll('button').forEach((x, j) => x.setAttribute('aria-pressed', j === i)); draw(); });
+    chips.appendChild(c);
+  });
+  function annFor(f, n) { return ann.find(x => x[0] === f && n >= x[1] && n <= x[2]); }
+  async function draw() {
+    a = b = null; showSel();
+    codeBox.innerHTML = '<p class="lab-empty">กำลังโหลดโค้ด</p>';
+    let src; try { src = await srcLines(fileOf()); } catch (e) { codeBox.innerHTML = '<p class="lab-empty">โหลดไฟล์โค้ดไม่ได้ ต้องเปิดผ่านเว็บเซิร์ฟเวอร์</p>'; return; }
+    const [f, from, to] = ranges[cur];
+    codeBox.innerHTML = ''; lines = [];
+    let lastAnn = null;
+    for (let n = from; n <= to; n++) {
+      const an = annFor(f, n);
+      const row = el('div', 'lrow' + (an && an !== lastAnn ? ' gstart' : '') + (an ? ' t-' + an[4] : ''), '<span class="n">' + n + '</span><span class="t">' + (escH(src[n - 1] || '') || '&nbsp;') + '</span>');
+      lastAnn = an;
+      row.dataset.n = n; row.setAttribute('role', 'option'); row.tabIndex = -1;
+      row.addEventListener('click', ev => { const nn = +row.dataset.n; if (ev.shiftKey && a != null) { b = nn; } else { a = nn; b = null; } showSel(); });
+      codeBox.appendChild(row); lines.push(row);
+    }
+  }
+  const range = () => { if (a == null) return null; const lo = Math.min(a, b ?? a), hi = Math.max(a, b ?? a); return [lo, hi]; };
+  async function showSel() {
+    const r = range();
+    lines.forEach(x => { const n = +x.dataset.n; x.classList.toggle('on', !!r && n >= r[0] && n <= r[1]); x.setAttribute('aria-selected', !!r && n >= r[0] && n <= r[1]); });
+    bDel.disabled = !r; edBox.hidden = !r;
+    if (!r) { sel.innerHTML = '<p class="lab-empty">ยังไม่ได้เลือกบรรทัด คลิกที่โค้ดทางซ้าย</p>'; return; }
+    const f = fileOf(); const src = await srcLines(f);
+    const txt = src.slice(r[0] - 1, r[1]).join('\n');
+    ta.value = txt; ta.rows = Math.min(8, Math.max(2, r[1] - r[0] + 1));
+    const an = annFor(f, r[0]);
+    const tv = an ? (TV2[an[4]] || 'none') : null;
+    sel.innerHTML = '<div class="lab-selh"><b>' + LABNAME[f] + '</b> <span class="ln">L' + r[0] + (r[1] > r[0] ? '–' + r[1] : '') + '</span>' +
+      (an ? '<span class="tpill" style="background:var(--t-' + tv + '-bg);color:var(--t-' + tv + ')">ถ้าลบ ' + escH(TLAB[an[4]]) + '</span>' : '') + '</div>' +
+      (an ? '<div class="lab-ann"><div class="lab2">บรรทัดนี้ทำอะไร</div><p>' + rich(an[3]) + '</p><div class="lab2">ถ้าลบจะเห็นอะไร</div><p>' + rich(an[5]) + '</p></div>' : '<p class="lab-q">ลองเดาก่อนว่าจะเป็นบั๊กแบบไหน แล้วกดรันเพื่อเช็ก</p>');
+  }
+  const TV2 = { syntax: 'syntax', selector: 'selector', logic: 'logic', ref: 'syntax', none: 'none' };
+  const TLAB = { syntax: 'Syntax error', selector: 'Selector เงียบ', logic: 'Logic', ref: 'ReferenceError', none: 'ไม่เห็นความต่าง' };
+  function fit() {
+    if (!frame) return;
+    const avail = stage.clientWidth - 2, s2 = Math.min(1, avail / vw), h = stage.clientHeight - 2;
+    frame.style.width = vw + 'px'; frame.style.height = Math.round(h / s2) + 'px'; frame.style.transform = 'scale(' + s2 + ')';
+    sizer.style.width = (vw * s2) + 'px'; sizer.style.height = h + 'px';
+  }
+  wBtns.forEach(bt => bt.addEventListener('click', () => { vw = +bt.dataset.w; wBtns.forEach(x => x.setAttribute('aria-pressed', x === bt)); fit(); }));
+  window.addEventListener('resize', fit);
+  function addCons(d) {
+    if (d.t === 'ready') { status.textContent = lastEdits.length ? 'รันโค้ดที่แก้แล้ว โหลดเสร็จ ลองกดเล่นในกรอบได้' : 'รันโค้ดปกติ โหลดเสร็จ'; return; }
+    let ln = '';
+    if (d.t === 'error' && d.l && jsStart) { const j = d.l - jsStart + 1; if (j > 0) ln = ' ที่ app.js L' + j; }
+    const row = el('div', 'cline' + (d.t === 'error' ? ' err' : d.t === 'nav' ? ' nav' : ''),
+      '<span class="ph">' + (d.ph === 'load' ? 'ตอนเปิดหน้า' : 'ตอนกด') + '</span>' + escH((d.t === 'error' ? 'Error ' : d.t === 'nav' ? '' : 'console.' + d.t + ' ') + d.m) + escH(ln));
+    if (consList.querySelector('.lab-none')) consList.innerHTML = '';
+    consList.appendChild(row); consList.scrollTop = consList.scrollHeight;
+  }
+  function readFacts() {
+    let doc; try { doc = frame && frame.contentDocument; } catch (e) { doc = null; }
+    if (!doc || !doc.body) { facts.innerHTML = ''; return; }
+    const q = s => doc.querySelector(s);
+    const f = [['การ์ดบนจอ', doc.querySelectorAll('#services-grid-container .service-card').length + ' ใบ'],
+      ['dialog', q('#service-modal') && q('#service-modal').open ? 'เปิดอยู่' : 'ปิด'],
+      ['data-theme', doc.documentElement.getAttribute('data-theme') || 'ไม่มี'],
+      ['เมนูนำทางแรก', (q('.nav-link') || {}).textContent || '']];
+    facts.innerHTML = f.map(x => '<span><b>' + x[0] + '</b> ' + escH(String(x[1]).trim()) + '</span>').join('');
+  }
+  async function go(edits) {
+    lastEdits = edits; consList.innerHTML = '<p class="lab-none">ยังไม่มีข้อความ</p>';
+    status.textContent = 'กำลังโหลด';
+    stage.querySelector('.stage-empty').hidden = true;
+    let doc; try { doc = await buildSandboxDoc(edits); } catch (e) { status.textContent = 'โหลดไฟล์โค้ดไม่ได้'; return; }
+    jsStart = doc.jsStart;
+    if (frame) SBX_FRAMES.delete(frame.contentWindow);
+    sizer.innerHTML = ''; frame = el('iframe'); frame.title = 'เว็บ BAS จากโค้ดที่แก้'; sizer.appendChild(frame); fit();
+    SBX_FRAMES.set(frame.contentWindow, addCons);
+    frame.addEventListener('load', () => { const w = frame.contentWindow; SBX_FRAMES.set(w, addCons); try { const t = frame.contentDocument; const st = t.createElement('style'); st.textContent = 'html{scroll-behavior:auto!important}'; t.head && t.head.appendChild(st); } catch (e) {} readFacts(); });
+    frame.srcdoc = doc.html;
+    clearInterval(poll); poll = setInterval(() => { if (!document.body.contains(frame)) return clearInterval(poll); if (!s.closest('[hidden]')) readFacts(); }, 700);
+    describeEdits(edits);
+  }
+  const editNote = el('p', 'lab-note'); run.insertBefore(editNote, facts);
+  function describeEdits(edits) {
+    editNote.innerHTML = edits.length ? edits.map(e => '<b>' + LABNAME[e.f] + '</b> <span class="ln">L' + e.from + (e.to > e.from ? '–' + e.to : '') + '</span> ' + (e.text == null ? 'ถูกลบ' : 'ถูกแก้')).join(' · ') : 'โค้ดเดิม ไม่ได้แก้อะไร';
+  }
+  bDel.addEventListener('click', () => { const r = range(); if (r) go([{ f: fileOf(), from: r[0], to: r[1], text: null }]); });
+  bEd.addEventListener('click', () => { const r = range(); if (r) go([{ f: fileOf(), from: r[0], to: r[1], text: ta.value }]); });
+  bOrig.addEventListener('click', () => go([]));
+  draw();
+  const api = {
+    run: go,
+    focusEdit(f, from, to) {
+      const i = ranges.findIndex(r => r[0] === f && from >= r[1] && to <= r[2]);
+      const after = () => { a = from; b = to > from ? to : null; showSel(); const row = lines.find(x => +x.dataset.n === from); if (row) row.scrollIntoView({ block: 'center' }); };
+      if (i >= 0 && i !== cur) { cur = i; chips.querySelectorAll('button').forEach((x, j) => x.setAttribute('aria-pressed', j === i)); draw().then(after); } else after();
+      s.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    },
+    refit: fit
+  };
+  return api;
+}
+
+
+/* ---------- assemble ---------- */
+const main = document.getElementById('main'), tabs = document.getElementById('tabs');
+const views = {}, combos = {}, labs = {};
+for (const k of ORDER) {
+  const d = DATA[k], me = d.owner === 'me';
+  if (k === 'THEME') tabs.appendChild(el('span', 'tabsep'));
+  const label = (k.startsWith('F') ? k + ' ' : '') + d.short;
+  const t = el('button', 'tab', '<span class="dot" style="background:var(--' + (me ? 'me' : 'beef') + ')"></span>' + escH(label));
+  t.type = 'button'; t.setAttribute('role', 'tab'); t.id = 'tab-' + k.toLowerCase();
+  t.addEventListener('click', () => show(k, true)); tabs.appendChild(t);
+  const v = el('div', 'feature'); v.id = 'view-' + k.toLowerCase(); v.setAttribute('role', 'tabpanel'); v.hidden = true;
+  const head = el('header', 'head');
+  const eb = el('div', 'eyebrow');
+  eb.appendChild(el('span', 'owner', '<i style="background:var(--' + (me ? 'me' : 'beef') + ')"></i>' + (me ? 'ของวัชรชัย' : 'ของบีฟ')));
+  eb.appendChild(el('span', '', d.score ? d.score + ' คะแนน' : 'ฟีเจอร์เสริม'));
+  eb.appendChild(el('span', '', rich(d.exam)));
+  head.appendChild(eb);
+  head.appendChild(el('h1', '', rich((k.startsWith('F') ? k + ' ' : '') + d.title)));
+  head.appendChild(buildWiring(d));
+  v.appendChild(head);
+  buildUI(d, v);
+  combos[k] = buildCombo(k, d, v);
+  buildExplain(d, v); buildBreaks(d, v, k); labs[k] = buildLab(k, d, v);
   main.appendChild(v); views[k] = v;
 }
 let cur = null;
 function show(k, push) {
   for (const x of ORDER) { views[x].hidden = x !== k; document.getElementById('tab-' + x.toLowerCase()).setAttribute('aria-selected', x === k); }
-  cur = k; combos[k].refit();
+  cur = k; combos[k].refit(); if (labs[k]) labs[k].refit();
   if (push) { try { history.replaceState(null, '', '#' + k.toLowerCase()); } catch (e) {} window.scrollTo({ top: 0 }); }
 }
 const start = (location.hash || '').slice(1).toUpperCase();
